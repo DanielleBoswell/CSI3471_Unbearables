@@ -10,13 +10,17 @@ package com.csi3471.unbearables.maven.cruiselink;
  */
 
 import java.util.Date;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class TravelPath {
 	private int days;
 	private Date startDate;
 	private Date endDate;
-	private List<Country> path;
+	private Map<Date,Country> path = null;
 	
 	
 	public int getDays() {
@@ -37,12 +41,67 @@ public class TravelPath {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	public List<Country> getPath() {
+	public Map<Date,Country> getPath() {
 		return path;
 	}
-	public void setPath(List<Country> path) {
+	public void setPath(Map<Date,Country> path) {
 		this.path = path;
 	}
+	
+	public void addCountry(Country c) { // FIXME: automatically find start/end date
+		if(path == null) {
+			path = new TreeMap<Date,Country>();
+		}
+		
+		path.put(c.getArrivalDate(),c);
+		
+	}
+	
+	public Country checkStartDate(Date date) {
+		Country temp = null;
+		if(!date.equals(endDate)) { // makes sure guest not registering for last day
+			if(path.containsKey(date)) {
+				temp = path.get(date);
+			}
+			else {
+				for(Map.Entry<Date,Country> y : path.entrySet()) {
+					if(date.after(y.getKey()) && date.before(y.getValue().getDepartureDate())) {
+						temp = y.getValue();
+					}
+				}
+			}
+		}
+		
+		return temp;
+	}
+	
+	public Country checkEndDate(Date date) {
+		Country temp = null;
+		if(!date.equals(startDate)) { // makes sure guest not registering for first day
+			if(path.containsKey(date)) {
+				temp = path.get(date);
+			}
+			else {
+				for(Map.Entry<Date,Country> y : path.entrySet()) {
+					if(date.after(y.getKey()) && date.before(y.getValue().getDepartureDate())) {
+						temp = y.getValue();
+					}
+				}
+			}
+		}
+		
+		return temp;
+	}
+	
+	public boolean checkDates(Date start, Date end) {
+		if(checkEndDate(end) != null && checkStartDate(start) != null) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	
 	
 }
