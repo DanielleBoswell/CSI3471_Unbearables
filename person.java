@@ -1,5 +1,7 @@
 package person;
 
+import java.util.Objects;
+
 public class person {
     String name;
     int age;
@@ -8,7 +10,7 @@ public class person {
     String email;
 
 
-    
+
     public String getName() {
         return name;
     }
@@ -47,5 +49,17 @@ public class person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof person person)) return false;
+        return age == person.age && Objects.equals(name, person.name) && Objects.equals(username, person.username) && Objects.equals(password, person.password) && Objects.equals(email, person.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age, username, password, email);
     }
 }
