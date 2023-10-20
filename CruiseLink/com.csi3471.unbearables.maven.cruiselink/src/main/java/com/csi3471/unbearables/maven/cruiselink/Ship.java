@@ -1,3 +1,5 @@
+package com.csi3471.unbearables.maven.cruiselink;
+
 /* Team: UnBEARables
  * Course: CSI 3471
  * Project: CruiseLink

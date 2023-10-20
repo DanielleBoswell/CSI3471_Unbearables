@@ -1,3 +1,5 @@
+package com.csi3471.unbearables.maven.cruiselink;
+
 import java.util.Date;
 import java.util.Objects;
 
