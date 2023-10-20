@@ -1,0 +1,1 @@
+UI holds the UI screen (Part of the presentation layer)
