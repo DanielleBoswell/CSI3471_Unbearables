@@ -1,8 +1,8 @@
-package person;
+package com.csi3471.unbearables.maven.cruiselink;
 
 import java.util.Objects;
 
-public class Guest extends person {
+public class Guest extends Person {
 
     String billingInfo;
     int points;
@@ -53,8 +53,8 @@ public class Guest extends person {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Guest guest)) return false;
-        if (!super.equals(o)) return false;
+        if (o == null || getClass().equals(o.getClass()) ) return false;
+        Guest guest = (Guest) o;
         return points == guest.points && isMember == guest.isMember && isCorporate == guest.isCorporate && Objects.equals(billingInfo, guest.billingInfo) && Objects.equals(phoneNumber, guest.phoneNumber);
     }
 

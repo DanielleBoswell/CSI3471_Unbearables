@@ -1,8 +1,8 @@
-package person;
+package com.csi3471.unbearables.maven.cruiselink;
 
 import java.util.Objects;
 
-public class person {
+public class Person {
     String name;
     int age;
     String username;
@@ -54,7 +54,8 @@ public class person {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof person person)) return false;
+        if (o == null || getClass().equals(o.getClass())) return false;
+        Person person = (Person) o;
         return age == person.age && Objects.equals(name, person.name) && Objects.equals(username, person.username) && Objects.equals(password, person.password) && Objects.equals(email, person.email);
     }
 
