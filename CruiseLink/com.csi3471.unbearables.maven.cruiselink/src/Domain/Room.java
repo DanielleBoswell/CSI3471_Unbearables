@@ -6,6 +6,8 @@ public class Room {
     private int roomNumber;
     private int numBeds;
 
+    private boolean isReserved;
+
     // FIX ME: Add qualityLevel - enum
     // set maxBeds = 3
     // change bedType to enum
@@ -15,6 +17,7 @@ public class Room {
         bedType = "NO BEDS";
         roomNumber = -1;
         numBeds = 0;
+        isReserved = false;
     }
 
     public Room(boolean isSmoking, String bedType, int roomNumber, int numBeds) {
@@ -22,6 +25,7 @@ public class Room {
         this.bedType = bedType;
         this.roomNumber = roomNumber;
         this.numBeds = numBeds;
+        this.isReserved = false;
     }
 
     public boolean isSmoking() {
