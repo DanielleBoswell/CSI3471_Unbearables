@@ -9,6 +9,8 @@ public class Room {
     private int roomNumber;
     private int numBeds;
     private boolean isReserved;
+    public enum QualityLevel {EXECUTIVE, BUSINESS, COMFORT, ECONOMOY};
+    private QualityLevel qualityLevel;
 
 
     // FIX ME: 10/20/2023
@@ -22,14 +24,16 @@ public class Room {
         roomNumber = -1;
         numBeds = 0;
         isReserved = false;
+        qualityLevel = QualityLevel.ECONOMOY;
     }
 
-    public Room(boolean isSmoking, BedType bedType, int roomNumber, int numBeds) {
+    public Room(boolean isSmoking, BedType bedType, int roomNumber, int numBeds, QualityLevel qualityLevel) {
         this.isSmoking = isSmoking;
         this.bedType = bedType;
         this.roomNumber = roomNumber;
         this.numBeds = numBeds;
         this.isReserved = false;
+        this.qualityLevel = qualityLevel;
     }
 
     public boolean isSmoking() {
@@ -79,10 +83,13 @@ public class Room {
 
     @Override
     public String toString() {
-        return "Room: " +
-                "isSmoking = " + isSmoking +
-                ", bedType = '" + bedType + '\'' +
-                ", roomNumber = " + roomNumber +
-                ", numBeds = " + numBeds;
+        return "Room{" +
+                "isSmoking=" + isSmoking +
+                ", bedType=" + bedType +
+                ", roomNumber=" + roomNumber +
+                ", numBeds=" + numBeds +
+                ", isReserved=" + isReserved +
+                ", qualityLevel=" + qualityLevel +
+                '}';
     }
 }

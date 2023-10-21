@@ -1,11 +1,12 @@
 package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.UI;
 
+import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.main.java.com.csi3471.unbearables.maven.cruiselink.Room;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 
-public class AddRoomUI extends JPanel{
+public class AddRoomGUI extends JPanel{
     // global constants
     private static final int COLUMNS = 5;
 
@@ -22,8 +23,14 @@ public class AddRoomUI extends JPanel{
     private static JCheckBox isSmoking;
     private static JTextField roomNum;
     private static JButton cancel, add;
+    private static AddRoomController controller;
 
-    private static void createGUI() {
+    //AddRoomGUI constructor takes the AddRoomController and sets it
+    public AddRoomGUI(AddRoomController controller) {
+        this.controller = controller;
+    }
+
+    public static void createGUI() {
         //Create and set up the window.
         frame = new JFrame("Cruiselink Application");
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -81,6 +88,9 @@ public class AddRoomUI extends JPanel{
         add = new JButton("Add");
         constraints.gridy = 5;
         frame.add(add, constraints);
+        add.addActionListener(e -> {
+            controller.onAddPressed(qualityLvl, bedType, bedNum, roomNum, isSmoking);
+        }); // add button actionListener
 
         //Display the window.
         frame.pack();
@@ -94,4 +104,30 @@ public class AddRoomUI extends JPanel{
             }
         });
     }
+
+
+
+
+    /*public static class AddButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Get the selected values from the JComboBox components
+            Room.QualityLevel selectedQuality = Room.QualityLevel.valueOf((String) qualityLvl.getSelectedItem());
+            Room.BedType selectedBedType = Room.BedType.valueOf((String) bedType.getSelectedItem());
+            int selectedBedNum = Integer.parseInt((String) bedNum.getSelectedItem());
+
+            int roomNumber = -1;
+            if (!(roomNum.getText().isBlank())) {
+                roomNumber = Integer.parseInt(roomNum.getText());
+            }
+
+            boolean isSmokingRoom = isSmoking.isSelected();
+
+            // Create a new object using the selected values
+            Room newRoom = new Room(isSmokingRoom, selectedBedType, roomNumber, selectedBedNum, selectedQuality);
+            System.out.println(newRoom);
+
+            // Do something with the new object, e.g., add it to a list or perform other operations.
+        }
+    }*/
 }

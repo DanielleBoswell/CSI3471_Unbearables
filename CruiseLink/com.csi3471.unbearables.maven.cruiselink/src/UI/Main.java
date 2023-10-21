@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class Main {
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
 
         //Making sure it is running on the correct thread
         SwingUtilities.invokeLater(() -> {
@@ -17,6 +17,21 @@ public class Main {
 
             //Create login GUI
             loginGUI.createGUI();
+        });
+    }*/
+
+    public static void main(String[] args) {
+        //Making sure it is running on the correct thread
+        SwingUtilities.invokeLater(() -> {
+
+            //Need to create an instance of the concrete implementation of LoginController
+            AddRoomController controller = new AddRoomControllerImpl();
+
+            //Will pass controller to LoginGUI and create the login GUI
+            AddRoomGUI addRoomGUI = new AddRoomGUI(controller);
+
+            //Create login GUI
+            AddRoomGUI.createGUI();
         });
     }
 }
