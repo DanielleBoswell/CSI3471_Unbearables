@@ -1,5 +1,11 @@
-package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.main.java.com.csi3471.unbearables.maven.cruiselink;
+package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.test.java.com.csi3471.unbearables.maven.cruiselink;
 
+import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.ReserveRoomController;
+import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.Reservation;
+import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.Room;
+import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.Ship;
+import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.TravelPath;
+import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Repository.ReservationDatabase;
 import person.Guest;
 
 import java.util.*;
@@ -30,6 +36,11 @@ public class ReserveRoomTester {
         ReserveRoomController rrc = new ReserveRoomController();
         rrc.reserveRoom(d,g,s,room2);
         rrc.reserveRoom(d,g,s,room1);
+        rrc.reserveRoom(d,g,s,room1);
+
+        for(Reservation r : d.reservationMap.get(g)){
+            System.out.println(r.toString());
+        }
     }
 
 

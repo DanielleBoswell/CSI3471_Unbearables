@@ -1,5 +1,9 @@
-package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.main.java.com.csi3471.unbearables.maven.cruiselink;
+package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller;
 
+import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.Reservation;
+import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.Room;
+import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.Ship;
+import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Repository.ReservationDatabase;
 import person.Guest;
 
 public class ReserveRoomController {

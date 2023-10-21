@@ -1,4 +1,4 @@
-package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.main.java.com.csi3471.unbearables.maven.cruiselink;
+package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink;
 import java.util.*;
 
 /* Team: UnBEARables
@@ -27,8 +27,8 @@ public class Ship {
     int kingRooms;
 
     //added by Spencer Hammack
-    Map<Integer,Room> roomMap;
-    TravelPath path;
+    public Map<Integer,Room> roomMap;
+    public TravelPath path;
 
     //constructors added by Spencer Hammack
     public Ship(){
