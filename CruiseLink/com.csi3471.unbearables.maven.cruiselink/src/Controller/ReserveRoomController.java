@@ -1,4 +1,4 @@
-package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller;
+package CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller;
 
 import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.Reservation;
 import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.Room;
