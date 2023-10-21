@@ -1,4 +1,4 @@
-package com.csi3471.unbearables.maven.cruiselink;
+package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.test.java.com.csi3471.unbearables.maven.cruiselink;
 /* Team: UnBEARables
  * Course: CSI 3471
  * Project: CruiseLink
@@ -15,6 +15,7 @@ import java.sql.Date;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.main.java.com.csi3471.unbearables.maven.cruiselink.TravelPath;
 
 public class TravelPathTester {
 

@@ -1,28 +1,30 @@
-package com.csi3471.unbearables.maven.cruiselink;
+package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.main.java.com.csi3471.unbearables.maven.cruiselink;
 
 import java.util.Objects;
 
 public class Room {
     private boolean isSmoking;
-    private String bedType;
+    public enum BedType {NONE, TWIN, FULL, QUEEN, KING};
+    private BedType bedType;
     private int roomNumber;
     private int numBeds;
-
     private boolean isReserved;
 
-    // FIX ME: Add qualityLevel - enum
+
+    // FIX ME: 10/20/2023
     // set maxBeds = 3
     // change bedType to enum
+    // FIXED: 10/21/2023 Kyle Hoang
 
     public Room() {
         isSmoking = false;
-        bedType = "NO BEDS";
+        bedType = BedType.NONE;
         roomNumber = -1;
         numBeds = 0;
         isReserved = false;
     }
 
-    public Room(boolean isSmoking, String bedType, int roomNumber, int numBeds) {
+    public Room(boolean isSmoking, BedType bedType, int roomNumber, int numBeds) {
         this.isSmoking = isSmoking;
         this.bedType = bedType;
         this.roomNumber = roomNumber;
@@ -38,11 +40,11 @@ public class Room {
         isSmoking = smoking;
     }
 
-    public String getBedType() {
+    public BedType getBedType() {
         return bedType;
     }
 
-    public void setBedType(String bedType) {
+    public void setBedType(BedType bedType) {
         this.bedType = bedType;
     }
 

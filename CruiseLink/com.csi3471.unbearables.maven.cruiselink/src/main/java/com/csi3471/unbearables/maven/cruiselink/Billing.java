@@ -1,4 +1,4 @@
-package com.csi3471.unbearables.maven.cruiselink;
+package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.main.java.com.csi3471.unbearables.maven.cruiselink;
 /**
  * Author: Emma Aars
  * Purpose: Basic Attributes and Methods for Billing Class
