@@ -1,4 +1,5 @@
-package com.csi3471.unbearables.maven.cruiselink;
+package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.main.java.com.csi3471.unbearables.maven.cruiselink;
+import java.util.*;
 
 /* Team: UnBEARables
  * Course: CSI 3471
@@ -11,7 +12,9 @@ package com.csi3471.unbearables.maven.cruiselink;
  *
  * Modified by Spencer Hammack on 10/21/23:
  *  -   added room hash map to implement ReserveRoom use case
+ *  -   added ship constructor method
  */
+
 
 public class Ship {
 
@@ -24,7 +27,22 @@ public class Ship {
     int kingRooms;
 
     //added by Spencer Hammack
-    HashMap<Integer,Room> roomMap;
+    Map<Integer,Room> roomMap;
+
+    //constructors added by Spencer Hammack
+    Ship(){
+        name = "NO NAME";
+        capacity = -1;
+        roomMap = new HashMap<>();
+    }
+    Ship(String name, int capacity, Map<Integer,Room> rooms){
+        this.name = name;
+        this.capacity = capacity;
+        roomMap = rooms;
+    }
+
+
+
 
     //Getters and Setters
     public String getName() {
