@@ -5,7 +5,7 @@ import java.util.*;
 public class ReservationDatabase {
     Map<Person, ArrayList<Reservation>> reservationMap;
 
-    ReservationDatabase(){
+    public ReservationDatabase(){
         reservationMap = new HashMap<>();
     }
 }

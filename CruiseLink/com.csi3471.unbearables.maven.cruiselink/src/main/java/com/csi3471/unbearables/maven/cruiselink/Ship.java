@@ -31,13 +31,13 @@ public class Ship {
     TravelPath path;
 
     //constructors added by Spencer Hammack
-    Ship(){
+    public Ship(){
         name = "";
         capacity = -1;
         roomMap = new HashMap<>();
         path = new TravelPath();
     }
-    Ship(String name, int capacity, Map<Integer,Room> rooms){
+    public Ship(String name, int capacity, Map<Integer,Room> rooms){
         this.name = name;
         this.capacity = capacity;
         roomMap = rooms;
