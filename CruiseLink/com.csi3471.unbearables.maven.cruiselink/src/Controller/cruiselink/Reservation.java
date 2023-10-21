@@ -1,4 +1,4 @@
-package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink;
+package CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink;
 
 import java.util.Date;
 import java.util.Objects;

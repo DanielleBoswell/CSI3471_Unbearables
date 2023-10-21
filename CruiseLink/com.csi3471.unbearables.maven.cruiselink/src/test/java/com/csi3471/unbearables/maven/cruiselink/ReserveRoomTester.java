@@ -1,12 +1,13 @@
-package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.test.java.com.csi3471.unbearables.maven.cruiselink;
+package CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.test.java.com.csi3471.unbearables.maven.cruiselink;
 
-import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.ReserveRoomController;
-import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.Reservation;
-import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.Room;
-import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.Ship;
-import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.TravelPath;
-import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Repository.ReservationDatabase;
-import person.Guest;
+import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.ReserveRoomController;
+import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.Reservation;
+import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.Room;
+import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.Ship;
+import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.TravelPath;
+import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Person.Guest;
+import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Repository.ReservationDatabase;
+
 
 import java.util.*;
 

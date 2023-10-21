@@ -1,4 +1,4 @@
-package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink;
+package CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink;
 /**
  * Author: Emma Aars
  * Purpose: Basic Attributes and Methods for BillingInfo Class
