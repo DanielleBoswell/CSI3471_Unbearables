@@ -18,14 +18,12 @@ import javax.swing.event.MenuListener;
 import javax.swing.table.DefaultTableModel;
 
 public abstract class DefaultUI {
-	public abstract void createAndShowGUI();
+	public abstract void createGUI();
 	private JMenuBar initMenu(DefaultUI model) {
-		//Where the GUI is created:
 		JMenuBar menuBar;
 		JMenu menu;
 		JMenuItem header;
-		final JMenuItem menuRemove;
-		JMenuItem menuCSV;
+		JMenuItem menuRemove;
 		
 		
 		
