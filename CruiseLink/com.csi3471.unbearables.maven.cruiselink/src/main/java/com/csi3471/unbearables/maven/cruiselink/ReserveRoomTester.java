@@ -29,6 +29,7 @@ public class ReserveRoomTester {
 
         ReserveRoomController rrc = new ReserveRoomController();
         rrc.reserveRoom(d,g,s,room2);
+        rrc.reserveRoom(d,g,s,room1);
     }
 
 

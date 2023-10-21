@@ -4,9 +4,11 @@ import person.Guest;
 
 public class ReserveRoomController {
     public void reserveRoom(ReservationDatabase d, Guest p, Ship s, Room r){
-        if(s.roomMap.containsKey(r.getRoomNumber())){
+        if(s.roomMap.containsKey(r.getRoomNumber()) && !s.roomMap.get(r.getRoomNumber()).getIsReserved()){
             createReservation(d,p,s,r);
             r.setReserved(Boolean.TRUE);
+        }else{
+            System.out.println("Already reserved");
         }
     }
 

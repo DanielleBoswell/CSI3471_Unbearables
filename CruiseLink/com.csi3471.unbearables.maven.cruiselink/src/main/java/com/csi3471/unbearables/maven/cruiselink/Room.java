@@ -7,7 +7,6 @@ public class Room {
     private String bedType;
     private int roomNumber;
     private int numBeds;
-
     private boolean isReserved;
 
     // FIX ME: Add qualityLevel - enum
@@ -32,6 +31,7 @@ public class Room {
 
     //added by Spencer Hammack
     public void setReserved(boolean TF){this.isReserved = TF;}
+    public Boolean getIsReserved(){return isReserved;}
 
     public boolean isSmoking() {
         return isSmoking;
