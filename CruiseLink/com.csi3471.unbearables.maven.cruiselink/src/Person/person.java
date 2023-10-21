@@ -1,13 +1,13 @@
-package person;
+package Person;
 
-import java.util.Objects;
-
-public class person {
+public class Person {
     String name;
     int age;
     String username;
     String password;
     String email;
+
+
 
 
 
@@ -51,15 +51,5 @@ public class person {
         this.email = email;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof person person)) return false;
-        return age == person.age && Objects.equals(name, person.name) && Objects.equals(username, person.username) && Objects.equals(password, person.password) && Objects.equals(email, person.email);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, age, username, password, email);
-    }
 }

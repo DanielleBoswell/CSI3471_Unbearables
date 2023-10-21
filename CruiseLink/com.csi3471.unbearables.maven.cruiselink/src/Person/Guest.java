@@ -1,14 +1,33 @@
-package person;
+package Person;
 
 import java.util.Objects;
 
-public class Guest extends person {
+public class Guest extends Person {
 
     String billingInfo;
     int points;
     boolean isMember;
     boolean isCorporate;
     String phoneNumber;
+    String card;
+    String address;
+
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCard() {
+        return card;
+    }
+
+    public void setCard(String card) {
+        this.card = card;
+    }
 
     public String getBillingInfo() {
         return billingInfo;
@@ -50,16 +69,17 @@ public class Guest extends person {
         this.phoneNumber = phoneNumber;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Guest guest)) return false;
-        if (!super.equals(o)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
+        Guest guest = (Guest) o;
         return points == guest.points && isMember == guest.isMember && isCorporate == guest.isCorporate && Objects.equals(billingInfo, guest.billingInfo) && Objects.equals(phoneNumber, guest.phoneNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), billingInfo, points, isMember, isCorporate, phoneNumber);
+        return Objects.hash(billingInfo, points, isMember, isCorporate, phoneNumber);
     }
 }
