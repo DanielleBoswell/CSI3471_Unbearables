@@ -32,9 +32,10 @@ public class Ship {
 
     //constructors added by Spencer Hammack
     Ship(){
-        name = "NO NAME";
+        name = "";
         capacity = -1;
         roomMap = new HashMap<>();
+        path = new TravelPath();
     }
     Ship(String name, int capacity, Map<Integer,Room> rooms){
         this.name = name;
