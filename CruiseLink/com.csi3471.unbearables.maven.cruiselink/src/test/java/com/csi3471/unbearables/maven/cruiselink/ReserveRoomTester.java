@@ -12,8 +12,7 @@ import java.util.*;
 
 public class ReserveRoomTester {
 
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         ReservationDatabase d = new ReservationDatabase();
         Guest g = new Guest();
         Room room1 = new Room(Boolean.TRUE, "Queen", 123, 2);
@@ -23,22 +22,23 @@ public class ReserveRoomTester {
         roomList.add(room1);
         roomList.add(room2);
         roomList.add(room3);
-        HashMap<Integer,Room> roomHashMap = new HashMap<>();
+        HashMap<Integer, Room> roomHashMap = new HashMap<>();
 
-        for(Room i : roomList){
-            roomHashMap.put(i.getRoomNumber(),i);
+        for (Room i : roomList) {
+            roomHashMap.put(i.getRoomNumber(), i);
         }
 
-        Ship s = new Ship("Baylor Boat",5,roomHashMap);
+        Ship s = new Ship("Baylor Boat", 5, roomHashMap);
         s.path = new TravelPath();
+        s.path.setDays(5);
 
 
         ReserveRoomController rrc = new ReserveRoomController();
-        rrc.reserveRoom(d,g,s,room2);
-        rrc.reserveRoom(d,g,s,room1);
-        rrc.reserveRoom(d,g,s,room1);
+        rrc.reserveRoom(d, g, s, room2);
+        rrc.reserveRoom(d, g, s, room1);
+        rrc.reserveRoom(d, g, s, room1);
 
-        for(Reservation r : d.reservationMap.get(g)){
+        for (Reservation r : d.reservationMap.get(g)) {
             System.out.println(r.toString());
         }
     }
