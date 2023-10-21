@@ -1,9 +1,7 @@
 package eaars.baylor.edu.csi3471;
 
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 
 public class AddRoomUI extends JPanel{
 	// global constants
@@ -16,15 +14,19 @@ public class AddRoomUI extends JPanel{
 	
 	// other components
 	private static JFrame frame;
-    private static JLabel roomNumLbl, smokingLbl, qualityLbl, bedTypeLbl, bedNumLbl;
+        private static JLabel roomNumLbl, smokingLbl, qualityLbl, bedTypeLbl, bedNumLbl;
 	private static JComboBox qualityLvl, bedType, bedNum;
 	private static JComponent content;
-    private static JCheckBox isSmoking;
-    private static JTextField roomNum;
-    private static JButton cancel, add;
-    
-    private static void createGUI() {
-        //Create and set up the window.
+        private static JCheckBox isSmoking;
+        private static JTextField roomNum;
+        private static JButton cancel, add;
+        
+	private static JMenuBar menuBar;
+        private static JMenu menu;
+        private static Font defaultFont = new Font("Comic Sans MS", Font.PLAIN, 14);
+
+        private static void createGUI() {
+        // Create and set up the window.
     	frame = new JFrame("Cruiselink Application");
     	frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,53 +35,74 @@ public class AddRoomUI extends JPanel{
         frame.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(15, 15, 15, 15);
-        
-        // Quality Level label and comboBox
-        qualityLbl = new JLabel("Quality Level:");
         constraints.gridy = 0;
+
+	// Menu Bar
+	menuBar = new JMenuBar();
+	menu = new JMenu("Add a Room");
+        menu.setFont(defaultFont);
+	menuBar.add(menu);
+	frame.setMenuBar(menuBar);
+
+	// Quality Level label and comboBox
+        qualityLbl = new JLabel("Quality Level:");
+        qualityLbl.setFont(defaultFont);
+	++constraints.gridy;
         frame.add(qualityLbl, constraints);
-    	qualityLvl = new JComboBox(qLevels);
+    	
+	qualityLvl = new JComboBox(qLevels);
+	qualityLvl.setFont(defaultFont);
         qualityLvl.setSelectedIndex(0);
         frame.add(qualityLvl, constraints);
 
         // Bed Type label and comboBox
         bedTypeLbl = new JLabel("Bed Type(s):");
-        constraints.gridy = 1;
+        bedTypeLbl.setFont(defaultFont);
+	++constraints.gridy;
         frame.add(bedTypeLbl, constraints);
-        bedType = new JComboBox(bedTypes);
-        bedType.setSelectedIndex(0);
+        
+	bedType = new JComboBox(bedTypes);
+        bedType.setFont(defaultFont);
+	bedType.setSelectedIndex(0);
         frame.add(bedType, constraints);
 
         // Bed Number label and comboBox
         bedNumLbl = new JLabel("Number of Beds:");
-        constraints.gridy = 2;
+        bedNumLbl.setFont(defaultLbl);
+	++constraints.gridy;
         frame.add(bedNumLbl, constraints);
-        bedNum = new JComboBox(numBeds);
-        bedNum.setSelectedIndex(0);
+        
+	bedNum = new JComboBox(numBeds);
+        bedNum.setFont(defaultFont);
+	bedNum.setSelectedIndex(0);
         frame.add(bedNum, constraints);
         
         // Room Number label and textField
         roomNumLbl = new JLabel("Room #:");
-        constraints.gridy = 3;
+        roomNumLbl.setFont(defaultFont);
+	++constraints.gridy;
         frame.add(roomNumLbl, constraints);
-        roomNum = new JTextField(" ", COLUMNS);
+	roomNum = new JTextField(" ", COLUMNS);
     	frame.add(roomNum, constraints);
     	
         // Smoking Status label and checkBox
     	smokingLbl = new JLabel("Smoking:");
-    	constraints.gridy = 4;
+    	smokingLbl.setFont(defaultFont);
+	++constraints.gridy;
         frame.add(smokingLbl, constraints);
     	isSmoking = new JCheckBox();
     	frame.add(isSmoking, constraints);
     	
         // Cancel button
-    	cancel = new JButton("Cancel");
-    	constraints.gridy = 5;
+        cancel = new JButton("Cancel");
+    	cancel.setForground(Color.RED);
+	cancel.setFont(defaultFont);
+	++constraints.gridy;
     	frame.add(cancel, constraints);
     	
     	// Add Room button
     	add = new JButton("Add");
-    	constraints.gridy = 5;
+    	add.setFont(defaultFont);
     	frame.add(add, constraints);
 
         //Display the window.
