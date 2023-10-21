@@ -4,16 +4,7 @@ public class ReserveRoomController {
     public void reserveRoom(Person p, Ship s, Room r){
         if(s.roomMap.containsKey(r.getRoomNumber())){
 
-
-
-
-
-
-
-
         }
-
-
     }
 
     public Reservation createReservation(Person p, Ship s, Room r){
