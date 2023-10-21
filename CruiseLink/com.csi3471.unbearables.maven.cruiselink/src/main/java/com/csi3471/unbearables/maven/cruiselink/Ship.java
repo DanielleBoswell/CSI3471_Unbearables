@@ -8,6 +8,9 @@ package com.csi3471.unbearables.maven.cruiselink;
  * Modified Date: 10/16/2023
  * Description: Contains the name of ship, the ships capacity,
  * and count of each room type
+ *
+ * Modified by Spencer Hammack on 10/21/23:
+ *  -   added room hash map to implement ReserveRoom use case
  */
 
 public class Ship {
@@ -19,6 +22,9 @@ public class Ship {
     int fullRooms;
     int queenRooms;
     int kingRooms;
+
+    //added by Spencer Hammack
+    HashMap<Integer,Room> roomMap;
 
     //Getters and Setters
     public String getName() {
