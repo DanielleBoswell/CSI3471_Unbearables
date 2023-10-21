@@ -28,6 +28,7 @@ public class Ship {
 
     //added by Spencer Hammack
     Map<Integer,Room> roomMap;
+    TravelPath path;
 
     //constructors added by Spencer Hammack
     Ship(){
