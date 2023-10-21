@@ -1,13 +1,8 @@
-package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.test.java.com.csi3471.unbearables.maven.cruiselink;
+package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.main.java.com.csi3471.unbearables.maven.cruiselink;
 
-import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.main.java.com.csi3471.unbearables.maven.cruiselink.ReservationDatabase;
-import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.main.java.com.csi3471.unbearables.maven.cruiselink.Room;
-import person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.main.java.com.csi3471.unbearables.maven.cruiselink.Ship;
 import person.Guest;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class ReserveRoomTester {
 
@@ -29,6 +24,11 @@ public class ReserveRoomTester {
         }
 
         Ship s = new Ship("Baylor Boat",5,roomHashMap);
+        s.path = new TravelPath();
+
+
+        ReserveRoomController rrc = new ReserveRoomController();
+        rrc.reserveRoom(d,g,s,room2);
     }
 
 
