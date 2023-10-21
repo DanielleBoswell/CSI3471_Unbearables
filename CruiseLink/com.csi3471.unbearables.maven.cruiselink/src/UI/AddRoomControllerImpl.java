@@ -13,6 +13,7 @@ public class AddRoomControllerImpl implements AddRoomController {
         Room.BedType selectedBedType = Room.BedType.valueOf((String) bedType.getSelectedItem());
         int selectedBedNum = Integer.parseInt((String) bedNum.getSelectedItem());
 
+        // FIX ME: ADD ERROR CHECKING FOR NON NUMERICS, FOR NEGATIVE NUMBERS
         int roomNumber = -1;
         if (!(roomNum.getText().isBlank())) {
             roomNumber = Integer.parseInt(roomNum.getText().trim());
