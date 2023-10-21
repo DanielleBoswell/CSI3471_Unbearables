@@ -1,4 +1,4 @@
-package CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Repository;
+package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Repository;
 
 import java.util.HashMap;
 import java.util.Map;
