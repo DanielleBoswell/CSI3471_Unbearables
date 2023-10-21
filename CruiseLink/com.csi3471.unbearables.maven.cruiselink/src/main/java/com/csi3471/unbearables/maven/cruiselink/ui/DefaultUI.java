@@ -1,5 +1,6 @@
 package com.csi3471.unbearables.maven.cruiselink.ui;
 
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -9,36 +10,52 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Vector;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 import javax.swing.table.DefaultTableModel;
 
-public abstract class DefaultUI {
-	public abstract void createGUI();
-	private JMenuBar initMenu(DefaultUI model) {
-		JMenuBar menuBar;
-		JMenu menu;
-		JMenuItem header;
-		JMenuItem menuRemove;
+public class DefaultUI extends JPanel{
+	public DefaultUI(){
+		super();
+	}
+	
+	public static void createAndShowGUI() {
+		JFrame frame = new JFrame("TableFilterDemo");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //Create and set up the content pane.
+        DefaultUI newContentPane = new DefaultUI();
+        newContentPane.setOpaque(true); //content panes must be opaque
+        frame.setContentPane(newContentPane);
+
+        //Display the window.
+        frame.pack();
+        frame.setVisible(true);
+	}
+	
+	public JPanel initSideMenu() {
+		JPanel side = new JPanel();
+		side.setLayout(new GridLayout(0,1));
+		JLabel Menu = new JLabel("Menu");
+		side.add(Menu);
 		
-		
-		
-		menuBar = new JMenuBar();
-		menu = new JMenu("Menu");
-		menuBar.add(menu);
-		header = new JMenuItem("COMMANDS:");
-		header.setEnabled(false);
-		menu.add(header);
-		menuRemove = new JMenuItem("Remove");
-		menuRemove.addActionListener(null);
-		menu.add(menuRemove);
-		menu.addSeparator();
-		
-		
-		return menuBar;
+		return side;
+	}
+	
+	public static void runGUI() {
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                createAndShowGUI();
+            }
+        });
 	}
 }
