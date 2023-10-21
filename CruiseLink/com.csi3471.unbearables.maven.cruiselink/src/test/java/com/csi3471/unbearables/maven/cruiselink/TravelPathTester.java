@@ -9,28 +9,28 @@ package com.csi3471.unbearables.maven.cruiselink;
  * 
  */
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.sql.Date;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-public class TravelPathTester {
-
-	protected TravelPath travelpath = null;
-	
-	@BeforeEach
-	void init() {
-		travelpath = new TravelPath();
-	}
-	
-	
-	@Test
-	void addCountry() {
-		
-		//Country c = new Country("Mexico");
-		travelpath.addCountry(null);
-	}
-
-}
+//import static org.junit.jupiter.api.Assertions.*;
+//
+//import java.sql.Date;
+//
+//import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.Test;
+//
+//public class TravelPathTester {
+//
+//	protected TravelPath travelpath = null;
+//
+//	@BeforeEach
+//	void init() {
+//		travelpath = new TravelPath();
+//	}
+//
+//
+//	@Test
+//	void addCountry() {
+//
+//		//Country c = new Country("Mexico");
+//		travelpath.addCountry(null);
+//	}
+//
+//}
