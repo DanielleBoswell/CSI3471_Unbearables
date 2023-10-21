@@ -1,3 +1,10 @@
+/*
+ * Author: Nicholas Revard
+ * Course: CSI 3471
+ * Assignment: Project
+ * File: guestCreator.java
+ * Description:
+ */
 package CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Person;
 
 public class guestCreator {
@@ -20,6 +27,7 @@ public class guestCreator {
         newUser.setAddress(address);
     }
 
-
-
+    public Guest getNewUser() {
+        return newUser;
+    }
 }

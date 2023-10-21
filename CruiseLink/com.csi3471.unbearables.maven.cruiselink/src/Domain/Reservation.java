@@ -1,3 +1,5 @@
+package CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Domain;
+
 import java.util.Date;
 import java.util.Objects;
 

@@ -1,3 +1,10 @@
+/*
+ * Author: Nicholas Revard
+ * Course: CSI 3471
+ * Assignment: Project
+ * File: AccountDatabase.java
+ * Description:
+ */
 package CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Repository;
 
 import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Person.Admin;

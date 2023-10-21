@@ -1,4 +1,4 @@
-/* Team: UnBEARables
+package CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Domain;/* Team: UnBEARables
  * Course: CSI 3471
  * Project: CruiseLink
  * Filename: Ship.java
