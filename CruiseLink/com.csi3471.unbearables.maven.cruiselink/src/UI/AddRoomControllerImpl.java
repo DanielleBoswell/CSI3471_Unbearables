@@ -15,7 +15,7 @@ public class AddRoomControllerImpl implements AddRoomController {
 
         int roomNumber = -1;
         if (!(roomNum.getText().isBlank())) {
-            roomNumber = Integer.parseInt(roomNum.getText());
+            roomNumber = Integer.parseInt(roomNum.getText().trim());
         }
 
         boolean isSmokingRoom = isSmoking.isSelected();
