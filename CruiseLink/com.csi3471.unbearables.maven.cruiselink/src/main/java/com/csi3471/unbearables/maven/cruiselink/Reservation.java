@@ -9,14 +9,14 @@ public class Reservation {
     private boolean isCanceled;
     private Room room;
 
-    public void Reservation() {
+    public Reservation() {
         startDate = null;
         endDate = null;
         isCanceled = false;
         room = null;
     }
 
-    public void Reservation(Date start, Date end, boolean b, Room r) {
+    public Reservation(Date start, Date end, boolean b, Room r) {
         startDate = start;
         endDate = end;
         isCanceled = b;

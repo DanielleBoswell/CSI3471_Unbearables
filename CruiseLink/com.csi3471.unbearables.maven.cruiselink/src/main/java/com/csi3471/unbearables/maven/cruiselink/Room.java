@@ -30,6 +30,9 @@ public class Room {
         this.isReserved = false;
     }
 
+    //added by Spencer Hammack
+    public void setReserved(boolean TF){this.isReserved = TF;}
+
     public boolean isSmoking() {
         return isSmoking;
     }

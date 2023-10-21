@@ -9,8 +9,6 @@ public class Person {
     String password;
     String email;
 
-
-
     public String getName() {
         return name;
     }
