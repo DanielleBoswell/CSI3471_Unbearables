@@ -1,8 +1,7 @@
-package CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.main.java.com.csi3471.unbearables.maven.cruiselink;
+package com.csi3471.unbearables.maven.cruiselink;
 
 import java.util.Date;
 import java.util.Objects;
-import com.csi3471.unbearables.maven.cruiselink.Room;
 
 public class Reservation {
     private Date startDate;

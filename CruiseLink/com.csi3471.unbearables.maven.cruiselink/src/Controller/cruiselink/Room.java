@@ -1,4 +1,4 @@
-package com.csi3471.unbearables.maven.cruiselink;
+package CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink;
 
 import java.util.Objects;
 
@@ -7,7 +7,6 @@ public class Room {
     private String bedType;
     private int roomNumber;
     private int numBeds;
-
     private boolean isReserved;
 
     // FIX ME: Add qualityLevel - enum
@@ -29,6 +28,10 @@ public class Room {
         this.numBeds = numBeds;
         this.isReserved = false;
     }
+
+    //added by Spencer Hammack
+    public void setReserved(boolean TF){this.isReserved = TF;}
+    public Boolean getIsReserved(){return isReserved;}
 
     public boolean isSmoking() {
         return isSmoking;
