@@ -1,11 +1,11 @@
-package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.UI;
+package CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.UI;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class LoginGUI { // ------------------- Use of controller separates the UI from the Logic -------------------
+public class LoginGUI {
 
     //Frame
     private JFrame frame;
@@ -25,15 +25,10 @@ public class LoginGUI { // ------------------- Use of controller separates the U
 
     private JLabel forgotPasswordLink;
 
-    //Menu bar
-    private JMenuBar menuBar;
-    private JMenu menu;
-    private JMenuItem exitMenuItem;
-
-    //Making a Logincontroller object
+    //Making a Login controller object
     private LoginController controller;
 
-    //LoginGUI constructor takes the Logincontroller and sets it
+    //LoginGUI constructor takes the Login controller and sets it
     public LoginGUI(LoginController controller) {
         this.controller = controller;
     }
@@ -43,7 +38,6 @@ public class LoginGUI { // ------------------- Use of controller separates the U
 
         //Initialize main frame
         frame = new JFrame("Cruise Account Login");
-        frame.setUndecorated(true);  //This makes the GUI have no window decorations
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Makes the window close when exit button clicked
         frame.setResizable(false);   //Disables resizing
 
@@ -55,15 +49,6 @@ public class LoginGUI { // ------------------- Use of controller separates the U
 
         //Setting layout to Grid Bag Layout
         frame.setLayout(new GridBagLayout());
-
-        //Create the menu bar
-        menuBar = new JMenuBar();
-        menu = new JMenu("Menu"); //Call it menu
-        exitMenuItem = new JMenuItem("Exit Program"); //Make an exit option
-        exitMenuItem.addActionListener(e -> System.exit(0)); //Close the application when Exit Program is clicked
-        menu.add(exitMenuItem); //Adding the exit menu
-        menuBar.add(menu); //Adding the menu to the bar
-        frame.setJMenuBar(menuBar); //Adding the menu bar to the frame
 
         //Initializing UI components
         cruiseLinkLabel = new Label("CruiseLink");

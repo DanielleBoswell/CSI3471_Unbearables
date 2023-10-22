@@ -1,4 +1,4 @@
-package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.UI;
+package CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.UI;
 
 import javax.swing.*;
 
@@ -27,4 +27,3 @@ public class LoginControllerImpl implements LoginController {
         System.out.println("Forgot Password link clicked");
     }
 }
-
