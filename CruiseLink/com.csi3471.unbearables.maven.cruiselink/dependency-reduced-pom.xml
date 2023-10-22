@@ -20,7 +20,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>com.csi3471.unbearables.maven.cruiselink.Tester</mainClass>
+                  <mainClass>com.csi3471.unbearables.maven.cruiselink</mainClass>
                 </transformer>
               </transformers>
             </configuration>
