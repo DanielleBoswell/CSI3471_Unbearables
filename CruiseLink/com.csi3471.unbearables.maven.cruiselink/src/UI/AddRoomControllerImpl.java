@@ -13,23 +13,34 @@ public class AddRoomControllerImpl implements AddRoomController {
         Room.BedType selectedBedType = Room.BedType.valueOf((String) bedType.getSelectedItem());
         int selectedBedNum = Integer.parseInt((String) bedNum.getSelectedItem());
 
-        // FIX ME: ADD ERROR CHECKING FOR NON NUMERICS, FOR NEGATIVE NUMBERS
+
         int roomNumber = -1;
         if (!(roomNum.getText().isBlank())) {
-            roomNumber = Integer.parseInt(roomNum.getText().trim());
+            try {
+                roomNumber = Integer.parseInt(roomNum.getText().trim());
+                if (roomNumber < 0) {
+                    // Handle the case of a negative room number
+                    // Display an error message or take appropriate action
+                    roomNumber = -1; // Set to -1 to indicate an error
+                }
+            } catch (NumberFormatException e) {
+                // Handle the case where the input is not a valid integer
+                // Display an error message or take appropriate action
+                roomNumber = -1; // Set to -1 to indicate an error
+            }
+
+            boolean isSmokingRoom = isSmoking.isSelected();
+
+            // Create a new object using the selected values
+            Room newRoom = new Room(isSmokingRoom, selectedBedType, roomNumber, selectedBedNum, selectedQuality);
+            System.out.println(newRoom);
+
+            // Do something with the new object, e.g., add it to a list or perform other operations.
         }
-
-        boolean isSmokingRoom = isSmoking.isSelected();
-
-        // Create a new object using the selected values
-        Room newRoom = new Room(isSmokingRoom, selectedBedType, roomNumber, selectedBedNum, selectedQuality);
-        System.out.println(newRoom);
-
-        // Do something with the new object, e.g., add it to a list or perform other operations.
     }
 
     @Override
     public void onCancelPressed() {
-
+        System.out.println("Cancel Button pressed!");
     }
 }
