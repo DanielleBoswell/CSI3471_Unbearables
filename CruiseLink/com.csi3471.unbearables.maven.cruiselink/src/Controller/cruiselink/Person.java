@@ -1,4 +1,4 @@
-package com.csi3471.unbearables.maven.cruiselink;
+package CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink;
 
 import java.util.Objects;
 
@@ -8,8 +8,6 @@ public class Person {
     String username;
     String password;
     String email;
-
-
 
     public String getName() {
         return name;
