@@ -1,5 +1,6 @@
-package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.main.java.com.csi3471.unbearables.maven.cruiselink.ui;
+package com.csi3471.unbearables.maven.cruiselink.ui;
 
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +25,7 @@ import javax.swing.event.MenuListener;
 import javax.swing.table.DefaultTableModel;
 
 public class DefaultUI extends JPanel{
+	protected static Font titleFont = new Font("Comic Sans MS", Font.BOLD, 18);
 	public DefaultUI(){
 		super();
 	}
@@ -31,7 +33,7 @@ public class DefaultUI extends JPanel{
 	public static void createAndShowGUI() {
 		JFrame frame = new JFrame("TableFilterDemo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        
         //Create and set up the content pane.
         DefaultUI newContentPane = new DefaultUI();
         newContentPane.setOpaque(true); //content panes must be opaque
@@ -57,5 +59,9 @@ public class DefaultUI extends JPanel{
                 createAndShowGUI();
             }
         });
+	}
+	
+	protected static Font getTitleFont() {
+		return titleFont;
 	}
 }
