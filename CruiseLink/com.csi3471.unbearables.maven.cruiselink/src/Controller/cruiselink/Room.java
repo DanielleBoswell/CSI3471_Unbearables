@@ -4,29 +4,36 @@ import java.util.Objects;
 
 public class Room {
     private boolean isSmoking;
-    private String bedType;
+    public enum BedType {NONE, TWIN, FULL, QUEEN, KING};
+    private BedType bedType;
     private int roomNumber;
     private int numBeds;
     private boolean isReserved;
+    public enum QualityLevel {EXECUTIVE, BUSINESS, COMFORT, ECONOMOY};
+    private QualityLevel qualityLevel;
 
-    // FIX ME: Add qualityLevel - enum
+
+    // FIX ME: 10/20/2023
     // set maxBeds = 3
     // change bedType to enum
+    // FIXED: 10/21/2023 Kyle Hoang
 
     public Room() {
         isSmoking = false;
-        bedType = "NO BEDS";
+        bedType = BedType.NONE;
         roomNumber = -1;
         numBeds = 0;
         isReserved = false;
+        qualityLevel = QualityLevel.ECONOMOY;
     }
 
-    public Room(boolean isSmoking, String bedType, int roomNumber, int numBeds) {
+    public Room(boolean isSmoking, BedType bedType, int roomNumber, int numBeds, QualityLevel qualityLevel) {
         this.isSmoking = isSmoking;
         this.bedType = bedType;
         this.roomNumber = roomNumber;
         this.numBeds = numBeds;
         this.isReserved = false;
+        this.qualityLevel = qualityLevel;
     }
 
     //added by Spencer Hammack
@@ -41,11 +48,11 @@ public class Room {
         isSmoking = smoking;
     }
 
-    public String getBedType() {
+    public BedType getBedType() {
         return bedType;
     }
 
-    public void setBedType(String bedType) {
+    public void setBedType(BedType bedType) {
         this.bedType = bedType;
     }
 
@@ -80,10 +87,13 @@ public class Room {
 
     @Override
     public String toString() {
-        return "Room: " +
-                "isSmoking = " + isSmoking +
-                ", bedType = '" + bedType + '\'' +
-                ", roomNumber = " + roomNumber +
-                ", numBeds = " + numBeds;
+        return "Room{" +
+                "isSmoking=" + isSmoking +
+                ", bedType=" + bedType +
+                ", roomNumber=" + roomNumber +
+                ", numBeds=" + numBeds +
+                ", isReserved=" + isReserved +
+                ", qualityLevel=" + qualityLevel +
+                '}';
     }
 }
