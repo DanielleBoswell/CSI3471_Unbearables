@@ -1,4 +1,4 @@
-package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.main.java.com.csi3471.unbearables.maven.cruiselink;
+package CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink;
 
 import java.util.Objects;
 
@@ -35,6 +35,10 @@ public class Room {
         this.isReserved = false;
         this.qualityLevel = qualityLevel;
     }
+
+    //added by Spencer Hammack
+    public void setReserved(boolean TF){this.isReserved = TF;}
+    public Boolean getIsReserved(){return isReserved;}
 
     public boolean isSmoking() {
         return isSmoking;

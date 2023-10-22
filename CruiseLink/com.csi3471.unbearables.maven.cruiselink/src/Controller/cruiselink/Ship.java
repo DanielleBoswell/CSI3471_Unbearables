@@ -1,4 +1,5 @@
-package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.main.java.com.csi3471.unbearables.maven.cruiselink;
+package CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink;
+import java.util.*;
 
 /* Team: UnBEARables
  * Course: CSI 3471
@@ -8,7 +9,12 @@ package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.main.java
  * Modified Date: 10/16/2023
  * Description: Contains the name of ship, the ships capacity,
  * and count of each room type
+ *
+ * Modified by Spencer Hammack on 10/21/23:
+ *  -   added room hash map to implement ReserveRoom use case
+ *  -   added ship constructor method
  */
+
 
 public class Ship {
 
@@ -19,6 +25,26 @@ public class Ship {
     int fullRooms;
     int queenRooms;
     int kingRooms;
+
+    //added by Spencer Hammack
+    public Map<Integer,Room> roomMap;
+    public TravelPath path;
+
+    //constructors added by Spencer Hammack
+    public Ship(){
+        name = "";
+        capacity = -1;
+        roomMap = new HashMap<>();
+        path = new TravelPath();
+    }
+    public Ship(String name, int capacity, Map<Integer,Room> rooms){
+        this.name = name;
+        this.capacity = capacity;
+        roomMap = rooms;
+    }
+
+
+
 
     //Getters and Setters
     public String getName() {

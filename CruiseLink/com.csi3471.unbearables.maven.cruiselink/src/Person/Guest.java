@@ -1,4 +1,4 @@
-package person.CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Person;
+package CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Person;
 
 import java.util.Objects;
 
