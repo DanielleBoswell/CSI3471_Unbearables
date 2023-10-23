@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Room {
     private boolean isSmoking;
+
     public enum BedType {NONE, TWIN, FULL, QUEEN, KING};
     private BedType bedType;
     private int roomNumber;

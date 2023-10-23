@@ -1,4 +1,4 @@
-package com.imannoyed.maven.eclipse.uipractice;
+package CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.UI;
 
 import java.awt.Component;
 import java.awt.Dimension;

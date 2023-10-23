@@ -5,8 +5,8 @@ import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruise
 import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.Room;
 import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.Ship;
 import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.TravelPath;
-import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Person.Guest;
 import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Repository.ReservationDatabase;
+import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Person.Guest;
 
 
 import java.util.*;
@@ -43,6 +43,4 @@ public class ReserveRoomTester {
             System.out.println(r.toString());
         }
     }
-
-
 }
