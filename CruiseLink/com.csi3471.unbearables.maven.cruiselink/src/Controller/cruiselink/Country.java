@@ -7,7 +7,7 @@ package CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruis
  * Modified Date: 10/18/2023
  * Description: Contains the country specific to each
  * 				stop of the travel path
- * 
+ *
  */
 
 import java.util.Date;
@@ -16,9 +16,9 @@ public class Country {
 	private String name,
 			visaRequirements;
 	private boolean isTemporaryStay;
-	private Date arrivalDate, 
+	private Date arrivalDate,
 			departureDate;
-	
+
 	/**
 	 * constructor for Country
 	 * @param name
@@ -30,7 +30,7 @@ public class Country {
 		this.arrivalDate = arrivalDate;
 		this.departureDate = departureDate;
 	}
-	
+
 	/**\
 	 * gets the name of the Country
 	 * @return
@@ -38,7 +38,7 @@ public class Country {
 	public String getName() {
 		return name;
 	}
-	
+
 	/**
 	 * sets the name of the Country
 	 * @param name
@@ -46,7 +46,7 @@ public class Country {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	/**
 	 * confirms if the Country is a temporary stop or an end stop
 	 * @return
@@ -54,7 +54,7 @@ public class Country {
 	public boolean isTemporaryStay() {
 		return isTemporaryStay;
 	}
-	
+
 	/**
 	 * sets if Country is a temporary stay or not
 	 * @param isTemporaryStay
@@ -62,7 +62,7 @@ public class Country {
 	public void setTemporaryStay(boolean isTemporaryStay) {
 		this.isTemporaryStay = isTemporaryStay;
 	}
-	
+
 	/**
 	 * gets the arrival date of the Country
 	 * @return
@@ -70,7 +70,7 @@ public class Country {
 	public Date getArrivalDate() {
 		return arrivalDate;
 	}
-	
+
 	/**
 	 * sets the arrival date of the Country
 	 * @param arrivalDate
@@ -78,7 +78,7 @@ public class Country {
 	public void setArrivalDate(Date arrivalDate) {
 		this.arrivalDate = arrivalDate;
 	}
-	
+
 	/**
 	 * gets the departure date of the Country
 	 * @return
@@ -86,7 +86,7 @@ public class Country {
 	public Date getDepartureDate() {
 		return departureDate;
 	}
-	
+
 	/**
 	 * sets the departure date of the Country
 	 * @param departureDate
@@ -101,7 +101,7 @@ public class Country {
 	public String getVisaRequirements() {
 		return visaRequirements;
 	}
-	
+
 	/**
 	 * sets the visaRequirements of the Country
 	 * @param visaRequirements
@@ -109,5 +109,5 @@ public class Country {
 	public void setVisaRequirements(String visaRequirements) {
 		this.visaRequirements = visaRequirements;
 	}
-	
+
 }

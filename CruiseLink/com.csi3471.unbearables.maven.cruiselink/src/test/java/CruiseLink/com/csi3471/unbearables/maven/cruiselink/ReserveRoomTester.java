@@ -1,4 +1,4 @@
-package CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.test.java.com.csi3471.unbearables.maven.cruiselink;
+package CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.test.java.CruiseLink.com.csi3471.unbearables.maven.cruiselink;
 
 import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.ReserveRoomController;
 import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.Reservation;
@@ -16,9 +16,9 @@ public class ReserveRoomTester {
     public static void main(String args[]) {
         ReservationDatabase d = new ReservationDatabase();
         Guest g = new Guest();
-        Room room1 = new Room(Boolean.TRUE, "Queen", 123, 2);
-        Room room2 = new Room(Boolean.FALSE, "King", 124, 1);
-        Room room3 = new Room(Boolean.TRUE, "Twin", 125, 2);
+        Room room1 = new Room(Boolean.TRUE, Room.BedType.QUEEN, 123, 2, Room.QualityLevel.ECONOMOY);
+        Room room2 = new Room(Boolean.FALSE, Room.BedType.KING, 124, 1, Room.QualityLevel.COMFORT);
+        Room room3 = new Room(Boolean.TRUE, Room.BedType.TWIN, 125, 2, Room.QualityLevel.BUSINESS);
         List<Room> roomList = new ArrayList<>();
         roomList.add(room1);
         roomList.add(room2);

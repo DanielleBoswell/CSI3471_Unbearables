@@ -16,9 +16,9 @@ public class ReserveRoomTester {
     public static void main(String args[]) {
         ReservationDatabase d = new ReservationDatabase();
         Guest g = new Guest();
-        Room room1 = new Room(Boolean.TRUE, "Queen", 123, 2);
-        Room room2 = new Room(Boolean.FALSE, "King", 124, 1);
-        Room room3 = new Room(Boolean.TRUE, "Twin", 125, 2);
+        Room room1 = new Room(Boolean.TRUE, Room.BedType.FULL, 123, 2, Room.QualityLevel.BUSINESS);
+        Room room2 = new Room(Boolean.TRUE, Room.BedType.FULL, 123, 2, Room.QualityLevel.BUSINESS);
+        Room room3 = new Room(Boolean.TRUE, Room.BedType.FULL, 123, 2, Room.QualityLevel.BUSINESS);
         List<Room> roomList = new ArrayList<>();
         roomList.add(room1);
         roomList.add(room2);
