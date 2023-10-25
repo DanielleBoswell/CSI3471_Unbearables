@@ -9,7 +9,7 @@ public class Room {
     private int roomNumber;
     private int numBeds;
     private boolean isReserved;
-    public enum QualityLevel {EXECUTIVE, BUSINESS, COMFORT, ECONOMOY};
+    public enum QualityLevel {EXECUTIVE, BUSINESS, COMFORT, ECONOMY};
     private QualityLevel qualityLevel;
 
 
@@ -24,7 +24,7 @@ public class Room {
         roomNumber = -1;
         numBeds = 0;
         isReserved = false;
-        qualityLevel = QualityLevel.ECONOMOY;
+        qualityLevel = QualityLevel.ECONOMY;
     }
 
     public Room(boolean isSmoking, BedType bedType, int roomNumber, int numBeds, QualityLevel qualityLevel) {
@@ -70,6 +70,10 @@ public class Room {
 
     public void setNumBeds(int numBeds) {
         this.numBeds = numBeds;
+    }
+
+    public void setQualityLevel(QualityLevel x){
+        qualityLevel = x;
     }
 
     @Override
