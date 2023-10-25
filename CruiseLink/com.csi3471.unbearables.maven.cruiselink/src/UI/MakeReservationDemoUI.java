@@ -15,10 +15,9 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableRowSorter;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Dimension;
-import java.util.ArrayList;
 
 public class MakeReservationDemoUI extends JPanel
         implements ActionListener {
@@ -29,10 +28,6 @@ public class MakeReservationDemoUI extends JPanel
     public ReserveRoomController rrc = new ReserveRoomController();
 
     private JTable table;
-    private JCheckBox rowCheck;
-    private JCheckBox columnCheck;
-    private JCheckBox cellCheck;
-    private ButtonGroup buttonGroup;
     private JTextArea output;
     private TableRowSorter<MyTableModel> sorter;
 
@@ -69,10 +64,10 @@ public class MakeReservationDemoUI extends JPanel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         MyTableModel model = new MyTableModel();
-        sorter = new TableRowSorter<MyTableModel>(model);
+        sorter = new TableRowSorter<>(model);
         table = new JTable(new MyTableModel());
         table.setRowSorter(sorter);
-        table.setPreferredScrollableViewportSize(new Dimension(500, 70));
+        table.setPreferredScrollableViewportSize(new Dimension(800, 70));
         table.setFillsViewportHeight(true);
         table.getSelectionModel().addListSelectionListener(new RowListener());
         table.getColumnModel().getSelectionModel().
@@ -98,14 +93,6 @@ public class MakeReservationDemoUI extends JPanel
         output = new JTextArea(5, 40);
         output.setEditable(false);
         add(new JScrollPane(output));
-    }
-
-    private JRadioButton addRadio(String text) {
-        JRadioButton b = new JRadioButton(text);
-        b.addActionListener(this);
-        buttonGroup.add(b);
-        add(b);
-        return b;
     }
 
     public void actionPerformed(ActionEvent event) {
@@ -154,6 +141,7 @@ public class MakeReservationDemoUI extends JPanel
                 }
             }
             if(s.roomMap.containsKey(reserving.getRoomNumber())){
+                output.setFont(new Font("idk", Font.BOLD,10));
                 output.append("-------------------------------------\n");
                 output.append("room exists: trying to reserve\n");
                 if(!s.roomMap.get(reserving.getRoomNumber()).getIsReserved()){
@@ -181,23 +169,6 @@ public class MakeReservationDemoUI extends JPanel
 //            cellCheck.setSelected(table.getCellSelectionEnabled());
 //        }
     }
-
-    private void outputSelection() {
-        output.append(String.format("Lead: %d, %d. ",
-                table.getSelectionModel().getLeadSelectionIndex(),
-                table.getColumnModel().getSelectionModel().
-                        getLeadSelectionIndex()));
-        output.append("Rows:");
-        for (int c : table.getSelectedRows()) {
-            output.append(String.format(" %d", c));
-        }
-        output.append(". Columns:");
-        for (int c : table.getSelectedColumns()) {
-            output.append(String.format(" %d", c));
-        }
-        output.append(".\n");
-    }
-
     private class RowListener implements ListSelectionListener {
         public void valueChanged(ListSelectionEvent event) {
             if (event.getValueIsAdjusting()) {
