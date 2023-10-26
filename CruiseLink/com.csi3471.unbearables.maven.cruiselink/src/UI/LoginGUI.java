@@ -38,7 +38,7 @@ public class LoginGUI {
 
         //Initialize main frame
         frame = new JFrame("Cruise Account Login");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Makes the window close when exit button clicked
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);   //Disables resizing
 
         //This block allows fullscreen mode
@@ -60,11 +60,15 @@ public class LoginGUI {
         startJourney = new Label("Start your journey with us");
         startJourney.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 
-        usernameField = new JTextField(20); //Makes the username text box
-        passwordField = new JPasswordField(20); //Makes the password text box
+        usernameField = new JTextField(25); //Makes the username text box
+        passwordField = new JPasswordField(30); //Makes the password text box - Had to make the password textbox a little longer
 
         loginButton = new JButton("Login"); //Makes login button
         signUpButton = new JButton("Sign Up"); //Making the signUp button
+
+        //Setting width and height of login and sign up buttons to be the same as the text fields
+        loginButton.setPreferredSize(new Dimension(usernameField.getPreferredSize().width, loginButton.getPreferredSize().height));
+        signUpButton.setPreferredSize(new Dimension(usernameField.getPreferredSize().width, signUpButton.getPreferredSize().height));
 
         forgotPasswordLink = new JLabel("<HTML><U>Forgot Password?</U></HTML>"); //Styled to look like a link
         forgotPasswordLink.setForeground(Color.BLUE); //Blue link color setting for forgotpasswordlink
@@ -103,6 +107,9 @@ public class LoginGUI {
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(15, 15, 15, 15); //Padding for the components (buttons, labels, etc)
 
+        // For the layout weight
+        constraints.weightx = 1.0;
+
         //Adding labels and buttons to the frame, using y axis on grid
         constraints.gridy = 0; //0 starts at the top, etc
         frame.add(cruiseLinkLabel, constraints);
@@ -132,7 +139,7 @@ public class LoginGUI {
         constraints.gridy = 9;
         frame.add(forgotPasswordLink, constraints);
 
-        //Instead of pack, directly set the frame to be visible
+        //Set the frame to be visible
         frame.setVisible(true);
     }
 }
