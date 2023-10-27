@@ -4,11 +4,10 @@ package Cruiselink.maven.cruiselink.src.UI;
  * TableSelectionDemo.java requires no other files.
  */
 
-/*import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.ReserveRoomController;
-import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.Room;
-import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.Ship;
-import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Person.Guest;
-import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Repository.ReservationDatabase;*/
+import Cruiselink.maven.cruiselink.src.Controller.ReserveRoomController;
+import Cruiselink.maven.cruiselink.src.Domain.Guest;
+import Cruiselink.maven.cruiselink.src.Domain.Room;
+import Cruiselink.maven.cruiselink.src.Domain.Ship;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;

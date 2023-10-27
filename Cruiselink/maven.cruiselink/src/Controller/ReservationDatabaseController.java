@@ -1,8 +1,7 @@
 package Cruiselink.maven.cruiselink.src.Controller;
 
-/*import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.Reservation;
-import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Person.Guest;
-import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Repository.ReservationDatabase;*/
+import Cruiselink.maven.cruiselink.src.Domain.Guest;
+import Cruiselink.maven.cruiselink.src.Domain.Reservation;
 
 import java.util.ArrayList;
 

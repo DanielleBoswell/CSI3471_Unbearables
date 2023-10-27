@@ -1,6 +1,7 @@
 package Cruiselink.maven.cruiselink.src.Controller;
 
-//import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruiselink.Room;
+import Cruiselink.maven.cruiselink.src.Domain.Room;
+
 import javax.swing.*;
 
 public class AddRoomControllerImpl implements AddRoomController {
