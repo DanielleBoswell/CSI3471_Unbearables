@@ -1,5 +1,7 @@
 package Cruiselink.maven.cruiselink.src.Controller;
 
+import Cruiselink.maven.cruiselink.src.UI.SignUpGUI;
+
 import javax.swing.*;
 
 public class LoginControllerImpl implements LoginController {
