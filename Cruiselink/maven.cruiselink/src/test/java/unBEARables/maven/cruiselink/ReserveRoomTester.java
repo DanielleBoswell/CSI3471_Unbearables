@@ -1,12 +1,17 @@
 package Cruiselink.maven.cruiselink.src.test.java.unBEARables.maven.cruiselink;
 
 
-
 import Cruiselink.maven.cruiselink.src.Controller.ReserveRoomController;
-import Cruiselink.maven.cruiselink.src.Domain.*;
+import Cruiselink.maven.cruiselink.src.Domain.Guest;
+import Cruiselink.maven.cruiselink.src.Domain.Room;
+import Cruiselink.maven.cruiselink.src.Domain.Ship;
+import Cruiselink.maven.cruiselink.src.Domain.TravelPath;
 import Cruiselink.maven.cruiselink.src.Repository.ReservationDatabase;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import Cruiselink.maven.cruiselink.src.Domain.Reservation;
 
 public class ReserveRoomTester {
 

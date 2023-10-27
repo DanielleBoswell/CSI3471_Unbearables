@@ -7,6 +7,10 @@ import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Person.Guest;
 import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Repository.ReservationDatabase;*/
 
 import Cruiselink.maven.cruiselink.src.Domain.Guest;
+import Cruiselink.maven.cruiselink.src.Domain.Reservation;
+import Cruiselink.maven.cruiselink.src.Domain.Room;
+import Cruiselink.maven.cruiselink.src.Domain.Ship;
+import Cruiselink.maven.cruiselink.src.Repository.ReservationDatabase;
 
 public class ReserveRoomController {
     public void reserveRoom(ReservationDatabase d, Guest p, Ship s, Room r){
@@ -23,7 +27,7 @@ public class ReserveRoomController {
         Reservation newRes = new Reservation(s.path.getStartDate(), s.path.getEndDate(), Boolean.FALSE, r);
 
         ReservationDatabaseController resController = new ReservationDatabaseController();
-        resController.addReservation(d, p, newRes);
+        //resController.addReservation(d, p, newRes);
 
 
         return newRes;
