@@ -8,6 +8,7 @@ import Cruiselink.maven.cruiselink.src.Controller.ReserveRoomController;
 import Cruiselink.maven.cruiselink.src.Domain.Guest;
 import Cruiselink.maven.cruiselink.src.Domain.Room;
 import Cruiselink.maven.cruiselink.src.Domain.Ship;
+import Cruiselink.maven.cruiselink.src.Repository.ReservationDatabase;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
