@@ -8,9 +8,7 @@ import javax.swing.*;
 public class LoginLandingGUI extends JPanel {
     // components
     private static JFrame frame;
-    private static JLabel logoLbl;
     private static MyMenuBar menuBar;
-    private static JMenu menu;
     private static JButton reserveCruiseBtn, myReservationsBtn;
     private static JPanel btnPanel;
     private static Font defaultFont = new Font("Comic Sans MS", Font.PLAIN, 14);
