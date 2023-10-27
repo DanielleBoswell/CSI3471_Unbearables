@@ -1,4 +1,4 @@
-package unBEARables.maven.cruiselink;
+package Cruiselink.maven.cruiselink.src.test.java.unBEARables.maven.cruiselink;
 
 import static org.junit.Assert.assertTrue;
 
