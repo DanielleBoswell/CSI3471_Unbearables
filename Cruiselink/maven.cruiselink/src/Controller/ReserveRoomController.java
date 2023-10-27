@@ -6,6 +6,8 @@ import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Controller.cruise
 import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Person.Guest;
 import CruiseLink.com.csi3471.unbearables.maven.cruiselink.src.Repository.ReservationDatabase;*/
 
+import Cruiselink.maven.cruiselink.src.Domain.Guest;
+
 public class ReserveRoomController {
     public void reserveRoom(ReservationDatabase d, Guest p, Ship s, Room r){
         if(s.roomMap.containsKey(r.getRoomNumber()) && !s.roomMap.get(r.getRoomNumber()).getIsReserved()){
