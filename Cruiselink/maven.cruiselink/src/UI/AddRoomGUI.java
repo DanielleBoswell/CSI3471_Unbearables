@@ -1,6 +1,9 @@
 package Cruiselink.maven.cruiselink.src.UI;
 
 import Cruiselink.maven.cruiselink.src.Controller.AddRoomController;
+import Cruiselink.maven.cruiselink.src.Controller.AddRoomControllerImpl;
+import Cruiselink.maven.cruiselink.src.Controller.LoginController;
+import Cruiselink.maven.cruiselink.src.Controller.LoginControllerImpl;
 
 import java.awt.*;
 import javax.swing.*;
@@ -14,7 +17,7 @@ public class AddRoomGUI extends JPanel {
     private static String[] bedTypes = {"TWIN", "FULL", "QUEEN", "KING"};
     private static String[] numBeds = {"1", "2", "3"};
 
-    // other components
+    // other components10
     private static JFrame frame;
     private static JLabel roomNumLbl, smokingLbl, qualityLbl, bedTypeLbl, bedNumLbl;
     private static JComboBox qualityLvl, bedType, bedNum;
@@ -122,10 +125,19 @@ public class AddRoomGUI extends JPanel {
     }
 
     public static void main(String[] args) {
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createGUI();
-            }
+
+
+        //Making sure it is running on the correct thread
+        SwingUtilities.invokeLater(() -> {
+
+            //Need to create an instance of the concrete implementation of LoginController
+            AddRoomController controller = new AddRoomControllerImpl();
+
+            //Will pass controller to LoginGUI and create the login GUI
+            AddRoomGUI loginGUI = new AddRoomGUI(controller);
+
+            //Create login GUI
+            AddRoomGUI.createGUI();
         });
     }
 }
