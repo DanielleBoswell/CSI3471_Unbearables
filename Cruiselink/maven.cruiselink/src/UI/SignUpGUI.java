@@ -9,6 +9,10 @@ import java.awt.*;
 
 public class SignUpGUI {
 
+    public static final int TEXT_BOX_WIDTH = 20;
+    public static final int BUTTON_WIDTH = 183;
+    public static final int BUTTON_HEIGHT = 25;
+
     private SignUpController controller;
 
     public SignUpGUI(SignUpController controller) {
@@ -54,21 +58,21 @@ public class SignUpGUI {
         signUpLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 
         //Text fields
-        firstNameField = new JTextField(20); //Makes the first name text box
-        lastNameField = new JTextField(24); //Makes the last name box
-        ageField = new JTextField(24);
-        emailField = new JTextField(24);
-        userNameField = new JTextField(24);
-        passwordField = new JPasswordField(24);
-        confirmPasswordField = new JPasswordField(24);
+        firstNameField = new JTextField(TEXT_BOX_WIDTH); //Makes the first name text box
+        lastNameField = new JTextField(TEXT_BOX_WIDTH); //Makes the last name box
+        ageField = new JTextField(TEXT_BOX_WIDTH);
+        emailField = new JTextField(TEXT_BOX_WIDTH);
+        userNameField = new JTextField(TEXT_BOX_WIDTH);
+        passwordField = new JPasswordField(TEXT_BOX_WIDTH);
+        confirmPasswordField = new JPasswordField(TEXT_BOX_WIDTH);
 
         //Creating create account button and cancel button
         createAccountButton = new JButton("Create Account");
         cancelButton = new JButton("Cancel");
 
-        //Setting width and height of create account and cancel up buttons to be the same as the text fields
-        createAccountButton.setPreferredSize(new Dimension(firstNameField.getPreferredSize().width, createAccountButton.getPreferredSize().height));
-        cancelButton.setPreferredSize(new Dimension(firstNameField.getPreferredSize().width, cancelButton.getPreferredSize().height));
+        //Setting width and height of create account and cancel up buttons to be similar to the text fields
+        createAccountButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
+        cancelButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 
         //Add action listener for create account button
         createAccountButton.addActionListener(e -> {

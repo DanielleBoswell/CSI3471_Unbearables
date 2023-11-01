@@ -9,6 +9,11 @@ import java.awt.event.MouseEvent;
 
 public class LoginGUI {
 
+    public static final int BUTTON_WIDTH = 228;
+    public static final int BUTTON_HEIGHT = 25;
+
+    public static final int TEXT_BOX_WIDTH = 25;
+
     //Frame
     private JFrame frame;
 
@@ -62,15 +67,15 @@ public class LoginGUI {
         startJourney = new Label("Start your journey with us");
         startJourney.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 
-        usernameField = new JTextField(25); //Makes the username text box
-        passwordField = new JPasswordField(30); //Makes the password text box - Had to make the password textbox a little longer
+        usernameField = new JTextField(TEXT_BOX_WIDTH); //Makes the username text box
+        passwordField = new JPasswordField(TEXT_BOX_WIDTH); //Makes the password text box - Had to make the password textbox a little longer
 
         loginButton = new JButton("Login"); //Makes login button
         signUpButton = new JButton("Sign Up"); //Making the signUp button
 
-        //Setting width and height of login and sign up buttons to be the same as the text fields
-        loginButton.setPreferredSize(new Dimension(usernameField.getPreferredSize().width, loginButton.getPreferredSize().height));
-        signUpButton.setPreferredSize(new Dimension(usernameField.getPreferredSize().width, signUpButton.getPreferredSize().height));
+        //Setting width and height of login and sign up buttons to be similar to text fields
+        loginButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
+        signUpButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 
         forgotPasswordLink = new JLabel("<HTML><U>Forgot Password?</U></HTML>"); //Styled to look like a link
         forgotPasswordLink.setForeground(Color.BLUE); //Blue link color setting for forgotpasswordlink
