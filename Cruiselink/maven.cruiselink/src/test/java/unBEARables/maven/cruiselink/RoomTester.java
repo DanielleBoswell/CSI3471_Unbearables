@@ -1,6 +1,6 @@
-package Cruiselink.maven.cruiselink.src.test.java.unBEARables.maven.cruiselink;
+package unBEARables.maven.cruiselink;
 
-import Cruiselink.maven.cruiselink.src.Domain.Room;
+import Domain.Room;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

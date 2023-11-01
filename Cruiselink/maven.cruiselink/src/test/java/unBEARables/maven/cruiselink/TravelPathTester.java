@@ -1,4 +1,4 @@
-package Cruiselink.maven.cruiselink.src.test.java.unBEARables.maven.cruiselink;
+package unBEARables.maven.cruiselink;
 
 /* Team: UnBEARables
  * Course: CSI 3471
@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Date;
 
-import Cruiselink.maven.cruiselink.src.Domain.TravelPath;
+import Domain.TravelPath;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
