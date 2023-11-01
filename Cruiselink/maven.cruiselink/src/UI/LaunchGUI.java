@@ -19,7 +19,6 @@ public class LaunchGUI {
         //Initialize main frame
         frame = new JFrame("CruiseLink");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // ------------------- added 1:05
 
         //This block allows fullscreen mode
         GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
