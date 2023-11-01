@@ -2,14 +2,18 @@ package Cruiselink.maven.cruiselink.src.UI;
 
 import Cruiselink.maven.cruiselink.src.Controller.LoginController;
 import Cruiselink.maven.cruiselink.src.Controller.LoginControllerImpl;
-import Cruiselink.maven.cruiselink.src.Creator.guestCreator;
-import Cruiselink.maven.cruiselink.src.InfoExpert.guestInfoExpert;
-import Cruiselink.maven.cruiselink.src.Repository.AccountDatabase;
+import Cruiselink.maven.cruiselink.src.Controller.SignUpController;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class SignUpGUI {
+
+    private SignUpController controller;
+
+    public SignUpGUI(SignUpController controller) {
+        this.controller = controller;
+    }
 
     //Frame
     private JFrame frame;
@@ -17,13 +21,12 @@ public class SignUpGUI {
     //Labels
     private Label cruiseLinkLabel;
     private Label signUpLabel;
-    private JLabel accountCreationMessage;
 
-    //Text fields for username, password, etc
+    //Text fields for first name, last name, email, username, age, and passwords
     private JTextField firstNameField, lastNameField, emailField, userNameField, ageField;
     private JPasswordField passwordField, confirmPasswordField;
 
-    //Buttons
+    //Buttons for create account and cancel
     private JButton createAccountButton, cancelButton;
 
     //This method creates a GUI for signup page
@@ -31,7 +34,7 @@ public class SignUpGUI {
 
         //Initialize main frame
         frame = new JFrame("Cruise Account Creation");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Makes the window close when exit button clicked
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);   //Disables resizing
 
         //This block allows fullscreen mode
@@ -50,25 +53,27 @@ public class SignUpGUI {
         signUpLabel = new Label("Sign Up");
         signUpLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 
-        accountCreationMessage = new JLabel("");
-
         //Text fields
         firstNameField = new JTextField(20); //Makes the first name text box
-        lastNameField = new JTextField(20); //Makes the last name box
-        ageField = new JTextField(20);
-        emailField = new JTextField(20);
-        userNameField = new JTextField(20);
-        passwordField = new JPasswordField(20);
-        confirmPasswordField = new JPasswordField(20);
+        lastNameField = new JTextField(24); //Makes the last name box
+        ageField = new JTextField(24);
+        emailField = new JTextField(24);
+        userNameField = new JTextField(24);
+        passwordField = new JPasswordField(24);
+        confirmPasswordField = new JPasswordField(24);
 
         //Creating create account button and cancel button
-        createAccountButton = new JButton("Create Account"); //Makes create account button
+        createAccountButton = new JButton("Create Account");
         cancelButton = new JButton("Cancel");
+
+        //Setting width and height of create account and cancel up buttons to be the same as the text fields
+        createAccountButton.setPreferredSize(new Dimension(firstNameField.getPreferredSize().width, createAccountButton.getPreferredSize().height));
+        cancelButton.setPreferredSize(new Dimension(firstNameField.getPreferredSize().width, cancelButton.getPreferredSize().height));
 
         //Add action listener for create account button
         createAccountButton.addActionListener(e -> {
 
-            System.out.println("Create Account button pressed");
+            //System.out.println("Create Account button pressed");
 
             //Gathering the strings from the text fields when create account button pressed
             String firstName = firstNameField.getText().trim(); //Must use getText()
@@ -79,93 +84,52 @@ public class SignUpGUI {
             String password = new String(passwordField.getPassword());
             String confirmPassword = new String(confirmPasswordField.getPassword());
 
+            //Need to test age and convert it
+            boolean ageIsOnlyDigits = isOnlyDigits(age);
             int convertedAge = 0;
 
-            //Will convert the age
-            try {
-
-                convertedAge = Integer.parseInt(age);
-
-            }
-            catch (Exception issue) {
-                System.out.println("Converting issue with age");
+            if (ageIsOnlyDigits) {
+                try {
+                    convertedAge = Integer.parseInt(age);
+                } catch (Exception issue) {
+                    System.out.println("Converting issue with age");
+                }
             }
 
-            //Test age for 18 and up
-            if(convertedAge < 18){
-
-                accountCreationMessage.setForeground(Color.RED);  //Makes the text red
-                accountCreationMessage.setText("Must be at least 18 years of age to sign up");  //This sets the message
+            //Need to check for valid entries into text fields ---------- Will need to add username and email verification (through database) ----------
+            if (!isOnlyLetters(firstName)) {
+                JOptionPane.showMessageDialog(frame, "Must contain only letters A-Z", "Invalid first name", JOptionPane.WARNING_MESSAGE);
+            }
+            else if (!isOnlyLetters(lastName)) {
+                JOptionPane.showMessageDialog(frame, "Must contain only letters A-Z", "Invalid last name", JOptionPane.WARNING_MESSAGE);
+            }
+            else if (!ageIsOnlyDigits) {
+                JOptionPane.showMessageDialog(frame, "Age must be digits only", "Invalid age input", JOptionPane.WARNING_MESSAGE);
+            }
+            else if (convertedAge < 18) {
+                JOptionPane.showMessageDialog(frame, "Must be at least 18 years of age to sign up", "Age Restriction", JOptionPane.WARNING_MESSAGE);
             }
             else {
 
-                accountCreationMessage.setForeground(Color.GREEN);  //Makes the text green
-                accountCreationMessage.setText("Account Created");  //This sets the message
-                //accountCreationMessage.setText("");  //Clear the message
+                //Creation was successful
+                JOptionPane.showMessageDialog(frame,  "Account successfully created", "Account status", JOptionPane.INFORMATION_MESSAGE);
+
+                //Pass the Strings to the controller for account creation
+                controller.onSignUpSubmit(firstName, lastName, age, email, username, password, confirmPassword);
+
+                //Return back to log in screen
+                returnToLoginScreen();
             }
-
-
-            //For testing, print them to the console --------- works ---------
-            System.out.println("First Name: " + firstName);
-            System.out.println("Last Name: " + lastName);
-            System.out.println("Age: " + age);
-            System.out.println("Email: " + email);
-            System.out.println("Username: " + username);
-            System.out.println("Password: " + password);
-            System.out.println("Confirm Password: " + confirmPassword);
-
-            //Need to check if the username and email exist first in the database before I create a guest
-            AccountDatabase database = new AccountDatabase();
-
-            //database.getGuestAccounts() Returns (Map<Integer, Guest>)
-            guestInfoExpert guestInfoExpertObj = new guestInfoExpert(database.getGuestAccounts());
-
-            boolean emailExists = guestInfoExpertObj.doesEmailExist(email);
-            boolean usernameExists = guestInfoExpertObj.doesUsernameExist(username);
-
-            if(emailExists){ //if true
-                //Will need to ask guest to enter a different email
-                accountCreationMessage.setForeground(Color.RED);  //Makes the text red
-                accountCreationMessage.setText("Email already exists, enter a different email");  //This sets the message
-
-            }
-            if(usernameExists){ //if true
-                //Will need to ask guest to enter a different username
-                accountCreationMessage.setForeground(Color.RED);  //Makes the text red
-                accountCreationMessage.setText("Username already exists, enter a different username");  //This sets the message
-            }
-
-            //Otherwise I can create a guest account
-
-            //Passwords will be tested for equivalence in the guestCreator class using the newUsernamePassword() method
-            //guestCreator is for creating a new guest
-            guestCreator newGuest = new guestCreator();
-
-            boolean passwordsMatch = newGuest.newUsernamePassword(username, password, confirmPassword);
-
-            //System.out.println("passwordsMatch value: " + passwordsMatch); // ----- works -------
-
-            String fullName = firstName + " " + lastName;
-            newGuest.setDetails(email, fullName, "None", "NA");
-
         });
 
         //This is for the cancel button to go back to the login page
         cancelButton.addActionListener(e1 -> {
 
-            frame.dispose(); // Close the current SignUpGUI window
+            //System.out.println("Cancel button Hit");
 
-            SwingUtilities.invokeLater(() -> {
+            JOptionPane.showMessageDialog(frame, "Returning to login page", "Sign up canceled", JOptionPane.ERROR_MESSAGE);
 
-                //Need to create an instance of the concrete implementation of LoginController
-                LoginController controller = new LoginControllerImpl();
-
-                //Will pass controller to LoginGUI and create the login GUI
-                LoginGUI loginGUI = new LoginGUI(controller);
-
-                //Create login GUI
-                loginGUI.createGUI();
-            });
+            returnToLoginScreen();
         });
 
         //Layout the components using GridBagConstraints
@@ -218,12 +182,30 @@ public class SignUpGUI {
         frame.add(createAccountButton, constraints);
 
         constraints.gridy = 17;
-        frame.add(accountCreationMessage, constraints);
-
-        constraints.gridy = 18;
         cancelButton.setForeground(Color.RED);
         frame.add(cancelButton, constraints);
 
         frame.setVisible(true);
+    }
+
+    //For testing if a string has only digits (0-9)
+    public static boolean isOnlyDigits (String myString){
+
+        return myString.matches("\\d+");
+    }
+
+    //For testing if a string has only letters a-z (upper and lower)
+    public static boolean isOnlyLetters (String myString){
+
+        return myString.matches("[a-zA-Z]+");
+    }
+
+    //For going back to login page
+    private void returnToLoginScreen() {
+        SwingUtilities.invokeLater(() -> {
+            LoginController controller = new LoginControllerImpl();
+            LoginGUI loginGUI = new LoginGUI(controller);
+            loginGUI.createGUI();
+        });
     }
 }
