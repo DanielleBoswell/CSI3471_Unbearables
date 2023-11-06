@@ -1,21 +1,16 @@
 package Cruiselink.maven.cruiselink.src.UI;
 
-import Cruiselink.maven.cruiselink.src.Controller.LoginController;
+import Cruiselink.maven.cruiselink.src.Controller.LoginControllerImpl;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class LoginGUI {
+public class LoginGUI extends JPanel {
 
-    public static final int BUTTON_WIDTH = 228;
-    public static final int BUTTON_HEIGHT = 25;
-
+    //Constant for setting the text box width
     public static final int TEXT_BOX_WIDTH = 25;
-
-    //Frame
-    private JFrame frame;
 
     //Labels
     private Label cruiseLinkLabel;
@@ -28,38 +23,36 @@ public class LoginGUI {
 
     //Buttons for log in and sign up
     private JButton loginButton;
-    private JButton signUpButton; // -------- FOR GUESTS ONLY --------
+    private JButton signUpButton;  // -------- FOR GUESTS ONLY --------
 
     private JLabel forgotPasswordLink;
 
-    //Making a Login controller object
-    private LoginController controller;
+    //Making a Login controller impl object
+    private LoginControllerImpl loginController;
 
-    //LoginGUI constructor takes the Login controller and sets it
-    public LoginGUI(LoginController controller) {
-        this.controller = controller;
+    //Sets the controller
+    public void setController(LoginControllerImpl loginController) {
+        this.loginController = loginController;
     }
 
-    //This method creates the GUI
-    public void createGUI() {
+    //Making a UINavigator instance for login
+    private UINavigator uiNavigator;
 
-        //Initialize main frame
-        frame = new JFrame("Cruise Account Login");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);   //Disables resizing
+    //Constructor accepting UINavigator instance - Need this for switching panels
+    public LoginGUI(UINavigator uiNavigator) {
 
-        //This block allows fullscreen mode
-        GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.setAlwaysOnTop(true);
-        env.getDefaultScreenDevice().setFullScreenWindow(frame); //Enables Fullscreen
+        this.uiNavigator = uiNavigator;
+    }
 
-        //Setting layout to Grid Bag Layout
-        frame.setLayout(new GridBagLayout());
+    //This method creates the login GUI, will return the panel
+    public JPanel createLoginPanel() {
+
+        //Setting layout to GridBagLayout
+        this.setLayout(new GridBagLayout());
 
         //Initializing UI components
         cruiseLinkLabel = new Label("CruiseLink");
-        cruiseLinkLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 40)); //Sets the font type and size of label
+        cruiseLinkLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 40));
 
         sailAwayToParadiseLabel = new Label("Sail away to paradise");
         sailAwayToParadiseLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -67,86 +60,132 @@ public class LoginGUI {
         startJourney = new Label("Start your journey with us");
         startJourney.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 
-        usernameField = new JTextField(TEXT_BOX_WIDTH); //Makes the username text box
-        passwordField = new JPasswordField(TEXT_BOX_WIDTH); //Makes the password text box - Had to make the password textbox a little longer
+        usernameField = new JTextField(TEXT_BOX_WIDTH);
+        passwordField = new JPasswordField(TEXT_BOX_WIDTH);
 
-        loginButton = new JButton("Login"); //Makes login button
-        signUpButton = new JButton("Sign Up"); //Making the signUp button
+        loginButton = new JButton("Login");
+        signUpButton = new JButton("Sign Up");
 
-        //Setting width and height of login and sign up buttons to be similar to text fields
-        loginButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
-        signUpButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
+        //Set the buttons to the same width as the text fields and also a preferred height. ------------ Makes the buttons centered ------------
+        Dimension textFieldSize = usernameField.getPreferredSize(); //Use the preferred size of the username field for reference
+        loginButton.setMaximumSize(new Dimension(textFieldSize.width, loginButton.getPreferredSize().height));
+        signUpButton.setMaximumSize(new Dimension(textFieldSize.width, signUpButton.getPreferredSize().height));
 
-        forgotPasswordLink = new JLabel("<HTML><U>Forgot Password?</U></HTML>"); //Styled to look like a link
-        forgotPasswordLink.setForeground(Color.BLUE); //Blue link color setting for forgotpasswordlink
+        forgotPasswordLink = new JLabel("<HTML><U>Forgot Password?</U></HTML>");
+        forgotPasswordLink.setForeground(Color.BLUE);
 
         //Add action listener for login button
         loginButton.addActionListener(e -> {
 
-            //Need to Implement the callLogin operation
-            System.out.println("Login button pressed");
-
-            //Passing username and password to controller
+            //Gathering the username and password
             String username = usernameField.getText();
             String password = new String(passwordField.getPassword());
 
-            //Call controller
-            controller.onLoginPressed(username, password);
+            //Pass to controller
+            loginController.onLoginPressed(username, password);
         });
 
         //Sign up button action listener
-        signUpButton.addActionListener(e -> controller.onSignUpPressed());
+        signUpButton.addActionListener(e -> {
+
+            //Call sign up through controller
+            if (loginController != null) {
+                loginController.onSignUpPressed();
+            }
+        });
 
         //Listens for mouse clicks on the forgot password link
         forgotPasswordLink.addMouseListener(new MouseAdapter() {
-
             public void mouseClicked(MouseEvent e) {
 
-                //Need to Implement the forgotPasswordLink operation
-                System.out.println("Forgot Password link clicked");
-
-                //Call controller
-                controller.onForgotPasswordPressed();
+                if (loginController != null) {
+                    loginController.onForgotPasswordPressed();
+                }
             }
         });
 
         //Layout the components using GridBagConstraints
         GridBagConstraints constraints = new GridBagConstraints();
-        constraints.insets = new Insets(15, 15, 15, 15); //Padding for the components (buttons, labels, etc)
+        constraints.insets = new Insets(10, 10, 10, 10); //Padding for the components
 
-        // For the layout weight
-        constraints.weightx = 1.0;
+        //Center alignment for components
+        constraints.anchor = GridBagConstraints.CENTER;
 
-        //Adding labels and buttons to the frame, using y axis on grid
-        constraints.gridy = 0; //0 starts at the top, etc
-        frame.add(cruiseLinkLabel, constraints);
+        //Layout the usernameField with the constraints set to fill horizontally
+        constraints.gridx = 0;
+        constraints.gridy++;
+        this.add(usernameField, constraints);
 
-        constraints.gridy = 1;
-        frame.add(sailAwayToParadiseLabel, constraints);
+        //Layout the passwordField with the same constraints
+        constraints.gridy++;
+        this.add(passwordField, constraints);
 
-        constraints.gridy = 2;
-        frame.add(startJourney, constraints);
+        //To make sure the components don't stretch horizontally, set fill to NONE
+        constraints.fill = GridBagConstraints.NONE;
 
-        constraints.gridy = 3;
-        frame.add(signUpButton, constraints);
+        //Set weightx and weighty to 0 to prevent components from filling the entire space
+        constraints.weightx = 0;
+        constraints.weighty = 0;
 
-        constraints.gridy = 4;
-        frame.add(new JLabel("Username:"), constraints);
-        constraints.gridy = 5;
-        frame.add(usernameField, constraints);
+        //Layout the components in the center
+        constraints.gridx = 0; //Set the single column to 0 to center it
+        constraints.gridy = 0;
+        this.add(cruiseLinkLabel, constraints);
 
-        constraints.gridy = 6;
-        frame.add(new JLabel("Password:"), constraints);
-        constraints.gridy = 7;
-        frame.add(passwordField, constraints);
+        constraints.gridy++;
+        this.add(sailAwayToParadiseLabel, constraints);
 
-        constraints.gridy = 8;
-        frame.add(loginButton, constraints);
+        constraints.gridy++;
 
-        constraints.gridy = 9;
-        frame.add(forgotPasswordLink, constraints);
+        //Create labels for the username and password fields
+        JLabel usernameLabel = new JLabel("Username:");
+        JLabel passwordLabel = new JLabel("Password:");
 
-        //Set the frame to be visible
-        frame.setVisible(true);
+        //Wrap the username and password fields in their own JPanel to prevent stretching
+        JPanel inputPanel = new JPanel();
+        inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.PAGE_AXIS)); //Use BoxLayout for vertical stacking
+
+        inputPanel.add(usernameLabel);
+
+        inputPanel.add(usernameField);
+        inputPanel.add(Box.createRigidArea(new Dimension(0, 30))); //This adds a small space between the fields
+
+        inputPanel.add(passwordLabel);
+
+        inputPanel.add(passwordField);
+        constraints.gridy++; //Increment gridy to move down in the layout
+        this.add(inputPanel, constraints); //Add the input panel to the main panel
+
+        //Place the buttons in their own JPanel
+        JPanel buttonPanel = new JPanel();
+
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.PAGE_AXIS));
+
+        buttonPanel.add(loginButton);
+
+        //Add an area for spacing between the login and sign up buttons
+        buttonPanel.add(Box.createRigidArea(new Dimension(0, 30)));
+
+        buttonPanel.add(signUpButton);
+
+        //Aligning the panel itself to the center of its grid cell
+        constraints.fill = GridBagConstraints.VERTICAL; //Allows the buttons to fill vertically
+        constraints.anchor = GridBagConstraints.CENTER; //Center the panel in the cell
+
+        //Add vertical glue to push the button panel down
+        constraints.gridy++;
+        this.add(Box.createVerticalGlue(), constraints);
+
+        constraints.gridy++; //Increment gridy to move down in the layout
+        this.add(buttonPanel, constraints); //Add the button panel to the main panel
+
+        //Putting the link in its own panel
+        JPanel linkPanel = new JPanel();
+        linkPanel.add(forgotPasswordLink);
+        constraints.gridy++; //Increment gridy to move down in the layout
+        this.add(linkPanel, constraints); //Add the link panel to the main panel
+
+        //Returning the JPanel
+        return this;
     }
 }

@@ -1,26 +1,14 @@
 package Cruiselink.maven.cruiselink.src.UI;
 
-import Cruiselink.maven.cruiselink.src.Controller.LoginController;
-import Cruiselink.maven.cruiselink.src.Controller.LoginControllerImpl;
-import Cruiselink.maven.cruiselink.src.Controller.SignUpController;
+import Cruiselink.maven.cruiselink.src.Controller.SignUpControllerImpl;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class SignUpGUI {
+public class SignUpGUI extends JPanel {
 
+    //Constant for setting the text box width
     public static final int TEXT_BOX_WIDTH = 20;
-    public static final int BUTTON_WIDTH = 183;
-    public static final int BUTTON_HEIGHT = 25;
-
-    private SignUpController controller;
-
-    public SignUpGUI(SignUpController controller) {
-        this.controller = controller;
-    }
-
-    //Frame
-    private JFrame frame;
 
     //Labels
     private Label cruiseLinkLabel;
@@ -33,22 +21,25 @@ public class SignUpGUI {
     //Buttons for create account and cancel
     private JButton createAccountButton, cancelButton;
 
-    //This method creates a GUI for signup page
-    public void createGUI() {
+    private SignUpControllerImpl signUpController;
 
-        //Initialize main frame
-        frame = new JFrame("Cruise Account Creation");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);   //Disables resizing
+    //Sets the controller
+    public void setController(SignUpControllerImpl signUpController) {
+        this.signUpController = signUpController;
+    }
 
-        //This block allows fullscreen mode
-        GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.setAlwaysOnTop(true);
-        env.getDefaultScreenDevice().setFullScreenWindow(frame); //Enables Fullscreen
+    //Declare instance of UINavigator to manage navigation in the UI
+    private UINavigator UINavigator;
+
+    //Constructor accepting UINavigator instance  - Need this for switching panels
+    public SignUpGUI(UINavigator UINavigator) {
+        this.UINavigator = UINavigator;
+    }
+
+    public JPanel createSignupPanel() {
 
         //Setting layout to Grid Bag Layout
-        frame.setLayout(new GridBagLayout());
+        this.setLayout(new GridBagLayout());
 
         //Initializing UI components
         cruiseLinkLabel = new Label("CruiseLink");
@@ -69,10 +60,6 @@ public class SignUpGUI {
         //Creating create account button and cancel button
         createAccountButton = new JButton("Create Account");
         cancelButton = new JButton("Cancel");
-
-        //Setting width and height of create account and cancel up buttons to be similar to the text fields
-        createAccountButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
-        cancelButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 
         //Add action listener for create account button
         createAccountButton.addActionListener(e -> {
@@ -100,96 +87,109 @@ public class SignUpGUI {
                 }
             }
 
-            //Need to check for valid entries into text fields ---------- Will need to add username and email verification (through database) ----------
+            //Need to check for valid entries into text fields
+            // ---------- Will need to add username and email verification (through database) ----------
             if (!isOnlyLetters(firstName)) {
-                JOptionPane.showMessageDialog(frame, "Must contain only letters A-Z", "Invalid first name", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Must contain only letters A-Z",
+                        "Invalid first name", JOptionPane.WARNING_MESSAGE);
             }
             else if (!isOnlyLetters(lastName)) {
-                JOptionPane.showMessageDialog(frame, "Must contain only letters A-Z", "Invalid last name", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Must contain only letters A-Z",
+                        "Invalid last name", JOptionPane.WARNING_MESSAGE);
             }
             else if (!ageIsOnlyDigits) {
-                JOptionPane.showMessageDialog(frame, "Age must be digits only", "Invalid age input", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Age must be digits only",
+                        "Invalid age input", JOptionPane.WARNING_MESSAGE);
             }
             else if (convertedAge < 18) {
-                JOptionPane.showMessageDialog(frame, "Must be at least 18 years of age to sign up", "Age Restriction", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Must be at least 18 years of age to sign up",
+                        "Age Restriction", JOptionPane.WARNING_MESSAGE);
             }
             else {
 
                 //Creation was successful
-                JOptionPane.showMessageDialog(frame,  "Account successfully created", "Account status", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this,  "Account successfully created",
+                        "Account status", JOptionPane.INFORMATION_MESSAGE);
 
                 //Pass the Strings to the controller for account creation
-                controller.onSignUpSubmit(firstName, lastName, age, email, username, password, confirmPassword);
+                //signUpController.onSignUpSubmit(firstName, lastName, age, email, username, password, confirmPassword);
 
                 //Return back to log in screen
-                returnToLoginScreen();
+                UINavigator.showCard(UINavigator.LOGIN_PANEL);
             }
         });
 
-        //This is for the cancel button to go back to the login page
+        //This is for the cancel button to go back to the login page after being clicked
         cancelButton.addActionListener(e1 -> {
 
             //System.out.println("Cancel button Hit");
 
-            JOptionPane.showMessageDialog(frame, "Returning to login page", "Sign up canceled", JOptionPane.ERROR_MESSAGE);
+            //Display window to user about cancellation
+            JOptionPane.showMessageDialog(this, "Returning to login page",
+                    "Sign up canceled", JOptionPane.ERROR_MESSAGE);
 
-            returnToLoginScreen();
+            //Return back to log in screen
+            UINavigator.showCard(UINavigator.LOGIN_PANEL);
         });
 
         //Layout the components using GridBagConstraints
         GridBagConstraints constraints = new GridBagConstraints();
-        constraints.insets = new Insets(15, 15, 5, 15); //Padding (spacing) for the components (buttons, labels, etc)
+        //Padding (spacing) for the components (buttons, labels, etc)
+        constraints.insets = new Insets(15, 15, 5, 15);
 
         //Adding labels and buttons to the frame
-        constraints.gridy = 0; //stands for grid for the y axis - 0 will be at the top
-        frame.add(cruiseLinkLabel, constraints);
+        constraints.gridy = 0; //Stands for grid for the y axis - 0 will be at the top
+        this.add(cruiseLinkLabel, constraints);
         constraints.gridy = 1;
-        frame.add(signUpLabel, constraints);
+        this.add(signUpLabel, constraints);
 
         constraints.anchor = GridBagConstraints.WEST; //Make labels align to the left
         constraints.gridy = 2;
-        frame.add(new JLabel("First Name:"), constraints);
+        this.add(new JLabel("First Name:"), constraints);
         constraints.gridy = 3;
-        frame.add(firstNameField, constraints);
+        this.add(firstNameField, constraints);
 
         constraints.gridy = 4;
-        frame.add(new JLabel("Last Name:"), constraints);
+        this.add(new JLabel("Last Name:"), constraints);
         constraints.gridy = 5;
-        frame.add(lastNameField, constraints);
+        this.add(lastNameField, constraints);
 
         constraints.gridy = 6;
-        frame.add(new JLabel("Age:"), constraints);
+        this.add(new JLabel("Age:"), constraints);
         constraints.gridy = 7;
-        frame.add(ageField, constraints);
+        this.add(ageField, constraints);
 
         constraints.gridy = 8;
-        frame.add(new JLabel("Email:"), constraints);
+        this.add(new JLabel("Email:"), constraints);
         constraints.gridy = 9;
-        frame.add(emailField, constraints);
+        this.add(emailField, constraints);
 
         constraints.gridy = 10;
-        frame.add(new JLabel("Username:"), constraints);
+        this.add(new JLabel("Username:"), constraints);
         constraints.gridy = 11;
-        frame.add(userNameField, constraints);
+        this.add(userNameField, constraints);
 
         constraints.gridy = 12;
-        frame.add(new JLabel("Password:"), constraints);
+        this.add(new JLabel("Password:"), constraints);
         constraints.gridy = 13;
-        frame.add(passwordField, constraints);
+        this.add(passwordField, constraints);
 
         constraints.gridy = 14;
-        frame.add(new JLabel("Confirm Password:"), constraints);
+        this.add(new JLabel("Confirm Password:"), constraints);
         constraints.gridy = 15;
-        frame.add(confirmPasswordField, constraints);
+        this.add(confirmPasswordField, constraints);
 
         constraints.gridy = 16;
-        frame.add(createAccountButton, constraints);
+        this.add(createAccountButton, constraints);
 
         constraints.gridy = 17;
         cancelButton.setForeground(Color.RED);
-        frame.add(cancelButton, constraints);
+        this.add(cancelButton, constraints);
 
-        frame.setVisible(true);
+        this.setVisible(true);
+
+        //Return the panel
+        return this;
     }
 
     //For testing if a string has only digits (0-9)
@@ -202,14 +202,5 @@ public class SignUpGUI {
     public static boolean isOnlyLetters (String myString){
 
         return myString.matches("[a-zA-Z]+");
-    }
-
-    //For going back to login page
-    private void returnToLoginScreen() {
-        SwingUtilities.invokeLater(() -> {
-            LoginController controller = new LoginControllerImpl();
-            LoginGUI loginGUI = new LoginGUI(controller);
-            loginGUI.createGUI();
-        });
     }
 }

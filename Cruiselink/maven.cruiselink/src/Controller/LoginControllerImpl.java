@@ -1,31 +1,40 @@
 package Cruiselink.maven.cruiselink.src.Controller;
 
-import Cruiselink.maven.cruiselink.src.UI.LaunchGUI;
-import Cruiselink.maven.cruiselink.src.UI.LoginGUI;
-import Cruiselink.maven.cruiselink.src.UI.SignUpGUI;
-
-import javax.swing.*;
+import Cruiselink.maven.cruiselink.src.UI.UINavigator;
 
 public class LoginControllerImpl implements LoginController {
+
+    //Reference to the UINavigator for changing panels
+    private UINavigator uiNavigator;
+
+    //Constructor to set the UINavigator instance
+    public LoginControllerImpl(UINavigator uiNavigator) {
+        this.uiNavigator = uiNavigator;
+    }
 
     @Override
     public void onLoginPressed(String username, String password) {
 
-        //Implement my logic here
+        //Check the username and password with database system
+        //boolean isAuthenticated = /* Authentication logic */;
+
+        //if (isAuthenticated) {
+            //If login is successful, switch to another panel
+            //Ex: uiNavigator.showCard(UINavigator.NEXT_PANEL);
+        //}
+        //else {
+            //Show error message or reset the login form
+            //JOptionPane.showMessageDialog(null, "Invalid login credentials", "Login Error", JOptionPane.ERROR_MESSAGE);
+        //}
+
         System.out.println("Login button pressed");
     }
 
     @Override
     public void onSignUpPressed() {
 
-        //Initializing the controller responsible for sign up logic
-        SignUpController signUpController = new SignUpControllerImpl();
-
-        //Creating the sign-up user interface and linking it to the controller
-        SignUpGUI signUpGUI = new SignUpGUI(signUpController);
-
-        //Displaying the sign up user interface to the user
-        signUpGUI.createGUI();
+        //Switch to the signup panel using the UINavigator
+        uiNavigator.showCard(UINavigator.SIGNUP_PANEL);
     }
 
     @Override
