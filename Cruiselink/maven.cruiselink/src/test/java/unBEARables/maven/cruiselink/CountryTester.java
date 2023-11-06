@@ -1,4 +1,4 @@
-package Cruiselink.maven.cruiselink.src.test.java.unBEARables.maven.cruiselink;
+package unBEARables.maven.cruiselink;
 
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.Date;
