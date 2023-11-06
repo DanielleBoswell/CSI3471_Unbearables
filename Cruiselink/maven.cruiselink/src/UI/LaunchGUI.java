@@ -7,16 +7,22 @@ import java.awt.event.ActionListener;
 
 public class LaunchGUI {
 
-    //Declare instance of UINavigator to manage navigation in the UI
+    //Q: Why do we need a UINavigator object and constructor that sets it?
+
+    //UINavigator contains the cardLayout and cardPanel which manage different panels.
+    //Passing the UINavigator instance to a page, gives the page the ability to tell
+    //the UINavigator to switch between panels.
+
+    //Declare instance of UINavigator to manage navigation in the UI -------- Needed for switching pages --------
     private UINavigator UINavigator;
 
-    //Constructor that takes a UINavigator instance as an argument
+    //Constructor that takes a UINavigator instance as an argument -------- Needed for switching pages --------
     public LaunchGUI(UINavigator UINavigator) {
         this.UINavigator = UINavigator;
     }
 
     //Creates and returns a JPanel for the launch screen
-    public JPanel createLaunchPanel() {
+    public JPanel createLaunchPanel() { // -------- Must return the panel for switching --------
 
         //Create a new JPanel with BorderLayout to organize components
         JPanel launchPanel = new JPanel(new BorderLayout());

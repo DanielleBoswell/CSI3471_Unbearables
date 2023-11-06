@@ -13,11 +13,16 @@ public class UINavigator extends JFrame {
     //Declaring a JPanel that will hold the different cards (panels)
     private static JPanel cardPanel = null;
 
+    //String identifiers in CardLayout are used to reference and switch between different panels (cards) within
+    //a container managed by CardLayout manager. They are unique keys for each card in the layout.
+    //They are needed for the functionality of the CardLayout when we need to change the visible component.
+
     //Constant identifiers for our panels --- Add one for each page in software, or can add using addCard() ---
     public static final String LAUNCH_PANEL = "Launch Panel";
     public static final String LOGIN_PANEL = "Login Panel";
     public static final String SIGNUP_PANEL = "Sign Up Panel";
 
+    /* ----------- ADD IDENTIFIERS HERE FOR EACH GUI PAGE ----------- (Preferred method for now) */
 
 
 
@@ -45,12 +50,13 @@ public class UINavigator extends JFrame {
         //Add the cards (panels) to the cardPanel with the respective identifiers
         // --- This is where we add the panels to the main frame (panels = pages in software) ---
         //or can add dynamically using addCard()
-        cardPanel.add(createLaunchPanel(), LAUNCH_PANEL);
-        cardPanel.add(createLoginPanel(), LOGIN_PANEL);
-        cardPanel.add(createSignupPanel(), SIGNUP_PANEL);
+        cardPanel.add(createLaunch(), LAUNCH_PANEL);
+        cardPanel.add(createLogin(), LOGIN_PANEL);
+        cardPanel.add(createSignup(), SIGNUP_PANEL);
 
 
 
+        /* ----------- ADD PANELS HERE FOR EACH GUI PAGE ----------- (Preferred method for now) */
 
 
 
@@ -65,8 +71,9 @@ public class UINavigator extends JFrame {
     }
 
     //Method to create the launch panel
-    private JPanel createLaunchPanel() {
+    private JPanel createLaunch() {
 
+        //Make a new page object and pass this UINavigator to its constructor - essential
         LaunchGUI launchGUIInstance = new LaunchGUI(this);
 
         //This will return the launch panel
@@ -74,8 +81,9 @@ public class UINavigator extends JFrame {
     }
 
     //Method to create the login panel
-    private JPanel createLoginPanel() {
+    private JPanel createLogin() {
 
+        //Make a new page object and pass this UINavigator to its constructor - essential
         LoginGUI loginGUIInstance = new LoginGUI(this);
 
         //Create an instance of controller
@@ -89,8 +97,11 @@ public class UINavigator extends JFrame {
     }
 
     //Method to create the signup panel
-    private JPanel createSignupPanel() {
+    private JPanel createSignup() {
+
+        //Make a new page object and pass this UINavigator to its constructor - essential
         SignUpGUI signUpGUIInstance = new SignUpGUI(this);
+
         return signUpGUIInstance.createSignupPanel(); //This will return the signup panel
     }
 

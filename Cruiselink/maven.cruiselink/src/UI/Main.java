@@ -11,7 +11,7 @@ public class Main {
         SwingUtilities.invokeLater(() -> {
 
             //Making a new UINavigator to construct the main frame with other GUIs as panels
-            SwingUtilities.invokeLater(() -> new UINavigator());
+            new UINavigator();
         });
     }
 }
