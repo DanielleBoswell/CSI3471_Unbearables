@@ -17,17 +17,20 @@ public class UINavigator extends JFrame {
     //a container managed by CardLayout manager. They are unique keys for each card in the layout.
     //They are needed for the functionality of the CardLayout when we need to change the visible component.
 
-    //Constant identifiers for our panels --- Add one for each page in software, or can add using addCard() ---
+    //Constant identifiers for our panels --- Add one for each page in software ---
     public static final String LAUNCH_PANEL = "Launch Panel";
     public static final String LOGIN_PANEL = "Login Panel";
     public static final String SIGNUP_PANEL = "Sign Up Panel";
 
-    /* ----------- ADD IDENTIFIERS HERE FOR EACH GUI PAGE ----------- (Preferred method for now) */
+    /* ----------- ADD IDENTIFIERS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
 
 
 
+    //Example: public static final String TEST_PANEL = "Test Panel";
 
 
+
+    /* ----------- ADD IDENTIFIERS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
 
     //Main frame for our software (Main window)
     private JFrame frame;
@@ -49,16 +52,19 @@ public class UINavigator extends JFrame {
 
         //Add the cards (panels) to the cardPanel with the respective identifiers
         // --- This is where we add the panels to the main frame (panels = pages in software) ---
-        //or can add dynamically using addCard()
         cardPanel.add(createLaunch(), LAUNCH_PANEL);
         cardPanel.add(createLogin(), LOGIN_PANEL);
         cardPanel.add(createSignup(), SIGNUP_PANEL);
 
+        /* ----------- ADD PANELS HERE FOR EACH GUI PAGE ----------- */
 
 
-        /* ----------- ADD PANELS HERE FOR EACH GUI PAGE ----------- (Preferred method for now) */
+
+        //Example: cardPanel.add(createTest(), TEST_PANEL);
 
 
+
+        /* ----------- ADD PANELS HERE FOR EACH GUI PAGE ----------- */
 
         //Add the main panel to the frame in the center
         frame.add(cardPanel, BorderLayout.CENTER);
@@ -105,14 +111,17 @@ public class UINavigator extends JFrame {
         return signUpGUIInstance.createSignupPanel(); //This will return the signup panel
     }
 
-    //Method to add a new card to the cardPanel dynamically
-    public void addCard(JPanel card, String identifier) {
-        //Adds a new panel with a given identifier to the card layout
-        cardPanel.add(card, identifier);
-    }
+    /* ----------- ADD PANEL METHODS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
+
+
+    //Example: private JPanel createTest() {...}
+
+
+    /* ----------- ADD PANEL METHODS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
 
     //Method to show a card by its identifier --- This switches the GUI we are on ---
     public static void showCard(String identifier) {
+
         //Tells the card layout to show the panel with the specified identifier
         cardLayout.show(cardPanel, identifier);
     }

@@ -114,6 +114,9 @@ public class SignUpGUI extends JPanel {
                 //Pass the Strings to the controller for account creation
                 //signUpController.onSignUpSubmit(firstName, lastName, age, email, username, password, confirmPassword);
 
+                //Clear the text boxes
+                this.clearTextFields();
+
                 //Return back to log in screen
                 UINavigator.showCard(UINavigator.LOGIN_PANEL);
             }
@@ -128,8 +131,12 @@ public class SignUpGUI extends JPanel {
             JOptionPane.showMessageDialog(this, "Returning to login page",
                     "Sign up canceled", JOptionPane.ERROR_MESSAGE);
 
+            //Clear the text boxes
+            this.clearTextFields();
+
             //Return back to log in screen
             UINavigator.showCard(UINavigator.LOGIN_PANEL);
+
         });
 
         //Layout the components using GridBagConstraints
@@ -143,7 +150,7 @@ public class SignUpGUI extends JPanel {
         constraints.gridy = 1;
         this.add(signUpLabel, constraints);
 
-        constraints.anchor = GridBagConstraints.WEST; //Make labels align to the left
+        //constraints.anchor = GridBagConstraints.WEST; //Make labels align to the left, will make buttons off
         constraints.gridy = 2;
         this.add(new JLabel("First Name:"), constraints);
         constraints.gridy = 3;
@@ -180,6 +187,7 @@ public class SignUpGUI extends JPanel {
         this.add(confirmPasswordField, constraints);
 
         constraints.gridy = 16;
+
         this.add(createAccountButton, constraints);
 
         constraints.gridy = 17;
@@ -202,5 +210,17 @@ public class SignUpGUI extends JPanel {
     public static boolean isOnlyLetters (String myString){
 
         return myString.matches("[a-zA-Z]+");
+    }
+
+    //For clearing the text fields when create account button or cancel button is selected
+    private void clearTextFields() {
+
+        firstNameField.setText("");
+        lastNameField.setText("");
+        emailField.setText("");
+        userNameField.setText("");
+        ageField.setText("");
+        passwordField.setText("");
+        confirmPasswordField.setText("");
     }
 }
