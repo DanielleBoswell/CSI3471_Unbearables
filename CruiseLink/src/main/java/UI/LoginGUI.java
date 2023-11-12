@@ -112,9 +112,19 @@ public class LoginGUI extends JPanel {
                     //User canceled the operation
                     JOptionPane.showMessageDialog(
                             LoginGUI.this,
-                            "Password reset canceled.",
+                            "Password reset canceled",
                             "Canceled",
                             JOptionPane.INFORMATION_MESSAGE
+                    );
+                }
+                else if (email.isEmpty()) {
+
+                    //No input entered, show try again message
+                    JOptionPane.showMessageDialog(
+                            LoginGUI.this,
+                            "Try again, nothing was entered",
+                            "No Input",
+                            JOptionPane.WARNING_MESSAGE
                     );
                 }
                 else if (!email.isEmpty()) {
@@ -126,7 +136,7 @@ public class LoginGUI extends JPanel {
                     //Display a message saying the reset link has been sent
                     JOptionPane.showMessageDialog(
                             LoginGUI.this,
-                            "Your reset link has been sent.",
+                            "Your reset link has been sent",
                             "Email Sent",
                             JOptionPane.INFORMATION_MESSAGE
                     );
