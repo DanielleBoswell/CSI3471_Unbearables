@@ -98,9 +98,27 @@ public class LoginGUI extends JPanel {
         forgotPasswordLink.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
 
-                if (loginController != null) {
-                    loginController.onForgotPasswordPressed();
+                //Prompt for user's email
+                String email = JOptionPane.showInputDialog(
+                        LoginGUI.this, //This refers to the outer class instance
+                        "Enter your email for password reset:",
+                        "Forgot Password",
+                        JOptionPane.QUESTION_MESSAGE
+                );
+
+                if (email != null && !email.isEmpty()) {
+                    //Handle the input email here
+                    //For example, calling a method in the controller with the email
+                    //loginController.onForgotPasswordPressed(email);
                 }
+
+                //Display a message
+                JOptionPane.showMessageDialog(
+                        LoginGUI.this,
+                        "Your reset link has been sent.",
+                        "Email Sent",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
             }
         });
 

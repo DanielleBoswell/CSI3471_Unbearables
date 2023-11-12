@@ -1,6 +1,9 @@
 package Controller;
 
+import UI.LoginGUI;
 import UI.UINavigator;
+
+import javax.swing.*;
 
 public class LoginControllerImpl implements LoginController {
 
@@ -38,9 +41,12 @@ public class LoginControllerImpl implements LoginController {
     }
 
     @Override
-    public void onForgotPasswordPressed() {
+    public void onForgotPasswordPressed(String email) {
 
         //Implement my forgot password logic here
         System.out.println("Forgot Password link clicked");
+
+        //Need to prompt user for email for reset link
+
     }
 }
