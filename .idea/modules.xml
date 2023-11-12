@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CSI3471_Unbearables.iml" filepath="$PROJECT_DIR$/CSI3471_Unbearables.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CruiseLink/CruiseLink.iml" filepath="$PROJECT_DIR$/CruiseLink/CruiseLink.iml" />
     </modules>
   </component>
 </project>
