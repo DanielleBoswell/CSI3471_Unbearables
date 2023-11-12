@@ -106,19 +106,31 @@ public class LoginGUI extends JPanel {
                         JOptionPane.QUESTION_MESSAGE
                 );
 
-                if (email != null && !email.isEmpty()) {
-                    //Handle the input email here
-                    //For example, calling a method in the controller with the email
-                    //loginController.onForgotPasswordPressed(email);
-                }
+                //Check if the input was canceled
+                if (email == null) {
 
-                //Display a message
-                JOptionPane.showMessageDialog(
-                        LoginGUI.this,
-                        "Your reset link has been sent.",
-                        "Email Sent",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
+                    //User canceled the operation
+                    JOptionPane.showMessageDialog(
+                            LoginGUI.this,
+                            "Password reset canceled.",
+                            "Canceled",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                }
+                else if (!email.isEmpty()) {
+
+                    //Handle the input email here
+                    //loginController.onForgotPasswordPressed(email); ------ This is where I would check the
+                    //database for the email in the system ------
+
+                    //Display a message saying the reset link has been sent
+                    JOptionPane.showMessageDialog(
+                            LoginGUI.this,
+                            "Your reset link has been sent.",
+                            "Email Sent",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                }
             }
         });
 
