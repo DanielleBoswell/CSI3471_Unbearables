@@ -24,9 +24,9 @@ public class UINavigator extends JFrame {
 
     /* ----------- ADD IDENTIFIERS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
 
-
-
     //Example: public static final String TEST_PANEL = "Test Panel";
+
+    public static final String TRAVEL_AGENT_LANDING_PANEL = "Travel Agent Landing Panel";
 
 
 
@@ -58,9 +58,9 @@ public class UINavigator extends JFrame {
 
         /* ----------- ADD PANELS HERE FOR EACH GUI PAGE ----------- */
 
-
-
         //Example: cardPanel.add(createTest(), TEST_PANEL);
+
+        cardPanel.add(createTravelAgentLanding(), TRAVEL_AGENT_LANDING_PANEL);
 
 
 
@@ -113,8 +113,12 @@ public class UINavigator extends JFrame {
 
     /* ----------- ADD PANEL METHODS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
 
-
     //Example: private JPanel createTest() {...}
+
+    private JPanel createTravelAgentLanding() {
+        TravelAgentLandingPage travelAgentLandingGUIInstance = new TravelAgentLandingPage(this);
+        return travelAgentLandingGUIInstance.createTravelAgentLandingPanel();
+    }
 
 
     /* ----------- ADD PANEL METHODS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */

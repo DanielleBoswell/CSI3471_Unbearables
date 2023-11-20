@@ -1,0 +1,6 @@
+First Name,Last Name,Age,Email,Username,Password,User Type
+Alice,Smith,25,alice.smith@example.com,aliceS,alice1,guest
+Bob,Johnson,34,bob.johnson@example.com,bobJ,bob2,travel agent
+Charlie,Williams,30,charlie.williams@example.com,charlieW,charlie3,admin
+Diana,Brown,28,diana.brown@example.com,dianaB,diana4,guest
+Edward,Davis,45,edward.davis@example.com,edwardD,edward5,travel agent
