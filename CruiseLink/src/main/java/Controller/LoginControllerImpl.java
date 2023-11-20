@@ -43,7 +43,7 @@ public class LoginControllerImpl implements LoginController {
                             uiNavigator.showCard(UINavigator.TRAVEL_AGENT_LANDING_PANEL);
                             return;
                         case "admin":
-                            //uiNavigator.showCard(UINavigator.ADMIN_LANDING_PANEL); ----------------------------------------
+                            uiNavigator.showCard(UINavigator.ADMIN_LANDING_PANEL);
                             return;
                         default:
                             JOptionPane.showMessageDialog(null, "Invalid user type", "Login Error", JOptionPane.ERROR_MESSAGE);

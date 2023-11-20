@@ -1,5 +1,7 @@
 package UI;
 
+import Controller.TravelAgentControllerImpl;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,6 +15,14 @@ public class TravelAgentLandingPage {
     private JButton makeReservationButton;
     private JButton cancelReservationButton;
     private JButton modifyProfileButton;
+
+    private JButton modifyRoomButton;
+
+    private TravelAgentControllerImpl travelAgentController;
+
+    public void setController(TravelAgentControllerImpl travelAgentController) {
+        this.travelAgentController = travelAgentController;
+    }
 
     private UINavigator UINavigator;
 
@@ -34,7 +44,7 @@ public class TravelAgentLandingPage {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.insets = new Insets(30, 10, 10, 10);
         gbc.anchor = GridBagConstraints.CENTER;
 
         //Add the label to the panel with the constraints
@@ -48,15 +58,24 @@ public class TravelAgentLandingPage {
         makeReservationButton = addButton("Make a Reservation", travelAgentLandingPanel, gbc, 5);
         cancelReservationButton = addButton("Cancel Reservation", travelAgentLandingPanel, gbc, 6);
         modifyProfileButton = addButton("Modify Profile", travelAgentLandingPanel, gbc, 7);
+        modifyRoomButton = addButton("Modify Room", travelAgentLandingPanel, gbc, 8);
 
-        //Set action listeners for each button
-        viewRoomStatusButton.addActionListener(e -> System.out.println("Viewing Room Status"));
-        modifyReservationButton.addActionListener(e -> System.out.println("Modifying Reservation"));
-        processCheckInOutButton.addActionListener(e -> System.out.println("Processing Check-In/Out"));
-        generateBillingInfoButton.addActionListener(e -> System.out.println("Generating Billing Information"));
-        makeReservationButton.addActionListener(e -> System.out.println("Making a Reservation"));
-        cancelReservationButton.addActionListener(e -> System.out.println("Cancelling Reservation"));
-        modifyProfileButton.addActionListener(e -> System.out.println("Modifying Profile"));
+        //Set action listeners for each button -- Will require controller --
+        viewRoomStatusButton.addActionListener(e -> travelAgentController.onViewRoomStatus());
+
+        modifyReservationButton.addActionListener(e -> travelAgentController.onModifyReservation());
+
+        processCheckInOutButton.addActionListener(e -> travelAgentController.onProcessCheckInOut());
+
+        generateBillingInfoButton.addActionListener(e -> travelAgentController.onGenerateBillingInfo());
+
+        makeReservationButton.addActionListener(e -> travelAgentController.onMakeReservation());
+
+        cancelReservationButton.addActionListener(e -> travelAgentController.onCancelReservation());
+
+        modifyProfileButton.addActionListener(e -> travelAgentController.onModifyProfile());
+
+        modifyRoomButton.addActionListener(e -> travelAgentController.onModifyRoom());
 
         //Return the panel
         return travelAgentLandingPanel;

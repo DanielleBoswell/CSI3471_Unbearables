@@ -1,6 +1,8 @@
 package UI;
 
+import Controller.AdminControllerImpl;
 import Controller.LoginControllerImpl;
+import Controller.TravelAgentControllerImpl;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,6 +29,7 @@ public class UINavigator extends JFrame {
     //Example: public static final String TEST_PANEL = "Test Panel";
 
     public static final String TRAVEL_AGENT_LANDING_PANEL = "Travel Agent Landing Panel";
+    public static final String ADMIN_LANDING_PANEL = "Admin Landing Panel";
 
 
 
@@ -61,6 +64,7 @@ public class UINavigator extends JFrame {
         //Example: cardPanel.add(createTest(), TEST_PANEL);
 
         cardPanel.add(createTravelAgentLanding(), TRAVEL_AGENT_LANDING_PANEL);
+        cardPanel.add(createAdminLanding(), ADMIN_LANDING_PANEL);
 
 
 
@@ -117,11 +121,24 @@ public class UINavigator extends JFrame {
 
     private JPanel createTravelAgentLanding() {
         TravelAgentLandingPage travelAgentLandingGUIInstance = new TravelAgentLandingPage(this);
+        TravelAgentControllerImpl travelAgentController = new TravelAgentControllerImpl(this);
+        travelAgentLandingGUIInstance.setController(travelAgentController);
         return travelAgentLandingGUIInstance.createTravelAgentLandingPanel();
+    }
+
+    private JPanel createAdminLanding() {
+        AdminLandingPage adminLandingGUIInstance = new AdminLandingPage(this);
+        AdminControllerImpl adminController = new AdminControllerImpl(this);
+        adminLandingGUIInstance.setController(adminController);
+        return adminLandingGUIInstance.createAdminLandingPanel();
     }
 
 
     /* ----------- ADD PANEL METHODS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
+
+
+
+
 
     //Method to show a card by its identifier --- This switches the GUI we are on ---
     public static void showCard(String identifier) {

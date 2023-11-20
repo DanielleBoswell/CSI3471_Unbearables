@@ -58,7 +58,7 @@ public class LaunchGUI {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.add(launchSoftwareButton);
         //Add empty border for spacing
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
 
         //Add components to the launch panel
         //Add the unbearables Label at the top (north)
