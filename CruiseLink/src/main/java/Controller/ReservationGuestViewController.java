@@ -4,17 +4,23 @@ import Domain.Reservation;
 
 public class ReservationGuestViewController {
 
-    public void viewReservationsGuest(){
+    ReservationViewServices reservationViewServices;
+    CancelReservationServices cancelReservationServices;
 
+    public ReservationGuestViewController(){
+        reservationViewServices = new ReservationViewServices();
+        cancelReservationServices = new CancelReservationServices();
+    }
+    public String[][] viewReservationsGuest(){
+        return reservationViewServices.viewReservations(0l); //how to access Guest info
     }
 
-    public void viewReservationGuest(Reservation r){
-
+    public String[] viewReservationGuest(int row){
+        return reservationViewServices.viewReservation(row);
     }
 
-    public boolean cancelReservationGuest(Reservation r){
-
-        return false;
+    public boolean cancelReservationGuest(long reservationID){
+        return cancelReservationServices.canCancelReservation(reservationID);
     }
 
     public void confirmCancellationGuest(Reservation r){

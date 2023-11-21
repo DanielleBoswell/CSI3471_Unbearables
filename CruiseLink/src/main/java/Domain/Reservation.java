@@ -5,6 +5,8 @@ import java.util.Objects;
 
 public class Reservation {
     private Date startDate;
+
+    private Date creationDate;
     private Date endDate;
     private boolean isCanceled;
     private Room room;
@@ -16,11 +18,16 @@ public class Reservation {
         room = null;
     }
 
-    public Reservation(Date start, Date end, boolean b, Room r) {
+    public Reservation(Date start, Date end, boolean b, Room r, Date made) {
         startDate = start;
         endDate = end;
         isCanceled = b;
         room = r;
+        creationDate = made;
+    }
+
+    public Reservation(Date start, Date end, boolean b, Room r) {
+        this(start,end,b,r,new Date());
     }
 
     public Date getStartDate() {
@@ -75,5 +82,19 @@ public class Reservation {
                 ", endDate = " + endDate +
                 ", isCanceled = " + isCanceled +
                 ", room = " + room;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public boolean canCancelReservation(Date d){
+        long diff = d.getTime() - creationDate.getTime();
+        diff = (diff / (1000 * 60 * 60 * 24)) % 365;
+        return diff < 2;
     }
 }

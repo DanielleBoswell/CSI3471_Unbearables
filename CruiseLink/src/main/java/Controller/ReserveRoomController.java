@@ -18,7 +18,7 @@ public class ReserveRoomController {
 
     public Reservation createReservation(ReservationDatabase d, Guest p, Ship s, Room r){
 
-        Reservation newRes = new Reservation(s.path.getStartDate(), s.path.getEndDate(), Boolean.FALSE, r);
+        Reservation newRes = new Reservation(s.path.getStartDate(), s.path.getEndDate(), Boolean.FALSE,r);
 
         ReservationDatabaseController resController = new ReservationDatabaseController();
         resController.addReservation(d, p, newRes);
