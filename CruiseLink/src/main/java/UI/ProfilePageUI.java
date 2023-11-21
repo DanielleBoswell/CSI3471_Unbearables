@@ -169,7 +169,7 @@ public class ProfilePageUI {
 
         // action listeners for the buttons
         cancel.addActionListener(e -> profileController.returnToLandingPage());
-        confirm.addActionListener(e -> profileController.returnToLandingPage());    //TODO: change functionality
+        confirm.addActionListener(e -> profileController.alterInformation());
 
         return mainPanel;
     }

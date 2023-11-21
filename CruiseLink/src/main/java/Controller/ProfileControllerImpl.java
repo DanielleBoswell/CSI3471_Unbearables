@@ -1,3 +1,4 @@
+// Author: Emma Aars
 package Controller;
 
 import UI.UINavigator;
@@ -14,7 +15,13 @@ public class ProfileControllerImpl implements ProfileController{
         uiNavigator.showCard(UINavigator.PROFILE_PAGE);
     }
 
+    // TODO: make usable for guest AND travel agents
     public void returnToLandingPage() {
+        uiNavigator.showCard(UINavigator.GUEST_LANDING_PANEL);
+    }
+
+    public void alterInformation() {
+        // TODO: add functionality here (go to different controller/services??)
         uiNavigator.showCard(UINavigator.GUEST_LANDING_PANEL);
     }
 }
