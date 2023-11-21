@@ -13,8 +13,7 @@ public class ProfilePageUI {
     public static final int TEXT_BOX_WIDTH = 20;
 
     private static Person user;
-    private static JFrame frame;
-    private static JPanel information, picture;
+    private static JPanel information, picture, buttons;
     private static JLabel label, name, username, newPassword, oldPassword, dob,
             email, uUsername, uOldPassword, backslash;
     private static ImageIcon profPic;
@@ -22,17 +21,18 @@ public class ProfilePageUI {
     private static JTextField uName, year, uEmail, day, month;
     private static JPasswordField uPassword;
 
+    private static JButton confirm, cancel;
+
     private static Font defaultFont = new Font("Serif", Font.PLAIN, 16);
-    private static Font defaultHeader = new Font("Serif", Font.ITALIC, 20);
 
     // setting controller
-    private ProfileControllerImpl profileController;
+    private static ProfileControllerImpl profileController;
 
     public void setController(ProfileControllerImpl profileController) {
         this.profileController = profileController;
     }
 
-    private UINavigator UINavigator;
+    private static UINavigator UINavigator;
 
     public ProfilePageUI(UINavigator UINavigator) {
         this.UINavigator = UINavigator;
@@ -41,21 +41,18 @@ public class ProfilePageUI {
     //this is a hardcoded WIP
     public static JPanel createProfilePagePanel() {
         // for testing purposes
+        // TODO: find way to get the guest's info for this part
         user = new Person();
         user.setName("Tom Brooks");
         user.setUsername("blahblah42");
         user.setAge(34);
         user.setEmail("tbrooksss@gmail.com");
         user.setPassword("imCool123");
-        // this constructor adds 1900 to the year given and 1 to the month given
-        // I have no idea why
         Date d = new Date(2003,04,12);
 
-        // init frame and panels
-        frame = new JFrame("CruiseLink Application");
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // init picture
         information = new JPanel();
+        buttons = new JPanel();
         picture = new JPanel();
 
         // adding profile picture to top, right side of frame
@@ -63,10 +60,10 @@ public class ProfilePageUI {
         image = profPic.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         profPic = new ImageIcon(image);
         label = new JLabel(profPic);
-        label.setBorder(BorderFactory.createEmptyBorder(150, 0, 0, 0));
+        label.setBorder(BorderFactory.createEmptyBorder(100, 0, 0, 0));
         picture.add(label);
 
-        // set up info layout
+        // set up info layout for information
         information.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(15, 5, 15, 5);
@@ -113,18 +110,6 @@ public class ProfilePageUI {
         dobPanel.add(year);
         information.add(dobPanel, constraints);
 
-        // previous attempts
-        /*DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        JFormattedTextField dateTextField = new JFormattedTextField(format);
-        dateTextField.setColumns(TEXT_BOX_WIDTH);
-        dateTextField.setFont(defaultFont);
-        dateTextField.setText(format.format(d));
-        information.add(dateTextField, constraints);*/
-        /*uDOB = new JTextField(TEXT_BOX_WIDTH);
-        uDOB.setText(Integer.toString(user.getAge()));
-        uDOB.setFont(defaultFont);
-        information.add(uDOB, constraints);*/
-
         // add email
         email = new JLabel("Email:");
         email.setFont(defaultFont);
@@ -164,25 +149,28 @@ public class ProfilePageUI {
         uPassword.setFont(defaultFont);
         information.add(uPassword, constraints);
 
+        // add confirm and cancel buttons
+        confirm = new JButton("confirm");
+        confirm.setFont(defaultFont);
+        cancel = new JButton("cancel");
+        cancel.setFont(defaultFont);
+        cancel.setForeground(Color.RED);
+        buttons.add(cancel);
+        buttons.add(confirm);
+
         // organize panels
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
         mainPanel.add(picture);
         mainPanel.add(Box.createRigidArea(new Dimension(10, 0)));
         mainPanel.add(information);
+        mainPanel.add(Box.createRigidArea(new Dimension(10, 0)));
+        mainPanel.add(buttons);
+
+        // action listeners for the buttons
+        cancel.addActionListener(e -> profileController.returnToLandingPage());
+        confirm.addActionListener(e -> profileController.returnToLandingPage());    //TODO: change functionality
 
         return mainPanel;
-        // make frame visible
-        /*frame.add(mainPanel);
-        frame.pack();
-        frame.setVisible(true);*/
     }
-
-    /*public static void main(String[] args) {
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createProfilePage();
-            }
-        });
-    }*/
 }
