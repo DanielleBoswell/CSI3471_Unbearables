@@ -34,11 +34,11 @@ public class LaunchGUI {
         //Centers the text
         unbearablesLabel.setHorizontalAlignment(JLabel.CENTER);
         //Add empty border for spacing
-        unbearablesLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
+        unbearablesLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 
         //Load an image and create an ImageIcon from a file
         //Create an ImageIcon with the given file path
-        ImageIcon imageIcon = new ImageIcon("Care Bears Updated.jpg");
+        ImageIcon imageIcon = new ImageIcon("Bears having fun.png");
         //Create a label with the ImageIcon
         JLabel label = new JLabel(imageIcon);
 
@@ -58,7 +58,7 @@ public class LaunchGUI {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.add(launchSoftwareButton);
         //Add empty border for spacing
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 100, 0));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
 
         //Add components to the launch panel
         //Add the unbearables Label at the top (north)

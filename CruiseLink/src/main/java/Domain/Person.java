@@ -4,13 +4,42 @@ package Domain;
 import java.util.Objects;
 
 public class Person {
+    private Long id;
     String name;
     int age;
     String username;
     String password;
     String email;
+    String gender;
+
+    public Person(Long id, String name, int age, String username, String password, String email, String gender) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.gender = gender;
+    }
+
+    public Person() {
+        this.id = 0L;
+        this.name = null;
+        this.age = 0;
+        this.username = null;
+        this.password = null;
+        this.email = null;
+        this.gender = null;
+    }
 
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -50,6 +79,14 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     @Override

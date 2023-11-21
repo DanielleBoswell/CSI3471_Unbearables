@@ -81,12 +81,16 @@ public class LoginGUI extends JPanel {
             String username = usernameField.getText();
             String password = new String(passwordField.getPassword());
 
+            this.clearTextFields();
+
             //Pass to controller
             loginController.onLoginPressed(username, password);
         });
 
         //Sign up button action listener
         signUpButton.addActionListener(e -> {
+
+            this.clearTextFields();
 
             //Call sign up through controller
             if (loginController != null) {
@@ -227,5 +231,10 @@ public class LoginGUI extends JPanel {
 
         //Returning the JPanel
         return this;
+    }
+
+    private void clearTextFields() {
+        usernameField.setText("");
+        passwordField.setText("");
     }
 }
