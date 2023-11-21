@@ -1,9 +1,6 @@
 package UI;
 
-import Controller.AdminControllerImpl;
-import Controller.GuestControllerImpl;
-import Controller.LoginControllerImpl;
-import Controller.TravelAgentControllerImpl;
+import Controller.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,7 +29,7 @@ public class UINavigator extends JFrame {
     public static final String TRAVEL_AGENT_LANDING_PANEL = "Travel Agent Landing Panel";
     public static final String ADMIN_LANDING_PANEL = "Admin Landing Panel";
     public static final String GUEST_LANDING_PANEL = "Guest Landing Panel";
-
+    public static final String PROFILE_PAGE = "Profile Page";
 
 
     /* ----------- ADD IDENTIFIERS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
@@ -75,7 +72,7 @@ public class UINavigator extends JFrame {
         cardPanel.add(createTravelAgentLanding(), TRAVEL_AGENT_LANDING_PANEL);
         cardPanel.add(createAdminLanding(), ADMIN_LANDING_PANEL);
         cardPanel.add(createGuestLanding(), GUEST_LANDING_PANEL);
-
+        cardPanel.add(createProfilePage(), PROFILE_PAGE);
 
 
         /* ----------- ADD PANELS HERE FOR EACH GUI PAGE ----------- */
@@ -148,12 +145,12 @@ public class UINavigator extends JFrame {
         return guestLandingGUIInstance.createGuestLandingPanel();
     }
 
-
-
-
-
-
-
+    private JPanel createProfilePage() {
+        ProfilePageUI profilePageGUIInstance = new ProfilePageUI(this);
+        ProfileControllerImpl profileController= new ProfileControllerImpl(this);
+        profilePageGUIInstance.setController(profileController);
+        return profilePageGUIInstance.createProfilePagePanel();
+    }
 
 
 

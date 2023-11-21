@@ -65,6 +65,7 @@ public class GuestLandingPage {
 
         viewReservationButton.addActionListener(e -> guestController.onViewReservation());
 
+        //guestController.onViewProfile()
         profileButton.addActionListener(e -> guestController.onViewProfile());
 
         logoutButton.addActionListener(e -> UINavigator.showCard(UINavigator.LOGIN_PANEL));

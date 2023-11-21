@@ -1,6 +1,8 @@
 // Author: Emma Aars
 package UI;
 
+import Controller.GuestControllerImpl;
+import Controller.ProfileControllerImpl;
 import Domain.Person;
 
 import javax.swing.*;
@@ -23,8 +25,21 @@ public class ProfilePageUI {
     private static Font defaultFont = new Font("Serif", Font.PLAIN, 16);
     private static Font defaultHeader = new Font("Serif", Font.ITALIC, 20);
 
+    // setting controller
+    private ProfileControllerImpl profileController;
+
+    public void setController(ProfileControllerImpl profileController) {
+        this.profileController = profileController;
+    }
+
+    private UINavigator UINavigator;
+
+    public ProfilePageUI(UINavigator UINavigator) {
+        this.UINavigator = UINavigator;
+    }
+
     //this is a hardcoded WIP
-    public static void createGUI() {
+    public static JPanel createProfilePagePanel() {
         // for testing purposes
         user = new Person();
         user.setName("Tom Brooks");
@@ -156,17 +171,18 @@ public class ProfilePageUI {
         mainPanel.add(Box.createRigidArea(new Dimension(10, 0)));
         mainPanel.add(information);
 
+        return mainPanel;
         // make frame visible
-        frame.add(mainPanel);
+        /*frame.add(mainPanel);
         frame.pack();
-        frame.setVisible(true);
+        frame.setVisible(true);*/
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                createGUI();
+                createProfilePage();
             }
         });
-    }
+    }*/
 }
