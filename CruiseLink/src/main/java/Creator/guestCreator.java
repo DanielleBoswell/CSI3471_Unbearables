@@ -1,11 +1,20 @@
 package Creator;
 
 import Domain.Guest;
+import Repository.AccountDBO;
+import Repository.AccountDatabase;
+
+import java.sql.SQLException;
 
 public class guestCreator {
 
     Guest newUser = new Guest();
+    AccountDatabase foundation = new AccountDatabase();
+    guestCreator() throws SQLException {
+        foundation.createAccountDatabase();
 
+    }
+    AccountDBO accounts = new AccountDBO(foundation.getDBConnection());
     public boolean newUsernamePassword(String username, String pass, String cpass){
         if(!pass.equals(cpass)){
             return false;
@@ -23,6 +32,11 @@ public class guestCreator {
         newUser.setAddress(address);
     }
 
+    public void saveUser(){
+
+        accounts.save(newUser);
+
+    }
     public Guest getNewUser() {
         return newUser;
     }
