@@ -1,6 +1,9 @@
 package UI;
 
+import Controller.AdminControllerImpl;
+import Controller.GuestControllerImpl;
 import Controller.LoginControllerImpl;
+import Controller.TravelAgentControllerImpl;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,9 +27,11 @@ public class UINavigator extends JFrame {
 
     /* ----------- ADD IDENTIFIERS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
 
-
-
     //Example: public static final String TEST_PANEL = "Test Panel";
+
+    public static final String TRAVEL_AGENT_LANDING_PANEL = "Travel Agent Landing Panel";
+    public static final String ADMIN_LANDING_PANEL = "Admin Landing Panel";
+    public static final String GUEST_LANDING_PANEL = "Guest Landing Panel";
 
 
 
@@ -40,6 +45,13 @@ public class UINavigator extends JFrame {
 
         //Creating a new JFrame with the title CruiseLink
         frame = new JFrame("CruiseLink");
+
+        //Load the image for the icon -------------- For the thumbnail image --------------
+        ImageIcon icon = new ImageIcon("Cuddly Bear.png");
+        Image image = icon.getImage();
+
+        //Set the icon
+        frame.setIconImage(image);
 
         //Setting the default close operation to exit the application
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,9 +70,11 @@ public class UINavigator extends JFrame {
 
         /* ----------- ADD PANELS HERE FOR EACH GUI PAGE ----------- */
 
-
-
         //Example: cardPanel.add(createTest(), TEST_PANEL);
+
+        cardPanel.add(createTravelAgentLanding(), TRAVEL_AGENT_LANDING_PANEL);
+        cardPanel.add(createAdminLanding(), ADMIN_LANDING_PANEL);
+        cardPanel.add(createGuestLanding(), GUEST_LANDING_PANEL);
 
 
 
@@ -113,8 +127,34 @@ public class UINavigator extends JFrame {
 
     /* ----------- ADD PANEL METHODS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
 
+    private JPanel createTravelAgentLanding() {
+        TravelAgentLandingPage travelAgentLandingGUIInstance = new TravelAgentLandingPage(this);
+        TravelAgentControllerImpl travelAgentController = new TravelAgentControllerImpl(this);
+        travelAgentLandingGUIInstance.setController(travelAgentController);
+        return travelAgentLandingGUIInstance.createTravelAgentLandingPanel();
+    }
 
-    //Example: private JPanel createTest() {...}
+    private JPanel createAdminLanding() {
+        AdminLandingPage adminLandingGUIInstance = new AdminLandingPage(this);
+        AdminControllerImpl adminController = new AdminControllerImpl(this);
+        adminLandingGUIInstance.setController(adminController);
+        return adminLandingGUIInstance.createAdminLandingPanel();
+    }
+
+    private JPanel createGuestLanding() {
+        GuestLandingPage guestLandingGUIInstance = new GuestLandingPage(this);
+        GuestControllerImpl guestController = new GuestControllerImpl(this);
+        guestLandingGUIInstance.setController(guestController);
+        return guestLandingGUIInstance.createGuestLandingPanel();
+    }
+
+
+
+
+
+
+
+
 
 
     /* ----------- ADD PANEL METHODS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
