@@ -4,6 +4,11 @@ import Controller.SignUpControllerImpl;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.Period;
+import java.time.format.DateTimeParseException;
+
 
 public class SignUpGUI extends JPanel {
 
@@ -15,7 +20,7 @@ public class SignUpGUI extends JPanel {
     private Label signUpLabel;
 
     //Text fields for first name, last name, email, username, age, and passwords
-    private JTextField firstNameField, lastNameField, emailField, userNameField, ageField;
+    private JTextField firstNameField, lastNameField, emailField, userNameField, dateOfBirthField;
     private JPasswordField passwordField, confirmPasswordField;
 
     //Buttons for create account and cancel
@@ -51,7 +56,7 @@ public class SignUpGUI extends JPanel {
         //Text fields
         firstNameField = new JTextField(TEXT_BOX_WIDTH); //Makes the first name text box
         lastNameField = new JTextField(TEXT_BOX_WIDTH); //Makes the last name box
-        ageField = new JTextField(TEXT_BOX_WIDTH);
+        dateOfBirthField = new JTextField(TEXT_BOX_WIDTH);
         emailField = new JTextField(TEXT_BOX_WIDTH);
         userNameField = new JTextField(TEXT_BOX_WIDTH);
         passwordField = new JPasswordField(TEXT_BOX_WIDTH);
@@ -69,22 +74,31 @@ public class SignUpGUI extends JPanel {
             //Gathering the strings from the text fields when create account button pressed
             String firstName = firstNameField.getText().trim(); //Must use getText()
             String lastName = lastNameField.getText().trim();
-            String age = ageField.getText().trim();
+            String dateOfBirth = dateOfBirthField.getText().trim();
             String email = emailField.getText().trim();
             String username = userNameField.getText().trim();
             String password = new String(passwordField.getPassword());
             String confirmPassword = new String(confirmPasswordField.getPassword());
 
-            //Need to test age and convert it
-            boolean ageIsOnlyDigits = isOnlyDigits(age);
-            int convertedAge = 0;
+            int age = 0;
 
-            if (ageIsOnlyDigits) {
-                try {
-                    convertedAge = Integer.parseInt(age);
-                } catch (Exception issue) {
-                    System.out.println("Converting issue with age");
-                }
+            //Need to test date of birth and convert it
+            try {
+
+                //Parse the date string into a LocalDate object
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate dateOfBirthObj = LocalDate.parse(dateOfBirth, formatter);
+
+                //Calculate the age
+                LocalDate currentDate = LocalDate.now();
+                age = Period.between(dateOfBirthObj, currentDate).getYears();
+
+                //Test the age
+                //System.out.println("Age: " + age);
+
+            } catch (DateTimeParseException ex) {
+                JOptionPane.showMessageDialog(this, "Invalid date format. Please enter the date in yyyy-MM-dd format.",
+                        "Invalid Date of Birth", JOptionPane.ERROR_MESSAGE);
             }
 
             //Need to check for valid entries into text fields
@@ -97,11 +111,7 @@ public class SignUpGUI extends JPanel {
                 JOptionPane.showMessageDialog(this, "Must contain only letters A-Z",
                         "Invalid last name", JOptionPane.WARNING_MESSAGE);
             }
-            else if (!ageIsOnlyDigits) {
-                JOptionPane.showMessageDialog(this, "Age must be digits only",
-                        "Invalid age input", JOptionPane.WARNING_MESSAGE);
-            }
-            else if (convertedAge < 18) {
+            else if (age < 18) {
                 JOptionPane.showMessageDialog(this, "Must be at least 18 years of age to sign up",
                         "Age Restriction", JOptionPane.WARNING_MESSAGE);
             }
@@ -162,9 +172,9 @@ public class SignUpGUI extends JPanel {
         this.add(lastNameField, constraints);
 
         constraints.gridy = 6;
-        this.add(new JLabel("Age:"), constraints);
+        this.add(new JLabel("Date of Birth: (yyyy-MM-dd)"), constraints);
         constraints.gridy = 7;
-        this.add(ageField, constraints);
+        this.add(dateOfBirthField, constraints);
 
         constraints.gridy = 8;
         this.add(new JLabel("Email:"), constraints);
@@ -219,7 +229,7 @@ public class SignUpGUI extends JPanel {
         lastNameField.setText("");
         emailField.setText("");
         userNameField.setText("");
-        ageField.setText("");
+        dateOfBirthField.setText("");
         passwordField.setText("");
         confirmPasswordField.setText("");
     }
