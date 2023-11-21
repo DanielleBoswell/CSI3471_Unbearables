@@ -19,11 +19,17 @@ public class ReservationGuestViewController {
         return reservationViewServices.viewReservation(row);
     }
 
-    public boolean cancelReservationGuest(long reservationID){
-        return cancelReservationServices.canCancelReservation(reservationID);
+    public String cancelReservationGuest(long reservationID){
+        String confirmDialog = "Would you like to cancel this reservation?";
+        boolean ok = cancelReservationServices.canCancelReservation(reservationID);
+        if(!ok){
+            confirmDialog = cancelReservationServices.getCancellationDesc() + confirmDialog;
+        }
+        return confirmDialog;
     }
 
-    public void confirmCancellationGuest(Reservation r){
-
+    public boolean confirmCancellationGuest(){
+        boolean ok = cancelReservationServices.confirmCancellation(0l,0l);
+        return ok;
     }
 }

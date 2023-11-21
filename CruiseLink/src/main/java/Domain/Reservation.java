@@ -91,10 +91,4 @@ public class Reservation {
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
-
-    public boolean canCancelReservation(Date d){
-        long diff = d.getTime() - creationDate.getTime();
-        diff = (diff / (1000 * 60 * 60 * 24)) % 365;
-        return diff < 2;
-    }
 }
