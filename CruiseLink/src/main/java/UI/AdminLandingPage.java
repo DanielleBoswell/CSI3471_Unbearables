@@ -11,6 +11,8 @@ public class AdminLandingPage {
     private JButton createTravelAgentAccountButton;
     private JButton resetUserAccountPasswordButton;
 
+    private JButton logoutButton;
+
     private AdminControllerImpl adminController;
 
     public void setController(AdminControllerImpl adminController) {
@@ -46,11 +48,14 @@ public class AdminLandingPage {
         //Create and add buttons
         createTravelAgentAccountButton = addButton("Create Travel Agent Account", adminLandingPanel, gbc, 1);
         resetUserAccountPasswordButton = addButton("Reset User Account Password", adminLandingPanel, gbc, 2);
+        logoutButton = addButton("Log Out", adminLandingPanel, gbc, 3);
 
         //Set action listeners for each button -- Will require controller --
         createTravelAgentAccountButton.addActionListener(e -> adminController.onCreateTravelAgentAccount());
 
         resetUserAccountPasswordButton.addActionListener(e -> adminController.onResetUserAccountPassword());
+
+        logoutButton.addActionListener(e -> UINavigator.showCard(UINavigator.LOGIN_PANEL));
 
         //Return the panel
         return adminLandingPanel;

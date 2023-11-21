@@ -1,6 +1,7 @@
 package UI;
 
 import Controller.AdminControllerImpl;
+import Controller.GuestControllerImpl;
 import Controller.LoginControllerImpl;
 import Controller.TravelAgentControllerImpl;
 
@@ -30,6 +31,7 @@ public class UINavigator extends JFrame {
 
     public static final String TRAVEL_AGENT_LANDING_PANEL = "Travel Agent Landing Panel";
     public static final String ADMIN_LANDING_PANEL = "Admin Landing Panel";
+    public static final String GUEST_LANDING_PANEL = "Guest Landing Panel";
 
 
 
@@ -43,6 +45,13 @@ public class UINavigator extends JFrame {
 
         //Creating a new JFrame with the title CruiseLink
         frame = new JFrame("CruiseLink");
+
+        //Load the image for the icon -------------- For the thumbnail image --------------
+        ImageIcon icon = new ImageIcon("Cuddly Bear.png");
+        Image image = icon.getImage();
+
+        //Set the icon
+        frame.setIconImage(image);
 
         //Setting the default close operation to exit the application
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,6 +74,7 @@ public class UINavigator extends JFrame {
 
         cardPanel.add(createTravelAgentLanding(), TRAVEL_AGENT_LANDING_PANEL);
         cardPanel.add(createAdminLanding(), ADMIN_LANDING_PANEL);
+        cardPanel.add(createGuestLanding(), GUEST_LANDING_PANEL);
 
 
 
@@ -117,8 +127,6 @@ public class UINavigator extends JFrame {
 
     /* ----------- ADD PANEL METHODS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
 
-    //Example: private JPanel createTest() {...}
-
     private JPanel createTravelAgentLanding() {
         TravelAgentLandingPage travelAgentLandingGUIInstance = new TravelAgentLandingPage(this);
         TravelAgentControllerImpl travelAgentController = new TravelAgentControllerImpl(this);
@@ -133,12 +141,23 @@ public class UINavigator extends JFrame {
         return adminLandingGUIInstance.createAdminLandingPanel();
     }
 
+    private JPanel createGuestLanding() {
+        GuestLandingPage guestLandingGUIInstance = new GuestLandingPage(this);
+        GuestControllerImpl guestController = new GuestControllerImpl(this);
+        guestLandingGUIInstance.setController(guestController);
+        return guestLandingGUIInstance.createGuestLandingPanel();
+    }
+
+
+
+
+
+
+
+
+
 
     /* ----------- ADD PANEL METHODS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
-
-
-
-
 
     //Method to show a card by its identifier --- This switches the GUI we are on ---
     public static void showCard(String identifier) {

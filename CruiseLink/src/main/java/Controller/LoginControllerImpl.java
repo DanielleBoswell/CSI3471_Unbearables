@@ -1,6 +1,5 @@
 package Controller;
 
-import UI.LoginGUI;
 import UI.UINavigator;
 
 import javax.swing.*;
@@ -37,7 +36,7 @@ public class LoginControllerImpl implements LoginController {
                 if (values[4].equals(username) && values[5].equals(password)) {
                     switch (values[6]) {
                         case "guest":
-                            //uiNavigator.showCard(UINavigator.GUEST_LANDING_PANEL); ----------------------------------------
+                            uiNavigator.showCard(UINavigator.GUEST_LANDING_PANEL);
                             return;
                         case "travel agent":
                             uiNavigator.showCard(UINavigator.TRAVEL_AGENT_LANDING_PANEL);
