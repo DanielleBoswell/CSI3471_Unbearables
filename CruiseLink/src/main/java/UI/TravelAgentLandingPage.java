@@ -39,7 +39,7 @@ public class TravelAgentLandingPage {
         GridBagConstraints gbc = new GridBagConstraints();
 
         //Initialize the JLabel with text and set its font
-        travelAgentLabel = new JLabel("Travel Agent Landing Page");
+        travelAgentLabel = new JLabel("Travel Agent Home Page");
         travelAgentLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
 
         //Set the grid position and layout constraints for the label

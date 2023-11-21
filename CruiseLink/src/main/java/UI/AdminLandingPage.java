@@ -32,7 +32,7 @@ public class AdminLandingPage {
         GridBagConstraints gbc = new GridBagConstraints();
 
         //Initialize the JLabel with text and set its font
-        AdminLabel = new JLabel("Admin Landing Page");
+        AdminLabel = new JLabel("Admin Home Page");
         AdminLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
 
         //Set the grid position and layout constraints for the label

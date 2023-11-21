@@ -35,7 +35,7 @@ public class GuestLandingPage {
         GridBagConstraints gbc = new GridBagConstraints();
 
         //Initialize the JLabel with text and set its font
-        guestLabel = new JLabel("Guest Landing Page");
+        guestLabel = new JLabel("Guest Home Page");
         guestLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
 
         //Set the grid position and layout constraints for the label
