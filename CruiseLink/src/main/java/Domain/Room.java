@@ -36,6 +36,15 @@ public class Room {
         this.qualityLevel = qualityLevel;
     }
 
+    // Room constuctor without roomNumber
+    public Room(boolean isSmoking, BedType bedType, int numBeds, QualityLevel qualityLevel) {
+        this.isSmoking = isSmoking;
+        this.bedType = bedType;
+        this.numBeds = numBeds;
+        this.isReserved = false;
+        this.qualityLevel = qualityLevel;
+    }
+
     //added by Spencer Hammack
     public void setReserved(boolean TF){this.isReserved = TF;}
     public Boolean getIsReserved(){return isReserved;}
