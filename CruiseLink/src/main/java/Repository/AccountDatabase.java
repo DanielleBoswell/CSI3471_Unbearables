@@ -16,7 +16,7 @@ import java.sql.Statement;
 
 public class AccountDatabase {
 
-    private Map<Integer, Guest> guestAccounts;
+/*    private Map<Integer, Guest> guestAccounts;
     private Map<Integer, Agent> agentAccounts;
     private Map<Integer, Admin> adminAccounts;
 
@@ -46,7 +46,7 @@ public class AccountDatabase {
 
     public Map<Integer, Guest> getGuestAccounts() {
         return guestAccounts;
-    }
+    }*/
 
 
 
@@ -60,24 +60,24 @@ public class AccountDatabase {
      * The values should be changed to match Users
      */
 
-    private static final String DB_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
-    private static final String DB_CONNECTION = "jdbc:derby:ex1connect;create=true"; //"jdbc:derby:ex1connect;";
-    private static final String DB_USER = "";
-    private static final String DB_PASSWORD = "";
+    private static  String DB_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
+    private static  String DB_CONNECTION = "jdbc:derby:ex1connect;create=true"; //"jdbc:derby:ex1connect;";
+    private static  String DB_USER = "";
+    private static  String DB_PASSWORD = "";
 
-    public static void main(String[] argv) {
+/*    public static void main(String[] argv) {
         try {
             createAccountDatabase();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }
+    }*/
 
     /**
      * This function creates a new database table for the accounts
      * @throws SQLException
      */
-    private static void createAccountDatabase() throws SQLException {
+    public  void createAccountDatabase() throws SQLException {
         Connection dbConnection = null;
         Statement statement = null;
 
@@ -117,7 +117,7 @@ public class AccountDatabase {
         }
     }
 
-    public static void deleteAccountDatabase() {
+    public  void deleteAccountDatabase() {
         Connection dbConnection = null;
         Statement statement = null;
         String deleteTableSQL = "DROP TABLE PERSON";
@@ -154,7 +154,7 @@ public class AccountDatabase {
     /**
      * This function gets the connection to the database
      */
-    private static Connection getDBConnection() {
+    public  Connection getDBConnection() {
         Connection dbConnection = null;
         try {
             Class.forName(DB_DRIVER);
