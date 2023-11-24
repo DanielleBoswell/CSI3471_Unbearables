@@ -10,12 +10,17 @@ public class Reservation {
     private Date endDate;
     private boolean isCanceled;
     private Room room;
+    private Ship ship; // reservation should know about its ship
+
+    private long id;
 
     public Reservation() {
         startDate = null;
         endDate = null;
         isCanceled = false;
         room = null;
+        creationDate = null;
+        id = 0l;
     }
 
     public Reservation(Date start, Date end, boolean b, Room r, Date made) {
@@ -61,6 +66,15 @@ public class Reservation {
     public void setRoom(Room room) {
         this.room = room;
     }
+
+    public void setShip(Ship ship){ this.ship = ship;}
+    public Ship getShip(){return ship;}
+
+    public String getShipName(){return ship.getName();}
+
+    public long getID(){return id;}
+
+    public void setID(long id){this.id = id;}
 
     @Override
     public boolean equals(Object o) {
