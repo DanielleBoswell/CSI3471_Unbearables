@@ -11,11 +11,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ReservationDatabase {
-    public Map<Guest, ArrayList<Reservation>> reservationMap;
+public class RoomDatabase {
+    public Map<Guest, ArrayList<Reservation>> roomMap;
 
-    public ReservationDatabase(){
-        reservationMap = new HashMap<>();
+    public RoomDatabase(){
+        roomMap = new HashMap<>();
     }
 
     // Begin Kyle Hoang's implementation of Apache Derby Reservation Database
@@ -44,7 +44,7 @@ public class ReservationDatabase {
      * This function creates a new database table for the accounts
      * @throws SQLException
      */
-    public  void createReservationDatabase() throws SQLException {
+    public  void createRoomDatabase() throws SQLException {
         Connection dbConnection = null;
         Statement statement = null;
 
@@ -59,11 +59,10 @@ public class ReservationDatabase {
          * gender
          */
 
-        String createTableSQL = "CREATE TABLE RESERVATION(" + "CUSTOMER_ID INTEGER NOT NULL VARCHAR(20), " +
-                "START_DATE DATE NOT NULL, " + "END_DATE DATE NOT NULL, " + "IS_SMOKING SMALLINT NOT NULL, " +
-                "BED_TYPE VARCHAR(20) NOT NULL, " + "NUM_BEDS INTEGER NOT NULL, " +
-                "QUALITY_LVL VARCHAR(20) NOT NULL, " + "IS_CANCELED SMALLINT NOT NULL, "
-                + "CONSTRAINT primary_key PRIMARY KEY (CUSTOMER_ID) " + ")";
+        String createTableSQL = "CREATE TABLE ROOM(" + "ROOM_NUM INTEGER NOT NULL VARCHAR(20), " +
+                "IS_SMOKING SMALLINT NOT NULL, " + "BED_TYPE VARCHAR(20) NOT NULL, " + "NUM_BEDS INTEGER NOT NULL, " +
+                "IS_RESERVED SMALLINT NOT NULL, " + "QUALITY_LVL VARCHAR(20) NOT NULL, "
+                + "CONSTRAINT primary_key PRIMARY KEY (ROOM_NUM) " + ")";
 
         try {
             dbConnection = getDBConnection();
@@ -72,7 +71,7 @@ public class ReservationDatabase {
             System.out.println(createTableSQL);
             // Execute SQL statement to create the table
             statement.execute(createTableSQL);
-            System.out.println("Table \"RESERVATION\" is created!");
+            System.out.println("Table \"ROOM\" is created!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -88,7 +87,7 @@ public class ReservationDatabase {
     public  void deleteReservationDatabase() {
         Connection dbConnection = null;
         Statement statement = null;
-        String deleteTableSQL = "DROP TABLE RESERVATION";
+        String deleteTableSQL = "DROP TABLE ROOM";
 
         try {
             dbConnection = getDBConnection();
@@ -97,7 +96,7 @@ public class ReservationDatabase {
             System.out.println(deleteTableSQL);
             // Execute SQL statement to drop the table
             statement.execute(deleteTableSQL);
-            System.out.println("Table \"RESERVATION\" is dropped!");
+            System.out.println("Table \"ROOM\" is dropped!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {

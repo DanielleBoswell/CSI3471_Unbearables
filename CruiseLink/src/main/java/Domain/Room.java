@@ -6,7 +6,7 @@ public class Room {
     private boolean isSmoking;
     public enum BedType {NONE, TWIN, FULL, QUEEN, KING};
     private BedType bedType;
-    private int roomNumber;
+    private Integer roomNumber = null;
     private int numBeds;
     private boolean isReserved;
     public enum QualityLevel {EXECUTIVE, BUSINESS, COMFORT, ECONOMY};
@@ -27,6 +27,17 @@ public class Room {
         qualityLevel = QualityLevel.ECONOMY;
     }
 
+
+    public Room(boolean isSmoking, BedType bedType, int roomNumber, int numBeds, Boolean reservationStatus, QualityLevel qualityLevel) {
+        this.isSmoking = isSmoking;
+        this.bedType = bedType;
+        this.roomNumber = roomNumber;
+        this.numBeds = numBeds;
+        this.isReserved = reservationStatus;
+        this.qualityLevel = qualityLevel;
+    }
+
+    // Room constructor without reservation status
     public Room(boolean isSmoking, BedType bedType, int roomNumber, int numBeds, QualityLevel qualityLevel) {
         this.isSmoking = isSmoking;
         this.bedType = bedType;
@@ -69,6 +80,8 @@ public class Room {
         return roomNumber;
     }
 
+    public Integer getObjRoomNumber() { return roomNumber; }
+
     public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
     }
@@ -84,6 +97,8 @@ public class Room {
     public void setQualityLevel(QualityLevel x){
         qualityLevel = x;
     }
+
+    public QualityLevel getQualityLevel() { return qualityLevel; }
 
     @Override
     public boolean equals(Object o) {
