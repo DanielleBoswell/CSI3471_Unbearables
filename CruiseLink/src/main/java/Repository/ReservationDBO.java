@@ -48,6 +48,7 @@ public class ReservationDBO {
                 preparedStatement.setString(4, res.getRoom().getBedType().toString());
                 preparedStatement.setInt(5, res.getRoom().getNumBeds());
                 preparedStatement.setBoolean(6, res.isCanceled());
+                preparedStatement.setString(7, res.getRoom().getQualityLevel().toString());
             } else {
                 // Insert a new person
                 saveSQL = "INSERT INTO RESERVATION (CUSTOMER_ID, START_DATE, END_DATE, IS_SMOKING, BED_TYPE, NUM_BEDS," +
@@ -56,10 +57,11 @@ public class ReservationDBO {
                 preparedStatement.setLong(1, res.getCustomerId()); //FIX ME: HOW DO?
                 preparedStatement.setDate(2, (Date) res.getStartDate());
                 preparedStatement.setDate(3, (Date) res.getEndDate());
-                preparedStatement.setBoolean(3, res.getRoom().isSmoking());
-                preparedStatement.setString(4, res.getRoom().getBedType().toString());
-                preparedStatement.setInt(5, res.getRoom().getNumBeds());
-                preparedStatement.setBoolean(6, res.isCanceled());
+                preparedStatement.setBoolean(4, res.getRoom().isSmoking());
+                preparedStatement.setString(5, res.getRoom().getBedType().toString());
+                preparedStatement.setInt(6, res.getRoom().getNumBeds());
+                preparedStatement.setBoolean(7, res.isCanceled());
+                preparedStatement.setString(8, res.getRoom().getQualityLevel().toString());
             }
 
             preparedStatement.executeUpdate();
