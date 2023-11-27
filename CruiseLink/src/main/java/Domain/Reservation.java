@@ -9,11 +9,14 @@ public class Reservation {
     private boolean isCanceled;
     private Room room;
 
+    private Long customerId;
+
     public Reservation() {
         startDate = null;
         endDate = null;
         isCanceled = false;
         room = null;
+        customerId = null;
     }
 
     public Reservation(Date start, Date end, boolean b, Room r) {
@@ -21,6 +24,14 @@ public class Reservation {
         endDate = end;
         isCanceled = b;
         room = r;
+    }
+
+    public Reservation(Date start, Date end, boolean b, Long id, Room r) {
+        startDate = start;
+        endDate = end;
+        isCanceled = b;
+        room = r;
+        customerId = id;
     }
 
     public Date getStartDate() {
@@ -53,6 +64,14 @@ public class Reservation {
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     @Override
