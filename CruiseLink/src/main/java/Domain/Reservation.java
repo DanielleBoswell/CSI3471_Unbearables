@@ -1,6 +1,7 @@
 package Domain;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class Reservation {
@@ -94,5 +95,14 @@ public class Reservation {
                 ", endDate = " + endDate +
                 ", isCanceled = " + isCanceled +
                 ", room = " + room;
+    }
+
+    public String[] toStringArray() {
+
+        String[] strArr = {startDate.toString(), endDate.toString(), Boolean.toString(isCanceled), Integer.toString(room.getRoomNumber()),
+            Boolean.toString(room.isSmoking()), room.getBedType().toString(), Integer.toString(room.getNumBeds()),
+            room.getQualityLevel().toString()};
+
+        return strArr;
     }
 }

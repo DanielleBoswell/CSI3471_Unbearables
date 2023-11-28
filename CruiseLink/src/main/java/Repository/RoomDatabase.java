@@ -48,17 +48,6 @@ public class RoomDatabase {
         Connection dbConnection = null;
         Statement statement = null;
 
-        /**
-         * Person details
-         * id
-         * name
-         * age
-         * username
-         * password
-         * email
-         * gender
-         */
-
         String createTableSQL = "CREATE TABLE ROOM(" + "ROOM_NUM INTEGER NOT NULL VARCHAR(20), " +
                 "IS_SMOKING SMALLINT NOT NULL, " + "BED_TYPE VARCHAR(20) NOT NULL, " + "NUM_BEDS INTEGER NOT NULL, " +
                 "IS_RESERVED SMALLINT NOT NULL, " + "QUALITY_LVL VARCHAR(20) NOT NULL, "
@@ -121,7 +110,7 @@ public class RoomDatabase {
     /**
      * This function gets the connection to the database
      */
-    public  Connection getDBConnection() {
+    public Connection getDBConnection() {
         Connection dbConnection = null;
         try {
             Class.forName(DB_DRIVER);

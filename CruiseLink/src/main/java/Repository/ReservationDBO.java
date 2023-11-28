@@ -1,9 +1,10 @@
 package Repository;
 
-import Domain.Person;
+import Domain.Reservation;
 import Domain.Reservation;
 import Domain.Room;
 
+import javax.swing.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,7 +30,7 @@ public class ReservationDBO {
     }
 
     /**
-     * This function inserts or updates a Person on ReservationDatabase
+     * This function inserts or updates a Reservation on ReservationDatabase
      * @param res
      */
     public void save(Reservation res) {
@@ -116,7 +117,7 @@ public class ReservationDBO {
     }
 
     /**
-     * This function searches the ReservationDatabase for a Person that matches id
+     * This function searches the ReservationDatabase for a Reservation that matches id
      * @param id
      * @return
      */
@@ -166,7 +167,37 @@ public class ReservationDBO {
     }
 
     /**
-     * This function returns a list of every Person in the ReservationDatabase
+     * This function returns the result set of the database that contains every reservation
+     */
+    public ResultSet getAllReservations() {
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            statement = dbConnection.createStatement();
+            String findAllSQL = "SELECT * FROM RESERVATION";
+            resultSet = statement.executeQuery(findAllSQL);
+        } catch (SQLException e) {
+        System.out.println("Error: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error closing resultSet or statement in findAll: " + e.getMessage());
+            }
+        }
+
+        return resultSet;
+    }
+    
+    
+    /**
+     * This function returns a list of every Reservation in the ReservationDatabase
      * @return
      */
     public List<Reservation> findAll() {
