@@ -9,6 +9,9 @@ public class Reservation {
     private Date creationDate;
     private Date endDate;
     private boolean isCanceled;
+
+    public enum CheckInStatus{IS_CHECKED_IN,IS_NOT_CHECKED_IN,IS_CHECKED_OUT};
+    private CheckInStatus isCheckedIn;
     private Room room;
     private Ship ship; // reservation should know about its ship
 
@@ -21,6 +24,7 @@ public class Reservation {
         room = null;
         creationDate = null;
         id = 0l;
+        isCheckedIn = CheckInStatus.IS_NOT_CHECKED_IN;
     }
 
     public Reservation(Date start, Date end, boolean b, Room r, Date made) {
@@ -75,6 +79,14 @@ public class Reservation {
     public long getID(){return id;}
 
     public void setID(long id){this.id = id;}
+
+    public void setIsCheckedIn(CheckInStatus isCheckedIn) {
+        this.isCheckedIn = isCheckedIn;
+    }
+
+    public CheckInStatus getIsCheckedIn(){
+        return isCheckedIn;
+    }
 
     @Override
     public boolean equals(Object o) {
