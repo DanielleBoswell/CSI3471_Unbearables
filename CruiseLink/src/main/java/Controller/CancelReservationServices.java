@@ -3,10 +3,12 @@ package Controller;
 import Domain.Reservation;
 
 import java.util.Date;
+import java.util.logging.Logger;
 
 public class CancelReservationServices {
     Reservation reservation;
-    boolean ok;
+    //Logger logger = new Logger(this.getClass().getName());
+    boolean ok = false;
 
     private void setReservation(long reservationID){
 
@@ -22,13 +24,15 @@ public class CancelReservationServices {
     }
 
     public String getCancellationDesc(){
-        return ""; // connect to billinginfo
+        return "Do you want to cancel this reservation?"; // connect to billinginfo
     }
 
     public boolean confirmCancellation(long guestID, long reservationID){
         boolean charged, isCancelled = true;
         if(!ok){
-            charged = true; // connect to billing info
+            charged = false; // connect to billing info
+            System.out.println("Charging Account");
+            charged = true;
         }
         else{
             charged = true;

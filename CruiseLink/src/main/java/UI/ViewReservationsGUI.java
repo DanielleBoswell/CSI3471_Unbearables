@@ -1,7 +1,6 @@
 package UI;
 
-import Controller.ReservationGuestViewController;
-import Domain.Reservation;
+import Controller.AllReservationsGuestViewController;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -11,16 +10,8 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import javax.swing.text.TableView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Vector;
 
 public class ViewReservationsGUI extends JPanel {
     private UINavigator uiNavigator;
@@ -29,7 +20,7 @@ public class ViewReservationsGUI extends JPanel {
         this.uiNavigator = uiNavigator;
     }
 
-    public ReservationGuestViewController reservationController = new ReservationGuestViewController();
+    public AllReservationsGuestViewController reservationController = new AllReservationsGuestViewController();
 
     //Minitask1
 //    private final class RemoveLineActionListener implements ActionListener {

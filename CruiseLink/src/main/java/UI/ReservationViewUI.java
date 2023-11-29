@@ -1,6 +1,6 @@
 package UI;
 
-import Controller.ReservationGuestViewController;
+import Controller.AllReservationsGuestViewController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,14 +11,14 @@ public class ReservationViewUI extends JPanel{
 
 
     private UINavigator uiNavigator;
-    private ReservationGuestViewController controller;
+    private AllReservationsGuestViewController controller;
 
     /**
      * constructor
      * @param uiNavigator
      * @param rGVC
      */
-    public ReservationViewUI(UINavigator uiNavigator, ReservationGuestViewController rGVC){
+    public ReservationViewUI(UINavigator uiNavigator, AllReservationsGuestViewController rGVC){
         this.uiNavigator = uiNavigator;
         this.controller = rGVC;
     }
@@ -73,14 +73,14 @@ public class ReservationViewUI extends JPanel{
         });
     }
 
-    public void cannotReserveDialogueBox() {
+    public void isCancelledDialogueBox() {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 JDialog box = new JDialog();
                 JPanel items = new JPanel();
                 items.setLayout(new BoxLayout(items, BoxLayout.Y_AXIS));
-                JLabel desc = new JLabel("A room is not available at these specified dates!");
+                JLabel desc = new JLabel(controller);
                 desc.setAlignmentX(Component.CENTER_ALIGNMENT);
 
                 box.setPreferredSize(new Dimension(600, 400));
