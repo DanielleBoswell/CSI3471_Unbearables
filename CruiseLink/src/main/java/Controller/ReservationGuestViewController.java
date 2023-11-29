@@ -12,7 +12,7 @@ public class ReservationGuestViewController {
         cancelReservationServices = new CancelReservationServices();
     }
     public String[][] viewReservationsGuest(){
-        return reservationViewServices.viewReservations(0l); //how to access Guest info
+        return reservationViewServices.viewUncancelledReservations(0l); //how to access Guest info
     }
 
     public String[] viewReservationGuest(int row){

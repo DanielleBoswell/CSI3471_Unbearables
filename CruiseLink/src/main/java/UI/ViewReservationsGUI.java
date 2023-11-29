@@ -254,13 +254,18 @@ public class ViewReservationsGUI extends JPanel {
             System.out.println("...");
             JTable table = getTable();
             int row = table.getSelectedRowCount();
+
             if (row > 1) {
                 JOptionPane.showMessageDialog(table, "Cannot view multiple reservations");
             } else {
+                int viewRow = table.getSelectedRow();
+                int modelRow =
+                        table.convertRowIndexToModel(viewRow);
+                reservationController.viewReservationGuest(modelRow);
                 javax.swing.SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        //MyDialog dialog = new MyDialog(table);
+
                     }
                 });
             }
