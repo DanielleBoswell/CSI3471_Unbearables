@@ -18,7 +18,6 @@ public class guestInfoExpert {
 
     }
 
-
     AccountDBO accounts = new AccountDBO(foundation.getDBConnection());
 
 /*    public guestInfoExpert(Map<Integer, Guest> n){
@@ -56,5 +55,16 @@ public class guestInfoExpert {
         taken = String.valueOf(possible.stream().
                 filter(e-> e.getEmail().equals(email)).findFirst().get());
         return taken != null;
+    }
+
+    /*
+     * Author: Kyle Hoang
+     * Function: deleteAccountDatabase
+     *
+     * Description: It will call the deleteAccountDatabase function
+     * from the AccountDatabase object
+     */
+    public void deleteAccountDatabase() {
+        foundation.deleteAccountDatabase();
     }
 }

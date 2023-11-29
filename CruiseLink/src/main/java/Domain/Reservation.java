@@ -1,6 +1,7 @@
 package Domain;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class Reservation {
@@ -14,8 +15,7 @@ public class Reservation {
     private CheckInStatus isCheckedIn;
     private Room room;
     private Ship ship; // reservation should know about its ship
-
-    private long id;
+    private Long customerId;
 
     public Reservation() {
         startDate = null;
@@ -23,8 +23,8 @@ public class Reservation {
         isCanceled = false;
         room = null;
         creationDate = null;
-        id = 0l;
         isCheckedIn = CheckInStatus.IS_NOT_CHECKED_IN;
+        customerId = null;
     }
 
     public Reservation(Date start, Date end, boolean b, Room r, Date made) {
@@ -37,6 +37,14 @@ public class Reservation {
 
     public Reservation(Date start, Date end, boolean b, Room r) {
         this(start,end,b,r,new Date());
+    }
+
+    public Reservation(Date start, Date end, boolean b, Long id, Room r) {
+        startDate = start;
+        endDate = end;
+        isCanceled = b;
+        room = r;
+        customerId = id;
     }
 
     public Date getStartDate() {
@@ -76,16 +84,20 @@ public class Reservation {
 
     public String getShipName(){return ship.getName();}
 
-    public long getID(){return id;}
-
-    public void setID(long id){this.id = id;}
-
     public void setIsCheckedIn(CheckInStatus isCheckedIn) {
         this.isCheckedIn = isCheckedIn;
     }
 
-    public CheckInStatus getIsCheckedIn(){
+    public CheckInStatus getIsCheckedIn() {
         return isCheckedIn;
+    }
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+
     }
 
     @Override
@@ -114,7 +126,15 @@ public class Reservation {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+    public void setCreationDate(Date creationDate){
+            this.creationDate = creationDate;
+    }
+    public String[] toStringArray() {
+
+        String[] strArr = {startDate.toString(), endDate.toString(), Boolean.toString(isCanceled), Integer.toString(room.getRoomNumber()),
+            Boolean.toString(room.isSmoking()), room.getBedType().toString(), Integer.toString(room.getNumBeds()),
+            room.getQualityLevel().toString()};
+
+        return strArr;
     }
 }

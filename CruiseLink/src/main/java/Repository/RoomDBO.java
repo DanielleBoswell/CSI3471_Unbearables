@@ -1,6 +1,8 @@
 package Repository;
 
 import Domain.Person;
+import Domain.Reservation;
+import Domain.Room;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,62 +17,64 @@ import java.util.List;
  * Author: Kyle Hoang
  * Created on: 11/01/2023
  *
- * This class implements operations for the ACCOUNT database.
+ * This class implements operations for the ROOM database.
  * It uses a Connection to interact with the database.
  *
  * Methods: save, delete, findById, findAll, find, count
  */
 
-public class AccountDBO {
+public class RoomDBO {
     private Connection dbConnection;
 
-    public AccountDBO(Connection connection) {
+    public RoomDBO(Connection connection) {
         this.dbConnection = connection;
     }
 
     /**
      * @author Kyle Hoang
-     * This function inserts or updates a Person on PersonDatabase
-     * @param person
+     * This function inserts or updates a Room on ROOM database
+     * @param room
      */
-    public void save(Person person) {
+    public void save(Room room) {
         PreparedStatement preparedStatement = null;
         String saveSQL;
 
         try {
-            if (person.getId() != null) {
+            if (room.getObjRoomNumber() != null) {
                 // Update an existing person
-                saveSQL = "UPDATE Person SET NAME = ?, AGE = ?, USERNAME = ?, PASSWORD = ?, EMAIL = ?, GENDER = ? WHERE ID = ?";
+                saveSQL = "UPDATE ROOM SET IS_SMOKING = ?, BED_TYPE = ?," +
+                        " NUM_BEDS = ?, IS_RESERVED = ?, QUALITY_LVL = ?, WHERE ROOM_NUM = ?";
                 preparedStatement = dbConnection.prepareStatement(saveSQL);
-                preparedStatement.setString(1, person.getName());
-                preparedStatement.setInt(2, person.getAge());
-                preparedStatement.setString(3, person.getUsername());
-                preparedStatement.setString(4, person.getPassword());
-                preparedStatement.setString(5, person.getEmail());
-                preparedStatement.setString(6, person.getGender());
+                preparedStatement.setBoolean(1, room.isSmoking());
+                preparedStatement.setString(2, room.getBedType().toString());
+                preparedStatement.setInt(3, room.getNumBeds());
+                preparedStatement.setBoolean(4, room.getIsReserved());
+                preparedStatement.setString(5, room.getQualityLevel().toString());
             } else {
                 // Insert a new person
-                saveSQL = "INSERT INTO Person (NAME, AGE, USERNAME, PASSWORD, EMAIL, GENDER) VALUES (?, ?, ?, ?, ?, ?)";
+                saveSQL = "INSERT INTO ROOM (ROOM_NUM, IS_SMOKING, BED_TYPE, NUM_BEDS," +
+                        " IS_RESERVED, QUALITY_LVL) VALUES (?, ?, ?, ?, ?, ?)";
                 preparedStatement = dbConnection.prepareStatement(saveSQL, Statement.RETURN_GENERATED_KEYS);
-                preparedStatement.setString(1, person.getName());
-                preparedStatement.setInt(2, person.getAge());
-                preparedStatement.setString(3, person.getUsername());
-                preparedStatement.setString(4, person.getPassword());
-                preparedStatement.setString(5, person.getEmail());
-                preparedStatement.setString(6, person.getGender());
+                preparedStatement.setLong(1, room.getRoomNumber());
+                preparedStatement.setBoolean(2, room.isSmoking());
+                preparedStatement.setString(3, room.getBedType().toString());
+                preparedStatement.setInt(4, room.getNumBeds());
+                preparedStatement.setBoolean(5, room.getIsReserved());
+                preparedStatement.setString(6, room.getQualityLevel().toString());
             }
 
             preparedStatement.executeUpdate();
 
-            if (person.getId() == null) {
-                // If it was an INSERT, retrieve the generated ID
-                ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-                if (generatedKeys.next()) {
-                    person.setId(generatedKeys.getLong(1));
-                }
-            }
+            // DONT NEED TO DO IF WE ARE ADDING A customerId field to reservation
+//            if (res.getCustomerId() == -1) {
+//                // If it was an INSERT, retrieve the generated ID
+//                ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+//                if (generatedKeys.next()) {
+//                    res.setCustomerId(generatedKeys.getLong(1));
+//                }
+//            }
 
-            System.out.println("Person saved successfully.");
+            System.out.println("Room saved successfully.");
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         } finally {
@@ -86,18 +90,18 @@ public class AccountDBO {
 
     /**
      * @author Kyle Hoang
-     * This function deletes a person from the PersonDatabase
-     * @param id
+     * This function deletes a Room from the ROOM database
+     * @param roomNum
      */
-    public void delete(Long id) {
+    public void delete(Integer roomNum) {
         PreparedStatement preparedStatement = null;
 
         try {
-            String deleteSQL = "DELETE FROM Person WHERE ID = ?";
+            String deleteSQL = "DELETE FROM ROOM WHERE ROOM_NUM = ?";
             preparedStatement = dbConnection.prepareStatement(deleteSQL);
-            preparedStatement.setLong(1, id);
+            preparedStatement.setLong(1, roomNum);
             preparedStatement.executeUpdate();
-            System.out.println("Person with ID " + id + " has been deleted.");
+            System.out.println("ROOM with ROOM_NUM " + roomNum + " has been deleted.");
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         } finally {
@@ -113,33 +117,32 @@ public class AccountDBO {
 
     /**
      * @author Kyle Hoang
-     * This function searches the PersonDatabase for a Person that matches id
-     * @param id
-     * @return Person found
+     * This function searches the ROOM database for a Room that matches id
+     * @param roomNum
+     * @return Room that matched id
      */
-    public Person findById(Long id) {
+    public Room findById(Integer roomNum) {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
         try {
-            String findByIdSQL = "SELECT * FROM Person WHERE ID = ?";
+            String findByIdSQL = "SELECT * FROM ROOM WHERE ROOM_NUM = ?";
             preparedStatement = dbConnection.prepareStatement(findByIdSQL);
-            preparedStatement.setLong(1, id);
+            preparedStatement.setLong(1, roomNum);
 
             resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                Person person = new Person(
-                        resultSet.getLong("ID"),
-                        resultSet.getString("NAME"),
-                        resultSet.getInt("AGE"),
-                        resultSet.getString("USERNAME"),
-                        resultSet.getString("PASSWORD"),
-                        resultSet.getString("EMAIL"),
-                        resultSet.getString("GENDER")
+                Room room = new Room(
+                    resultSet.getBoolean("IS_SMOKING"),
+                    Room.BedType.valueOf(resultSet.getString("BED_TYPE")),
+                    resultSet.getInt("ROOM_NUM"),
+                    resultSet.getInt("NUM_BEDS"),
+                    resultSet.getBoolean("IS_RESERVED"),
+                    Room.QualityLevel.valueOf(resultSet.getString("QUALITY_LVL"))
                 );
 
-                return person;
+                return room;
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
@@ -161,30 +164,30 @@ public class AccountDBO {
 
     /**
      * @author Kyle Hoang
-     * This function returns a list of every Person in the AccountDatabase
-     * @return List of Persons in the PERSON database
+     * This function returns a list of every Room in the ROOM database
+     * @return List of all Rooms in ROOM database
      */
-    public List<Person> findAll() {
-        List<Person> persons = new ArrayList<>();
+    public List<Room> findAll() {
+        List<Room> roomList = new ArrayList<>();
         Statement statement = null;
         ResultSet resultSet = null;
 
         try {
             statement = dbConnection.createStatement();
-            String findAllSQL = "SELECT * FROM Person";
+            String findAllSQL = "SELECT * FROM ROOM";
             resultSet = statement.executeQuery(findAllSQL);
 
             while (resultSet.next()) {
-                Person person = new Person(
-                        resultSet.getLong("ID"),
-                        resultSet.getString("NAME"),
-                        resultSet.getInt("AGE"),
-                        resultSet.getString("USERNAME"),
-                        resultSet.getString("PASSWORD"),
-                        resultSet.getString("EMAIL"),
-                        resultSet.getString("GENDER")
+                Room room = new Room(
+                        resultSet.getBoolean("IS_SMOKING"),
+                        Room.BedType.valueOf(resultSet.getString("BED_TYPE")),
+                        resultSet.getInt("ROOM_NUM"),
+                        resultSet.getInt("NUM_BEDS"),
+                        resultSet.getBoolean("IS_RESERVED"),
+                        Room.QualityLevel.valueOf(resultSet.getString("QUALITY_LVL"))
                 );
-                persons.add(person);
+
+                roomList.add(room);
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
@@ -201,38 +204,38 @@ public class AccountDBO {
             }
         }
 
-        return persons;
+        return roomList;
     }
 
 
     /**
      * @author Kyle Hoang
-     * This function returns a list of people who match the given condition
-     * which should be in format of "TABLEFIELD <operator> value"
+     * This function returns a list of Rooms who match the given condition
+     * which should be in format of "TABLEFIELD = value"
      * @param condition
-     * @return List of Persons found using the condition
+     * @return List of Rooms found in ROOM database using given condition
      */
-    public List<Person> find(String condition) {
-        List<Person> persons = new ArrayList<>();
+    public List<Room> find(String condition) {
+        List<Room> roomList = new ArrayList<>();
         Statement statement = null;
         ResultSet resultSet = null;
 
         try {
             statement = dbConnection.createStatement();
-            String findSQL = "SELECT * FROM Person WHERE " + condition;
+            String findSQL = "SELECT * FROM ROOM WHERE " + condition;
             resultSet = statement.executeQuery(findSQL);
 
             while (resultSet.next()) {
-                Person person = new Person(
-                        resultSet.getLong("ID"),
-                        resultSet.getString("NAME"),
-                        resultSet.getInt("AGE"),
-                        resultSet.getString("USERNAME"),
-                        resultSet.getString("PASSWORD"),
-                        resultSet.getString("EMAIL"),
-                        resultSet.getString("GENDER")
+                Room room = new Room(
+                        resultSet.getBoolean("IS_SMOKING"),
+                        Room.BedType.valueOf(resultSet.getString("BED_TYPE")),
+                        resultSet.getInt("ROOM_NUM"),
+                        resultSet.getInt("NUM_BEDS"),
+                        resultSet.getBoolean("IS_RESERVED"),
+                        Room.QualityLevel.valueOf(resultSet.getString("QUALITY_LVL"))
                 );
-                persons.add(person);
+
+                roomList.add(room);
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
@@ -249,13 +252,13 @@ public class AccountDBO {
             }
         }
 
-        return persons;
+        return roomList;
     }
 
     /**
      * @author Kyle Hoang
-     * This method counts the number of Persons in PERSON database
-     * @return int which is number of Persons in PERSON database
+     * This method counts the number of Rooms in ROOM database
+     * @return int which is number of Rooms in ROOM database
      */
     public int count() {
         Statement statement = null;
@@ -263,7 +266,7 @@ public class AccountDBO {
 
         try {
             statement = dbConnection.createStatement();
-            String countSQL = "SELECT COUNT(*) AS COUNT FROM Person";
+            String countSQL = "SELECT COUNT(*) AS COUNT FROM ROOM";
             resultSet = statement.executeQuery(countSQL);
 
             if (resultSet.next()) {
