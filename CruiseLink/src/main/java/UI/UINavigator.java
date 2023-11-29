@@ -35,6 +35,17 @@ public class UINavigator extends JFrame {
 
     public static final String TRAVEL_AGENT_BILLING_PANEL = "Travel Agent Billing Panel";
 
+    public static final String TRAVEL_AGENT_MODIFY_ROOM_PANEL = "Travel Agent Modify Room Panel";
+
+
+
+
+
+
+
+
+
+
 
 
     /* ----------- ADD IDENTIFIERS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
@@ -78,6 +89,15 @@ public class UINavigator extends JFrame {
         cardPanel.add(createAdminLanding(), ADMIN_LANDING_PANEL);
         cardPanel.add(createGuestLanding(), GUEST_LANDING_PANEL);
         cardPanel.add(createTravelAgentBilling(), TRAVEL_AGENT_BILLING_PANEL);
+        cardPanel.add(createTravelAgentModifyRoom(), TRAVEL_AGENT_MODIFY_ROOM_PANEL);
+
+
+
+
+
+
+
+
 
 
 
@@ -155,6 +175,13 @@ public class UINavigator extends JFrame {
         TravelAgentGenerateBillGUI travelAgentGenerateBillGUIInstance = new TravelAgentGenerateBillGUI(this);
         return travelAgentGenerateBillGUIInstance.createTravelAgentBilling();
     }
+
+    private JPanel createTravelAgentModifyRoom() {
+        TravelAgentModifyRoomGUI travelAgentModifyRoomGUIInstance = new TravelAgentModifyRoomGUI(this);
+        return travelAgentModifyRoomGUIInstance.createTravelAgentModifyRoom();
+    }
+
+
 
 
 
