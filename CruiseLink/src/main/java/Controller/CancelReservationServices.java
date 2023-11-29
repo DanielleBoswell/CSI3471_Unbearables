@@ -10,17 +10,24 @@ public class CancelReservationServices {
     //Logger logger = new Logger(this.getClass().getName());
     boolean ok = false;
 
+    public CancelReservationServices(){}
+
+    public CancelReservationServices(Reservation r){
+        reservation = r;
+    }
+
     private void setReservation(long reservationID){
 
         reservation = new Reservation(); // connect to Reservation Database
     }
-    public boolean canCancelReservation(long reservationID){
-        setReservation(reservationID);
+
+
+    public boolean canCancelReservation(){
         Date d = new Date();
-            long diff = d.getTime() - reservation.getCreationDate().getTime();
-            diff = (diff / (1000 * 60 * 60 * 24)) % 365;
-            ok = diff < 2;
-            return ok;
+        long diff = d.getTime() - reservation.getCreationDate().getTime();
+        diff = (diff / (1000 * 60 * 60 * 24)) % 365;
+        ok = diff < 2;
+        return ok;
     }
 
     public String getCancellationDesc(){

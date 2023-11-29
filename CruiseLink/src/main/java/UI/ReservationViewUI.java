@@ -80,7 +80,7 @@ public class ReservationViewUI extends JPanel{
                 JDialog box = new JDialog();
                 JPanel items = new JPanel();
                 items.setLayout(new BoxLayout(items, BoxLayout.Y_AXIS));
-                JLabel desc = new JLabel(controller);
+                JLabel desc = new JLabel("");
                 desc.setAlignmentX(Component.CENTER_ALIGNMENT);
 
                 box.setPreferredSize(new Dimension(600, 400));
