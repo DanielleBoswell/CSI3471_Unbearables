@@ -14,11 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Kyle Hoang 11/27/2023
- * This file implements the operations for the RoomDatabase
+ * Author: Kyle Hoang
+ * Created on: 11/01/2023
+ *
+ * This class implements operations for the ROOM database.
+ * It uses a Connection to interact with the database.
+ *
  * Methods: save, delete, findById, findAll, find, count
- * NOTE: The database is currently modeled after Assignment 10's
- * The values should be changed to match Users
  */
 
 public class RoomDBO {
@@ -29,7 +31,8 @@ public class RoomDBO {
     }
 
     /**
-     * This function inserts or updates a Person on ReservationDatabase
+     * @author Kyle Hoang
+     * This function inserts or updates a Room on ROOM database
      * @param room
      */
     public void save(Room room) {
@@ -86,7 +89,8 @@ public class RoomDBO {
     }
 
     /**
-     * This function deletes a person from the ReservationDatabase
+     * @author Kyle Hoang
+     * This function deletes a Room from the ROOM database
      * @param roomNum
      */
     public void delete(Integer roomNum) {
@@ -112,9 +116,10 @@ public class RoomDBO {
     }
 
     /**
-     * This function searches the ReservationDatabase for a Person that matches id
+     * @author Kyle Hoang
+     * This function searches the ROOM database for a Room that matches id
      * @param roomNum
-     * @return
+     * @return Room that matched id
      */
     public Room findById(Integer roomNum) {
         PreparedStatement preparedStatement = null;
@@ -158,8 +163,9 @@ public class RoomDBO {
     }
 
     /**
-     * This function returns a list of every Person in the ReservationDatabase
-     * @return
+     * @author Kyle Hoang
+     * This function returns a list of every Room in the ROOM database
+     * @return List of all Rooms in ROOM database
      */
     public List<Room> findAll() {
         List<Room> roomList = new ArrayList<>();
@@ -203,10 +209,11 @@ public class RoomDBO {
 
 
     /**
-     * This function returns a list of people who match the given condition
-     * condition should be in format of "TABLEFIELD = value"
+     * @author Kyle Hoang
+     * This function returns a list of Rooms who match the given condition
+     * which should be in format of "TABLEFIELD = value"
      * @param condition
-     * @return
+     * @return List of Rooms found in ROOM database using given condition
      */
     public List<Room> find(String condition) {
         List<Room> roomList = new ArrayList<>();
@@ -248,6 +255,11 @@ public class RoomDBO {
         return roomList;
     }
 
+    /**
+     * @author Kyle Hoang
+     * This method counts the number of Rooms in ROOM database
+     * @return int which is number of Rooms in ROOM database
+     */
     public int count() {
         Statement statement = null;
         ResultSet resultSet = null;

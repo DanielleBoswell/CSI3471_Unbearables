@@ -15,11 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Kyle Hoang 11/01/2023
- * This file implements the operations for the ReservationDatabase
- * Methods: save, delete, findById, findAll, find, count
- * NOTE: The database is currently modeled after Assignment 10's
- * The values should be changed to match Users
+ * Author: Kyle Hoang
+ * Created on: 11/01/2023
+ *
+ * This class implements operations for the RESERVATION database.
+ * It uses a Connection to interact with the database.
+ *
+ * Methods: save, delete, findById, getAllReservations, findAll, find, count
  */
 
 public class ReservationDBO {
@@ -30,7 +32,8 @@ public class ReservationDBO {
     }
 
     /**
-     * This function inserts or updates a Reservation on ReservationDatabase
+     * @author Kyle Hoang
+     * This function inserts or updates a Reservation on RESERVATION database
      * @param res
      */
     public void save(Reservation res) {
@@ -91,7 +94,8 @@ public class ReservationDBO {
     }
 
     /**
-     * This function deletes a person from the ReservationDatabase
+     * @author Kyle Hoang
+     * This function deletes a person from the RESERVATION database
      * @param id
      */
     public void delete(Long id) {
@@ -117,9 +121,10 @@ public class ReservationDBO {
     }
 
     /**
-     * This function searches the ReservationDatabase for a Reservation that matches id
+     * @author Kyle Hoang
+     * This function searches the RESERVATION database for a Reservation that matches id
      * @param id
-     * @return
+     * @return Reservation found by id
      */
     public Reservation findById(Long id) {
         PreparedStatement preparedStatement = null;
@@ -167,7 +172,9 @@ public class ReservationDBO {
     }
 
     /**
+     * @author Kyle Hoang
      * This function returns the result set of the database that contains every reservation
+     * @return ResultSet, the group of Reservations found from RESERVATION database
      */
     public ResultSet getAllReservations() {
         Statement statement = null;
@@ -197,8 +204,9 @@ public class ReservationDBO {
     
     
     /**
-     * This function returns a list of every Reservation in the ReservationDatabase
-     * @return
+     * @author Kyle Hoang
+     * This function returns a list of every Reservation in the RESERVATION database
+     * @return List of Reservations in RESERVATION database
      */
     public List<Reservation> findAll() {
         List<Reservation> resList = new ArrayList<>();
@@ -245,8 +253,9 @@ public class ReservationDBO {
 
 
     /**
+     * @author Kyle Hoang
      * This function returns a list of people who match the given condition
-     * condition should be in format of "TABLEFIELD = value"
+     * which should be in format of "TABLEFIELD = value"
      * @param condition
      * @return
      */
@@ -293,6 +302,11 @@ public class ReservationDBO {
         return resList;
     }
 
+    /**
+     * @author Kyle Hoang
+     * This method counts the number of Persons in PERSON database
+     * @return int which is number of Persons in PERSON database
+     */
     public int count() {
         Statement statement = null;
         ResultSet resultSet = null;

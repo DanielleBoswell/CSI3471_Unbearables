@@ -20,11 +20,18 @@ public class RoomDatabase {
 
     // Begin Kyle Hoang's implementation of Apache Derby Reservation Database
     /**
-     * Created by Kyle Hoang 11/01/2023
-     * This file implements the creation and deletion for the ReservationDatabase
-     * Methods: save, delete, findById, findAll, find, count
-     * NOTE: The database is currently modeled after Assignment 10's
-     * The values should be changed to match Users
+     * Author: Kyle Hoang
+     * Created on: 11/01/2023
+     *
+     * This class provides methods for creating and deleting a database table for Rooms.
+     * It also includes a method for obtaining a connection to the database.
+     *
+     * The reservation table, named "ROOM," stores details such as room number, smoking status, bed type,
+     * number of beds, reservation status, and quality level.
+     *
+     * Methods:
+     * - {@link #createRoomDatabase() createRoomDatabase}
+     * - {@link #deleteRoomDatabase() deleteRoomDatabase}
      */
 
     private static  String DB_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
@@ -41,8 +48,10 @@ public class RoomDatabase {
 }*/
 
     /**
-     * This function creates a new database table for the accounts
-     * @throws SQLException
+     * @author Kyle Hoang
+     *
+     * This function creates a new database table ROOM for the Rooms
+     * @throws SQLException if a SQL exception occurs during the database operations.
      */
     public  void createRoomDatabase() throws SQLException {
         Connection dbConnection = null;
@@ -73,7 +82,11 @@ public class RoomDatabase {
         }
     }
 
-    public  void deleteReservationDatabase() {
+    /**
+     * @author Kyle Hoang
+     * This method deletes the ROOM database
+     */
+    public void deleteRoomDatabase() {
         Connection dbConnection = null;
         Statement statement = null;
         String deleteTableSQL = "DROP TABLE ROOM";
@@ -108,7 +121,9 @@ public class RoomDatabase {
     }
 
     /**
+     * @author Kyle Hoang
      * This function gets the connection to the database
+     * @return Connection used to connect to the ROOM database
      */
     public Connection getDBConnection() {
         Connection dbConnection = null;

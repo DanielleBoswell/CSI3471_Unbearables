@@ -20,11 +20,18 @@ public class ReservationDatabase {
 
     // Begin Kyle Hoang's implementation of Apache Derby Reservation Database
     /**
-     * Created by Kyle Hoang 11/01/2023
-     * This file implements the creation and deletion for the ReservationDatabase
-     * Methods: save, delete, findById, findAll, find, count
-     * NOTE: The database is currently modeled after Assignment 10's
-     * The values should be changed to match Users
+     * Author: Kyle Hoang
+     * Created on: 11/01/2023
+     *
+     * This class provides methods for creating and deleting a database table for reservations.
+     * It also includes a method for obtaining a connection to the database.
+     *
+     * The reservation table, named "RESERVATION," stores details such as customer ID, start date, end date,
+     * smoking status, bed type, number of beds, quality level, and cancellation status.
+     *
+     * Methods:
+     * - {@link #createReservationDatabase() createReservationDatabase}
+     * - {@link #deleteReservationDatabase() deleteReservationDatabase}
      */
 
     private static  String DB_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
@@ -41,23 +48,14 @@ public class ReservationDatabase {
 }*/
 
     /**
-     * This function creates a new database table for the accounts
-     * @throws SQLException
+     * @author Kyle Hoang
+     *
+     * This function creates a new database table RESERVATION for the Reservation
+     * @throws SQLException if a SQL exception occurs during the database operations.
      */
     public  void createReservationDatabase() throws SQLException {
         Connection dbConnection = null;
         Statement statement = null;
-
-        /**
-         * Person details
-         * id
-         * name
-         * age
-         * username
-         * password
-         * email
-         * gender
-         */
 
         String createTableSQL = "CREATE TABLE RESERVATION(" + "CUSTOMER_ID INTEGER NOT NULL VARCHAR(20), " +
                 "START_DATE DATE NOT NULL, " + "END_DATE DATE NOT NULL, " + "IS_SMOKING SMALLINT NOT NULL, " +
@@ -85,7 +83,11 @@ public class ReservationDatabase {
         }
     }
 
-    public  void deleteReservationDatabase() {
+    /**
+     * @author Kyle Hoang
+     * This method deletes the RESERVATION database
+     */
+    public void deleteReservationDatabase() {
         Connection dbConnection = null;
         Statement statement = null;
         String deleteTableSQL = "DROP TABLE RESERVATION";
@@ -120,9 +122,11 @@ public class ReservationDatabase {
     }
 
     /**
+     * @author Kyle Hoang
      * This function gets the connection to the database
+     * @return Connection used to connect to RESERVATION database
      */
-    public  Connection getDBConnection() {
+    public Connection getDBConnection() {
         Connection dbConnection = null;
         try {
             Class.forName(DB_DRIVER);

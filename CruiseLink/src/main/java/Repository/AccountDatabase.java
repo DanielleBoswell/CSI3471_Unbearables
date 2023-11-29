@@ -53,17 +53,24 @@ public class AccountDatabase {
 
     // Begin Kyle Hoang's implementation of Apache Derby Account Database
     /**
-     * Created by Kyle Hoang 11/01/2023
-     * This file implements the creation and deletion for the AccountDatabase
-     * Methods: save, delete, findById, findAll, find, count
-     * NOTE: The database is currently modeled after Assignment 10's
-     * The values should be changed to match Users
+     * Author: Kyle Hoang
+     * Created on: 11/01/2023
+     *
+     * This class provides methods for creating and deleting a database table for Persons.
+     * It also includes a method for obtaining a connection to the database.
+     *
+     * The reservation table, named "PERSON," stores details such as ID, name, age, username, password,
+     * email, and gender.
+     *
+     * Methods:
+     * - {@link #createAccountDatabase() createAccountDatabase}
+     * - {@link #deleteAccountDatabase() deleteAccountDatabase}
      */
 
-    private static  String DB_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
-    private static  String DB_CONNECTION = "jdbc:derby:ex1connect;create=true"; //"jdbc:derby:ex1connect;";
-    private static  String DB_USER = "";
-    private static  String DB_PASSWORD = "";
+    private static String DB_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
+    private static String DB_CONNECTION = "jdbc:derby:ex1connect;create=true"; //"jdbc:derby:ex1connect;";
+    private static String DB_USER = "";
+    private static String DB_PASSWORD = "";
 
 /*    public static void main(String[] argv) {
         try {
@@ -76,23 +83,12 @@ public class AccountDatabase {
     /**
      * @author Kyle Hoang
      *
-     * This function creates a new database table for the accounts
-     * @throws SQLException ff a SQL exception occurs during the database operations.
+     * This function creates a new database table PERSON for the Persons
+     * @throws SQLException if a SQL exception occurs during the database operations.
      */
     public void createAccountDatabase() throws SQLException {
         Connection dbConnection = null;
         Statement statement = null;
-
-        /**
-         * Person details
-         * id
-         * name
-         * age
-         * username
-         * password
-         * email
-         * gender
-         */
 
         String createTableSQL = "CREATE TABLE PERSON(" + "ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY" +
                 "(START WITH 1, INCREMENT BY 1), " + "NAME VARCHAR(20) NOT NULL, " + "AGE INTEGER NOT NULL, "

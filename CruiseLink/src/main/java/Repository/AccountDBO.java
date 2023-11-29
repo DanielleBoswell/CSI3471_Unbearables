@@ -12,11 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Kyle Hoang 11/01/2023
- * This file implements the operations for the AccountDatabase
+ * Author: Kyle Hoang
+ * Created on: 11/01/2023
+ *
+ * This class implements operations for the ACCOUNT database.
+ * It uses a Connection to interact with the database.
+ *
  * Methods: save, delete, findById, findAll, find, count
- * NOTE: The database is currently modeled after Assignment 10's
- * The values should be changed to match Users
  */
 
 public class AccountDBO {
