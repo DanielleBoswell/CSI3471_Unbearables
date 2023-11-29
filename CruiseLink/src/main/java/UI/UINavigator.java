@@ -156,7 +156,6 @@ public class UINavigator extends JFrame {
 
 
 
-
     /* ----------- ADD PANEL METHODS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
 
     //Method to show a card by its identifier --- This switches the GUI we are on ---
@@ -165,4 +164,13 @@ public class UINavigator extends JFrame {
         //Tells the card layout to show the panel with the specified identifier
         cardLayout.show(cardPanel, identifier);
     }
+
+    public static void addCard(JPanel panel, String identifier){
+        cardPanel.add(panel, identifier);
+    }
+
+    public static void goBack(){
+        cardLayout.previous(cardPanel);
+    }
+
 }
