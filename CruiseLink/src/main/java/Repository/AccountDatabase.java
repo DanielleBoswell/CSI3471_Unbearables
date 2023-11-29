@@ -74,10 +74,12 @@ public class AccountDatabase {
     }*/
 
     /**
+     * @author Kyle Hoang
+     *
      * This function creates a new database table for the accounts
-     * @throws SQLException
+     * @throws SQLException ff a SQL exception occurs during the database operations.
      */
-    public  void createAccountDatabase() throws SQLException {
+    public void createAccountDatabase() throws SQLException {
         Connection dbConnection = null;
         Statement statement = null;
 
@@ -117,7 +119,11 @@ public class AccountDatabase {
         }
     }
 
-    public  void deleteAccountDatabase() {
+    /**
+     * @author Kyle Hoang
+     * This function deletes the PERSON table
+     */
+    public void deleteAccountDatabase() {
         Connection dbConnection = null;
         Statement statement = null;
         String deleteTableSQL = "DROP TABLE PERSON";
@@ -152,9 +158,11 @@ public class AccountDatabase {
     }
 
     /**
+     * @author Kyle Hoang
      * This function gets the connection to the database
+     * @return Connection used to connect to the database
      */
-    public  Connection getDBConnection() {
+    public Connection getDBConnection() {
         Connection dbConnection = null;
         try {
             Class.forName(DB_DRIVER);
