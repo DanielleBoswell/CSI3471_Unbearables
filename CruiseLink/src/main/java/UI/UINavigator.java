@@ -149,6 +149,8 @@ public class UINavigator extends JFrame {
     private JPanel createCheckIn() {
         CheckInUI checkInUIInstance = new CheckInUI(this);
         CheckInControllerImpl checkInController = new CheckInControllerImpl(this);
+        checkInUIInstance.setController(checkInController);
+        return checkInUIInstance.createCheckInUIPanel();
     }
 
 

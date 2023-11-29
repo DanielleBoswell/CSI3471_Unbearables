@@ -43,7 +43,7 @@ public class CheckInUI extends JPanel {
     }
 
     // This method creates the check in UI which will return the panel
-    public JPanel createCheckInUI() {
+    public JPanel createCheckInUIPanel() {
         // Setting layout to GridBagLayout
         this.setLayout(new GridBagLayout());
 
