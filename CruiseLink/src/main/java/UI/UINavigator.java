@@ -32,6 +32,7 @@ public class UINavigator extends JFrame {
     public static final String TRAVEL_AGENT_LANDING_PANEL = "Travel Agent Landing Panel";
     public static final String ADMIN_LANDING_PANEL = "Admin Landing Panel";
     public static final String GUEST_LANDING_PANEL = "Guest Landing Panel";
+    public static final String CHOOSE_ROOM_PANEL = "Choose Room Panel";
 
 
 
@@ -75,6 +76,7 @@ public class UINavigator extends JFrame {
         cardPanel.add(createTravelAgentLanding(), TRAVEL_AGENT_LANDING_PANEL);
         cardPanel.add(createAdminLanding(), ADMIN_LANDING_PANEL);
         cardPanel.add(createGuestLanding(), GUEST_LANDING_PANEL);
+        cardPanel.add(createChooseRoom(), CHOOSE_ROOM_PANEL);
 
 
 
@@ -146,6 +148,10 @@ public class UINavigator extends JFrame {
         GuestControllerImpl guestController = new GuestControllerImpl(this);
         guestLandingGUIInstance.setController(guestController);
         return guestLandingGUIInstance.createGuestLandingPanel();
+    }
+    private JPanel createChooseRoom() {
+        CreateReservation_ChooseRoom x = new CreateReservation_ChooseRoom(this);
+        return x.CreateReservation_ChooseRoom_creator();
     }
 
 
