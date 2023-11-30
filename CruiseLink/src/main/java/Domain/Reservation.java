@@ -9,8 +9,8 @@ public class Reservation {
     private Date endDate;
     private boolean isCanceled;
     private Room room;
-
     private Long customerId;
+    private Long reservationId;
 
     public Reservation() {
         startDate = null;
@@ -18,6 +18,7 @@ public class Reservation {
         isCanceled = false;
         room = null;
         customerId = null;
+        reservationId = null;
     }
 
     public Reservation(Date start, Date end, boolean b, Room r) {
@@ -27,12 +28,13 @@ public class Reservation {
         room = r;
     }
 
-    public Reservation(Date start, Date end, boolean b, Long id, Room r) {
+    public Reservation(Date start, Date end, boolean b, Long rId, Long cId, Room r) {
         startDate = start;
         endDate = end;
         isCanceled = b;
         room = r;
-        customerId = id;
+        customerId = cId;
+        reservationId = rId;
     }
 
     public Date getStartDate() {
@@ -104,5 +106,13 @@ public class Reservation {
             room.getQualityLevel().toString()};
 
         return strArr;
+    }
+
+    public Long getReservationId() {
+        return reservationId;
+    }
+
+    public void setReservationId(Long reservationId) {
+        this.reservationId = reservationId;
     }
 }
