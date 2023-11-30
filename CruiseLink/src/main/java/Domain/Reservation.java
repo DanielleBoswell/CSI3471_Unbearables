@@ -10,12 +10,13 @@ public class Reservation {
     private Date creationDate;
     private Date endDate;
     private boolean isCanceled;
-
+    private Ship ship; // reservation should know about its ship
     public enum CheckInStatus{IS_CHECKED_IN,IS_NOT_CHECKED_IN,IS_CHECKED_OUT};
     private CheckInStatus isCheckedIn;
     private Room room;
-    private Ship ship; // reservation should know about its ship
+
     private Long customerId;
+    private Long reservationId;
 
     public Reservation() {
         startDate = null;
@@ -25,9 +26,14 @@ public class Reservation {
         creationDate = null;
         isCheckedIn = CheckInStatus.IS_NOT_CHECKED_IN;
         customerId = null;
+        reservationId = null;
+        isCheckedIn = CheckInStatus.IS_NOT_CHECKED_IN;
+        creationDate = new Date();
     }
 
+
     public Reservation(Date start, Date end, boolean b, Room r, Date made) {
+        this();
         startDate = start;
         endDate = end;
         isCanceled = b;
@@ -39,12 +45,14 @@ public class Reservation {
         this(start,end,b,r,new Date());
     }
 
-    public Reservation(Date start, Date end, boolean b, Long id, Room r) {
+    public Reservation(Date start, Date end, boolean b, Long rId, Long cId, Room r) {
+        this();
         startDate = start;
         endDate = end;
         isCanceled = b;
         room = r;
-        customerId = id;
+        customerId = cId;
+        reservationId = rId;
     }
 
     public Date getStartDate() {
@@ -70,6 +78,7 @@ public class Reservation {
     public void setCanceled(boolean canceled) {
         isCanceled = canceled;
     }
+
 
     public Room getRoom() {
         return room;
@@ -136,5 +145,13 @@ public class Reservation {
             room.getQualityLevel().toString()};
 
         return strArr;
+    }
+
+    public Long getReservationId() {
+        return reservationId;
+    }
+
+    public void setReservationId(Long reservationId) {
+        this.reservationId = reservationId;
     }
 }

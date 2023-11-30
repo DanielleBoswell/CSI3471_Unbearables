@@ -57,11 +57,13 @@ public class ReservationDatabase {
         Connection dbConnection = null;
         Statement statement = null;
 
-        String createTableSQL = "CREATE TABLE RESERVATION(" + "CUSTOMER_ID INTEGER NOT NULL VARCHAR(20), " +
+        String createTableSQL = "CREATE TABLE RESERVATION(" + "RESERVATION_ID INTEGER NOT NULL VARCHAR(20), "
+                + "CUSTOMER_ID INTEGER NOT NULL VARCHAR(20), " +
                 "START_DATE DATE NOT NULL, " + "END_DATE DATE NOT NULL, " + "IS_SMOKING SMALLINT NOT NULL, " +
                 "BED_TYPE VARCHAR(20) NOT NULL, " + "NUM_BEDS INTEGER NOT NULL, " +
-                "QUALITY_LVL VARCHAR(20) NOT NULL, " + "IS_CANCELED SMALLINT NOT NULL, "
-                + "CONSTRAINT primary_key PRIMARY KEY (CUSTOMER_ID) " + ")";
+                "QUALITY_LVL VARCHAR(20) NOT NULL, " + "CHECK_IN_STATUS VARCHAR(20) NOT NULL, "
+                + "IS_CANCELED SMALLINT NOT NULL, "
+                + "CONSTRAINT primary_key PRIMARY KEY (RESERVATION_ID) " + ")";
 
         try {
             dbConnection = getDBConnection();
