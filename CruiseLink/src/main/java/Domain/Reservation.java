@@ -8,6 +8,8 @@ public class Reservation {
     private Date startDate;
     private Date endDate;
     private boolean isCanceled;
+    public enum CheckInStatus{IS_CHECKED_IN,IS_NOT_CHECKED_IN,IS_CHECKED_OUT};
+    private CheckInStatus isCheckedIn;
     private Room room;
     private Long customerId;
     private Long reservationId;
@@ -19,9 +21,11 @@ public class Reservation {
         room = null;
         customerId = null;
         reservationId = null;
+        isCheckedIn = CheckInStatus.IS_NOT_CHECKED_IN;
     }
 
     public Reservation(Date start, Date end, boolean b, Room r) {
+        this();
         startDate = start;
         endDate = end;
         isCanceled = b;
@@ -29,6 +33,7 @@ public class Reservation {
     }
 
     public Reservation(Date start, Date end, boolean b, Long rId, Long cId, Room r) {
+        this();
         startDate = start;
         endDate = end;
         isCanceled = b;
@@ -61,12 +66,20 @@ public class Reservation {
         isCanceled = canceled;
     }
 
+
     public Room getRoom() {
         return room;
     }
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+    public void setIsCheckedIn(CheckInStatus isCheckedIn) {
+        this.isCheckedIn = isCheckedIn;
+    }
+
+    public CheckInStatus getIsCheckedIn() {
+        return isCheckedIn;
     }
 
     public Long getCustomerId() {

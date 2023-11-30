@@ -41,22 +41,28 @@ public class ReservationDBO {
         String saveSQL;
 
         try {
-            if (res.getCustomerId() != null) { //FIX ME: HOW DO?
+            if (res.getReservationId() != null) { //FIX ME: HOW DO?
                 // Update an existing person
-                saveSQL = "UPDATE RESERVATION SET START_DATE = ?, END_DATE = ?, IS_SMOKING = ?, BED_TYPE = ?," +
-                        " NUM_BEDS = ?, IS_CANCELED = ?, QUALITY_LVL = ?, WHERE CUSTOMER_ID = ?";
+                saveSQL = "UPDATE RESERVATION SET CUSTOMER_ID = ?, START_DATE = ?, END_DATE = ?, IS_SMOKING = ?, BED_TYPE = ?," +
+                        " NUM_BEDS = ?, IS_CANCELED = ?, QUALITY_LVL = ?, CHECK_IN_STATUS = ? " +
+                        "WHERE RESERVATION_ID = ?";
                 preparedStatement = dbConnection.prepareStatement(saveSQL);
-                preparedStatement.setDate(1, (Date) res.getStartDate());
-                preparedStatement.setDate(2, (Date) res.getEndDate());
-                preparedStatement.setBoolean(3, res.getRoom().isSmoking());
-                preparedStatement.setString(4, res.getRoom().getBedType().toString());
-                preparedStatement.setInt(5, res.getRoom().getNumBeds());
-                preparedStatement.setBoolean(6, res.isCanceled());
-                preparedStatement.setString(7, res.getRoom().getQualityLevel().toString());
+                preparedStatement.setLong(1, res.getCustomerId());
+                preparedStatement.setDate(2, (Date) res.getStartDate());
+                preparedStatement.setDate(3, (Date) res.getEndDate());
+                preparedStatement.setBoolean(4, res.getRoom().isSmoking());
+                preparedStatement.setString(5, res.getRoom().getBedType().toString());
+                preparedStatement.setInt(6, res.getRoom().getNumBeds());
+                preparedStatement.setBoolean(7, res.isCanceled());
+                preparedStatement.setString(8, res.getRoom().getQualityLevel().toString());
+                preparedStatement.setString(9, res.getIsCheckedIn().toString());
+                preparedStatement.setLong(10, res.getReservationId());
+
+
             } else {
                 // Insert a new person
                 saveSQL = "INSERT INTO RESERVATION (CUSTOMER_ID, START_DATE, END_DATE, IS_SMOKING, BED_TYPE, NUM_BEDS," +
-                        " IS_CANCELED, QUALITY_LVL) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                        " IS_CANCELED, QUALITY_LVL, CHECK_IN_STATUS) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
                 preparedStatement = dbConnection.prepareStatement(saveSQL, Statement.RETURN_GENERATED_KEYS);
                 preparedStatement.setLong(1, res.getCustomerId()); //FIX ME: HOW DO?
                 preparedStatement.setDate(2, (Date) res.getStartDate());
@@ -66,6 +72,8 @@ public class ReservationDBO {
                 preparedStatement.setInt(6, res.getRoom().getNumBeds());
                 preparedStatement.setBoolean(7, res.isCanceled());
                 preparedStatement.setString(8, res.getRoom().getQualityLevel().toString());
+                preparedStatement.setString(9, res.getIsCheckedIn().toString());
+
             }
 
             preparedStatement.executeUpdate();
@@ -102,11 +110,11 @@ public class ReservationDBO {
         PreparedStatement preparedStatement = null;
 
         try {
-            String deleteSQL = "DELETE FROM RESERVATION WHERE CUSTOMER_ID = ?";
+            String deleteSQL = "DELETE FROM RESERVATION WHERE RESERVATION_ID = ?";
             preparedStatement = dbConnection.prepareStatement(deleteSQL);
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
-            System.out.println("RESERVATION with CUSTOMER_ID " + id + " has been deleted.");
+            System.out.println("RESERVATION with RESERVATION_ID " + id + " has been deleted.");
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         } finally {
@@ -126,12 +134,12 @@ public class ReservationDBO {
      * @param id
      * @return Reservation found by id
      */
-    public Reservation findById(Long id) {
+    public Reservation findByReservationId(Long id) {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
         try {
-            String findByIdSQL = "SELECT * FROM RESERVATION WHERE ID = ?";
+            String findByIdSQL = "SELECT * FROM RESERVATION WHERE RESERVATION_ID = ?";
             preparedStatement = dbConnection.prepareStatement(findByIdSQL);
             preparedStatement.setLong(1, id);
 
@@ -142,6 +150,7 @@ public class ReservationDBO {
                         resultSet.getDate("START_DATE"),
                         resultSet.getDate("END_DATE"),
                         resultSet.getBoolean("IS_CANCELED"),
+                        resultSet.getLong("RESERVATION_ID"),
                         resultSet.getLong("CUSTOMER_ID"),
                         new Room(
                                 resultSet.getBoolean("IS_SMOKING"),
@@ -223,6 +232,7 @@ public class ReservationDBO {
                         resultSet.getDate("START_DATE"),
                         resultSet.getDate("END_DATE"),
                         resultSet.getBoolean("IS_CANCELED"),
+                        resultSet.getLong("RESERVATION_ID"),
                         resultSet.getLong("CUSTOMER_ID"),
                         new Room(
                                 resultSet.getBoolean("IS_SMOKING"),
@@ -274,6 +284,7 @@ public class ReservationDBO {
                         resultSet.getDate("START_DATE"),
                         resultSet.getDate("END_DATE"),
                         resultSet.getBoolean("IS_CANCELED"),
+                        resultSet.getLong("RESERVATION_ID"),
                         resultSet.getLong("CUSTOMER_ID"),
                         new Room(
                                 resultSet.getBoolean("IS_SMOKING"),
@@ -282,6 +293,8 @@ public class ReservationDBO {
                                 Room.QualityLevel.valueOf(resultSet.getString("QUALITY_LVL"))
                         )
                 );
+
+                res.setIsCheckedIn(Reservation.CheckInStatus.valueOf(resultSet.getString("CHECK_IN_STATUS")));
                 resList.add(res);
             }
         } catch (SQLException e) {
