@@ -1,6 +1,6 @@
 package UI;
 
-import Controller.AllReservationsGuestViewController;
+import Controller.ReservationGuestViewController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,14 +11,14 @@ public class ReservationViewUI extends JPanel{
 
 
     private UINavigator uiNavigator;
-    private AllReservationsGuestViewController controller;
+    private ReservationGuestViewController controller;
 
     /**
      * constructor
      * @param uiNavigator
      * @param rGVC
      */
-    public ReservationViewUI(UINavigator uiNavigator, AllReservationsGuestViewController rGVC){
+    public ReservationViewUI(UINavigator uiNavigator, ReservationGuestViewController rGVC){
         this.uiNavigator = uiNavigator;
         this.controller = rGVC;
     }
@@ -29,72 +29,73 @@ public class ReservationViewUI extends JPanel{
     private JLabel qualityLbl,
             bedTypeLbl,
             bedTotalLbl,
-            smokingLbl;
-    private JTextField arrivalDateField,
-            endDateField,
-            guestTotalField;
-    private JButton reserveButton;
+            smokingLbl,
+            arrivalDateLbl,
+            endDateLbl,
+            guestTotalLbl;
 
-    private final class CancelReservation implements ActionListener {
+    private JButton cancelButton, modifyButton;
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            //controller.reserveRoom();
-        }
-    }
+//    private final class CancelReservation implements ActionListener {
+//
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            //controller.reserveRoom();
+//        }
+//    }
 
     //shows that the room is available
-    public void canCancelDialogueBox() {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                JDialog box = new JDialog();
-                JPanel items = new JPanel();
-                items.setLayout(new BoxLayout(items, BoxLayout.Y_AXIS));
-                JLabel desc = new JLabel("A room is available at these specified dates!");
+//    public void canCancelDialogueBox() {
+//        SwingUtilities.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                JDialog box = new JDialog();
+//                JPanel items = new JPanel();
+//                items.setLayout(new BoxLayout(items, BoxLayout.Y_AXIS));
+//                JLabel desc = new JLabel("A room is available at these specified dates!");
+//
+//                desc.setAlignmentX(Component.CENTER_ALIGNMENT);
+//                JButton confirmBtn = new JButton("Make Reservation"); // FIXME: sends to billing
+//                //confirmBtn.addActionListener(new MakeReservationGUI.ReserveRoom());
+//                confirmBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+//
+//
+//                box.setPreferredSize(new Dimension(600, 400));
+//                box.setTitle("Available Room");
+//                items.add(desc);
+//                items.add(confirmBtn);
+//                box.add(items);
+//                box.pack();
+//
+//                box.setLocationRelativeTo(getParent());
+//                box.setVisible(true);
+//
+//            }
+//        });
+//    }
 
-                desc.setAlignmentX(Component.CENTER_ALIGNMENT);
-                JButton confirmBtn = new JButton("Make Reservation"); // FIXME: sends to billing
-                //confirmBtn.addActionListener(new MakeReservationGUI.ReserveRoom());
-                confirmBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-
-                box.setPreferredSize(new Dimension(600, 400));
-                box.setTitle("Available Room");
-                items.add(desc);
-                items.add(confirmBtn);
-                box.add(items);
-                box.pack();
-
-                box.setLocationRelativeTo(getParent());
-                box.setVisible(true);
-
-            }
-        });
-    }
-
-    public void isCancelledDialogueBox() {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                JDialog box = new JDialog();
-                JPanel items = new JPanel();
-                items.setLayout(new BoxLayout(items, BoxLayout.Y_AXIS));
-                JLabel desc = new JLabel("");
-                desc.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-                box.setPreferredSize(new Dimension(600, 400));
-                box.setTitle("Available Room");
-                items.add(desc);
-                box.add(items);
-                box.pack();
-
-                box.setLocationRelativeTo(getParent());
-                box.setVisible(true);
-
-            }
-        });
-    }
+//    public void isCancelledDialogueBox() {
+//        SwingUtilities.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                JDialog box = new JDialog();
+//                JPanel items = new JPanel();
+//                items.setLayout(new BoxLayout(items, BoxLayout.Y_AXIS));
+//                JLabel desc = new JLabel("");
+//                desc.setAlignmentX(Component.CENTER_ALIGNMENT);
+//
+//                box.setPreferredSize(new Dimension(600, 400));
+//                box.setTitle("Available Room");
+//                items.add(desc);
+//                box.add(items);
+//                box.pack();
+//
+//                box.setLocationRelativeTo(getParent());
+//                box.setVisible(true);
+//
+//            }
+//        });
+//    }
 
     //makes the GUI for the frame
     public ReservationViewUI() {
@@ -118,11 +119,11 @@ public class ReservationViewUI extends JPanel{
         bedTotalLbl = new JLabel("Bed Total: " + room[2]);
         smokingLbl = new JLabel("Smoking: " + room[3]);
 
-        arrivalDateField = new JTextField(8);
-        endDateField= new JTextField(8);
-        guestTotalField = new JTextField(2);
-        reserveButton = new JButton("Reserve");
-        //reserveButton.addActionListener(new MakeReservationGUI.ConfirmReserveRoom());
+        arrivalDateLbl = new JLabel("Start Date: " + "12-31-23");
+        endDateLbl= new JLabel("End Date: " + "1-34-23");
+        guestTotalLbl = new JLabel("Total Guests: " + 12);
+        cancelButton = new JButton("Cancel Reservation");
+        //cancelButton.addActionListener(new MakeReservationGUI.ConfirmReserveRoom());
 
 
         //}
@@ -157,26 +158,23 @@ public class ReservationViewUI extends JPanel{
         roomDescription.add(smokingLbl, constraints);
 
         constraints.gridy = 0;
-        reserveOptions.add(new JLabel("Start Date:"), constraints);
-        reserveOptions.add(arrivalDateField, constraints);
+        reserveOptions.add(arrivalDateLbl, constraints);
 
         ++constraints.gridy;
-        reserveOptions.add(new JLabel("End Date:"), constraints);
-        reserveOptions.add(endDateField, constraints);
+        reserveOptions.add(endDateLbl, constraints);
 
         ++constraints.gridy;
-        reserveOptions.add(new JLabel("Guest Total: "), constraints);
-        reserveOptions.add(guestTotalField, constraints);
+        reserveOptions.add(guestTotalLbl, constraints);
 
         ++constraints.gridy;
-        reserveOptions.add(reserveButton, constraints);
+        reserveOptions.add(cancelButton, constraints);
+        //reserveOption.add(modifyButton,constraints);
 
         add(roomDescription);
         add(reserveOptions);
 
         //Instead of pack, directly set the frame to be visible
         setVisible(true);
-
     }
 //    public JPanel initSideMenu(){
 //        JPanel side = super.initSideMenu();
@@ -212,7 +210,7 @@ public class ReservationViewUI extends JPanel{
         frame.setVisible(true);
     }
 
-    public static void runGUI() {
+    public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 createAndShowGUI();

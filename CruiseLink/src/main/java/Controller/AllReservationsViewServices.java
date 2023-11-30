@@ -20,7 +20,7 @@ public class AllReservationsViewServices {
     public ReservationViewServices viewReservation(long reservationID) throws ParseException { //based on database
         //selectedReservation = ReservationDatabaseController.getReservation(long reservationID);
         Reservation selectedReservation = new Reservation(sdf.parse("01-14-2024"),sdf.parse("01-28-2024"),false,new Room()); //mock reservation
-        Object[] reservation = {selectedReservation.getID(),
+        Object[] reservation = {selectedReservation.getId(),
                 selectedReservation.getShipName(),
                 sdf.format(selectedReservation.getStartDate()),
                 sdf.format(selectedReservation.getEndDate())};
