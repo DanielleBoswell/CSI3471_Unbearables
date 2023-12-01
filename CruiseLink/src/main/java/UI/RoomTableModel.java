@@ -3,7 +3,7 @@ package UI;
 import javax.swing.table.AbstractTableModel;
 
 
-class MyTableModel extends AbstractTableModel {
+class RoomTableModel extends AbstractTableModel {
     static Boolean DEBUG = false;
     public String[] columnNames = {"Quality Level",
             "Bed Type",

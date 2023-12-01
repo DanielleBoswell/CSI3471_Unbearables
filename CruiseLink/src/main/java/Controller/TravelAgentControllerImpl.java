@@ -32,7 +32,7 @@ public class TravelAgentControllerImpl implements TravelAgentController { // ---
     }
 
     public void onMakeReservation(){
-
+        uiNavigator.showCard(UINavigator.CHOOSE_GUEST_PANEL);
         System.out.println("Making a Reservation");
     }
 

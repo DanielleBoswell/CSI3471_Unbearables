@@ -1,20 +1,19 @@
 package UI;
 
-/*
- * TableFilterDemo.java requires SpringUtilities.java
- */
 import net.coderazzi.filters.gui.AutoChoices;
 import net.coderazzi.filters.gui.TableFilterHeader;
 
 import javax.swing.*;
-import javax.swing.event.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class CreateReservation_ChooseRoom extends JPanel {
+public class CreateReservation_ChooseGuest extends JPanel {
 
     UINavigator uiNavigator;
     private boolean DEBUG = false;
@@ -43,26 +42,29 @@ public class CreateReservation_ChooseRoom extends JPanel {
         }
 
     }
-    public CreateReservation_ChooseRoom(UINavigator nav) {this.uiNavigator = nav;}
-    public JPanel CreateReservation_ChooseRoom_creator() {
+
+    public CreateReservation_ChooseGuest(UINavigator nav) {
+        this.uiNavigator = nav;
+    }
+
+    public JPanel CreateReservation_ChooseGuest_creator() {
         TableFilterHeader filterHeader = new TableFilterHeader(table, AutoChoices.ENABLED);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        RoomTableModel m = new RoomTableModel();
+        GuestTableModel m = new GuestTableModel();
 
         //Create a table with a sorter.
         //DefaultTableModel model = new DefaultTableModel(m.data, m.columnNames);
-        final Class<?>[] columnClass = new Class[] {
+        final Class<?>[] columnClass = new Class[]{
                 String.class, String.class, String.class, Integer.class, Boolean.class
         };
         DefaultTableModel model = new DefaultTableModel(m.data, m.columnNames) {
             @Override
-            public boolean isCellEditable(int row, int column)
-            {
+            public boolean isCellEditable(int row, int column) {
                 return false;
             }
+
             @Override
-            public Class<?> getColumnClass(int columnIndex)
-            {
+            public Class<?> getColumnClass(int columnIndex) {
                 return columnClass[columnIndex];
             }
         };
@@ -97,9 +99,11 @@ public class CreateReservation_ChooseRoom extends JPanel {
                     public void changedUpdate(DocumentEvent e) {
                         newFilter();
                     }
+
                     public void insertUpdate(DocumentEvent e) {
                         newFilter();
                     }
+
                     public void removeUpdate(DocumentEvent e) {
                         newFilter();
                     }
@@ -113,6 +117,7 @@ public class CreateReservation_ChooseRoom extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 //insert function here todo
                 System.out.println("Submit button clicked!");
+                uiNavigator.showCard(UINavigator.CHOOSE_CRUISE_PANEL);
             }
         });
         JButton dialogButton = new JButton("Cancel");
@@ -139,7 +144,7 @@ public class CreateReservation_ChooseRoom extends JPanel {
         RowFilter<DefaultTableModel, Object> rf = null;
         //If current expression doesn't parse, don't update.
         try {
-            rf = RowFilter.regexFilter(selectedText.getText(), 0,1,2);
+            rf = RowFilter.regexFilter(selectedText.getText(), 0, 1, 2);
         } catch (java.util.regex.PatternSyntaxException e) {
             return;
         }
@@ -176,4 +181,5 @@ public class CreateReservation_ChooseRoom extends JPanel {
                 }
             }
         }
-    }}
+    }
+}

@@ -12,7 +12,7 @@ public class GuestControllerImpl implements GuestController {
     }
 
     public void onSearchCruises() {
-        uiNavigator.showCard(UINavigator.CHOOSE_ROOM_PANEL);
+        uiNavigator.showCard(UINavigator.CHOOSE_CRUISE_PANEL);
         System.out.println("Searching Cruises");
     }
 
