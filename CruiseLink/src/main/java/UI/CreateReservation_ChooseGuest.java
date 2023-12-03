@@ -125,7 +125,7 @@ public class CreateReservation_ChooseGuest extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Cancel button clicked!");
-
+                uiNavigator.showCard(UINavigator.TRAVEL_AGENT_LANDING_PANEL);
             }
         });
 

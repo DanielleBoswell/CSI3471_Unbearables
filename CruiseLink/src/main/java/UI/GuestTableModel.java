@@ -5,10 +5,10 @@ import javax.swing.table.AbstractTableModel;
 
 class GuestTableModel extends AbstractTableModel {
     static Boolean DEBUG = false;
-    public String[] columnNames = {"Guest Info"};
+    public String[] columnNames = {"Name", "Age", "Email", "Username"};
 
-    public Object[][] data = {
-            {"info"}
+    public String[][] data = {
+            {}
     };
 
     public int getColumnCount() {
