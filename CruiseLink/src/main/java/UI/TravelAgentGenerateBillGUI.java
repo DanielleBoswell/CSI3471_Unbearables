@@ -1,5 +1,8 @@
 package UI;
 
+import Controller.AdminControllerImpl;
+import Controller.TravelAgentControllerImpl;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
@@ -22,6 +25,12 @@ public class TravelAgentGenerateBillGUI {
     public TravelAgentGenerateBillGUI(UINavigator UINavigator) {
         this.UINavigator = UINavigator;
         readReservationsFromCSV("Travel_agent_generate_bill.csv"); //Testing with csv file
+    }
+
+    private TravelAgentControllerImpl travelAgentController;
+
+    public void setController(TravelAgentControllerImpl travelAgentController) {
+        this.travelAgentController = travelAgentController;
     }
 
     public JPanel createTravelAgentBilling(){

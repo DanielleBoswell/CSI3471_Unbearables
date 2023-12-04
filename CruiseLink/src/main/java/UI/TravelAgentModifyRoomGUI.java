@@ -1,5 +1,7 @@
 package UI;
 
+import Controller.TravelAgentControllerImpl;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
@@ -18,6 +20,12 @@ public class TravelAgentModifyRoomGUI { // ------------- This UI should only hav
     private JTextArea roomDetailsTextArea;
 
     private JComboBox<String> qualityLevelComboBox, smokingStatusComboBox, bedTypeComboBox;
+
+    private TravelAgentControllerImpl travelAgentController;
+
+    public void setController(TravelAgentControllerImpl travelAgentController) {
+        this.travelAgentController = travelAgentController;
+    }
 
     public JPanel createTravelAgentModifyRoom(){
 
