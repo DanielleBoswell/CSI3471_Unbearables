@@ -68,7 +68,7 @@ public class AccountDatabase {
      */
 
     private static String DB_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
-    private static String DB_CONNECTION = "jdbc:derby:ex1connect;create=true"; //"jdbc:derby:ex1connect;";
+    private static String DB_CONNECTION = "jdbc:derby:ex1connect;"; //"jdbc:derby:ex1connect;create=true";
     private static String DB_USER = "";
     private static String DB_PASSWORD = "";
 
