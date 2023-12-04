@@ -35,7 +35,7 @@ public class TravelAgentModifyRoomGUI { // ------------- This UI should only hav
         gbc.gridx = 0; //Align to the first column
         gbc.gridy = 0; //Place at the first row
         gbc.gridwidth = 2; //Span across two columns
-        gbc.insets = new Insets(10, 10, 20, 10); //Add some padding
+        gbc.insets = new Insets(10, 10, 10, 10); //Add some padding
         gbc.anchor = GridBagConstraints.CENTER;
         travelAgentModifyRoomPanel.add(modifyRoomLabel, gbc);
 
@@ -49,6 +49,11 @@ public class TravelAgentModifyRoomGUI { // ------------- This UI should only hav
 
         gbc.gridy = 2;
         gbc.anchor = GridBagConstraints.CENTER;
+
+        //Fixing issue where text box is smashed
+        cruiseNameField.setMinimumSize(new Dimension(200, 20));
+        roomNumberField.setMinimumSize(new Dimension(200, 20));
+
         travelAgentModifyRoomPanel.add(cruiseNameField, gbc);
 
         JLabel roomNumberLabel = new JLabel("Enter Room Number:");
@@ -74,6 +79,11 @@ public class TravelAgentModifyRoomGUI { // ------------- This UI should only hav
         roomDetailsTextArea = new JTextArea(5, 20);
         roomDetailsTextArea.setEditable(false);
         JScrollPane billScrollPane = new JScrollPane(roomDetailsTextArea);
+
+        //Fixing issue where text box is smashed
+        billScrollPane.setPreferredSize(new Dimension(200, 100));
+        billScrollPane.setMinimumSize(new Dimension(200, 100));
+
         gbc.gridy = 7;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;

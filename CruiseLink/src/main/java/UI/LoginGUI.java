@@ -1,6 +1,7 @@
 package UI;
 
 import Controller.LoginControllerImpl;
+import Domain.Person;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +9,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class LoginGUI extends JPanel {
+
+    //Create a Person for tracking user logged in -------------
+    private Person currentUser;
 
     //Constant for setting the text box width
     public static final int TEXT_BOX_WIDTH = 25;
@@ -39,8 +43,8 @@ public class LoginGUI extends JPanel {
     private UINavigator uiNavigator;
 
     //Constructor accepting UINavigator instance - Need this for switching panels
-    public LoginGUI(UINavigator uiNavigator) {
-
+    public LoginGUI(UINavigator uiNavigator, Person currentUser) {
+        this.currentUser = currentUser;
         this.uiNavigator = uiNavigator;
     }
 
@@ -84,7 +88,7 @@ public class LoginGUI extends JPanel {
             this.clearTextFields();
 
             //Pass to controller
-            loginController.onLoginPressed(username, password);
+            loginController.onLoginPressed(username, password); // ------------------------------------ would need to pass person object -------------
         });
 
         //Sign up button action listener

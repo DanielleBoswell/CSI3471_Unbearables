@@ -4,11 +4,15 @@ import Controller.AdminControllerImpl;
 import Controller.GuestControllerImpl;
 import Controller.LoginControllerImpl;
 import Controller.TravelAgentControllerImpl;
+import Domain.Person;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class UINavigator extends JFrame {
+
+    //Will try making a person object to track the user logged in
+    private Person currentUser;
 
     //Declaring a CardLayout to manage navigation of panels (GUIs)
     private static CardLayout cardLayout = null;
@@ -55,6 +59,9 @@ public class UINavigator extends JFrame {
 
     //Constructor for UINavigator class
     public UINavigator() {
+
+        //Make a new Person object
+        currentUser = new Person();
 
         //Creating a new JFrame with the title CruiseLink
         frame = new JFrame("CruiseLink");
@@ -113,6 +120,15 @@ public class UINavigator extends JFrame {
         frame.setVisible(true);
     }
 
+    //Getter and Setter for Person
+    public Person getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(Person currentUser) {
+        this.currentUser = currentUser;
+    }
+
     //Method to create the launch panel
     private JPanel createLaunch() {
 
@@ -127,7 +143,7 @@ public class UINavigator extends JFrame {
     private JPanel createLogin() {
 
         //Make a new page object and pass this UINavigator to its constructor - essential
-        LoginGUI loginGUIInstance = new LoginGUI(this);
+        LoginGUI loginGUIInstance = new LoginGUI(this, currentUser); // -------------------------- Pass Person object here
 
         //Create an instance of controller
         LoginControllerImpl loginController = new LoginControllerImpl(this);
