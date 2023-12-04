@@ -7,7 +7,7 @@ public class AllReservationsGuestViewController {
     public AllReservationsGuestViewController(){
         reservationViewServices = new AllReservationsViewServices();
     }
-    public String[][] viewReservationsGuest(){
+    public Object[][] viewReservationsGuest(){
         return reservationViewServices.viewUncancelledReservations(0l); //how to access Guest info
     }
 

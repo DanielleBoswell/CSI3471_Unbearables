@@ -50,7 +50,7 @@ public class ViewReservationsGUI extends JPanel {
     private JButton viewButton;
     private TableRowSorter<DefaultTableModel> sorter;
     private String[] columnNames = {"ID","Cruise","Quality","Start Date","End Date"};
-    private Object[][] data = {{"123", "AA", "Executive", "12/31/23","1/14/24"},
+    private Object[][] data = {{"123", "AA", "BLARH", "12/31/23","1/14/24"},
                                 {"333", "EA", "Business", "12/31/23","1/14/24"}};
 
 
@@ -298,7 +298,7 @@ public class ViewReservationsGUI extends JPanel {
         //Create and set up the window.
         JFrame frame = new JFrame("Table View");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        //UINavigator i = new UINavigator();
         //Create and set up the content pane.
         ViewReservationsGUI newContentPane = new ViewReservationsGUI();
         newContentPane.setOpaque(true); //content panes must be opaque
