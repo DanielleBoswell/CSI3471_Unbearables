@@ -43,8 +43,8 @@ public class LoginGUI extends JPanel {
     private UINavigator uiNavigator;
 
     //Constructor accepting UINavigator instance - Need this for switching panels
-    public LoginGUI(UINavigator uiNavigator, Person currentUser) {
-        this.currentUser = currentUser;
+    public LoginGUI(UINavigator uiNavigator) {
+        //this.currentUser = currentUser;
         this.uiNavigator = uiNavigator;
     }
 
