@@ -47,6 +47,7 @@ public class ViewReservationsGUI extends JPanel {
     private JTable table;
     private JTextField filterText;
     private JTextField statusText;
+    private JButton viewButton;
     private TableRowSorter<DefaultTableModel> sorter;
     private String[] columnNames = {"ID","Cruise","Quality","Start Date","End Date"};
     private Object[][] data = {{"123", "AA", "Executive", "12/31/23","1/14/24"},
@@ -65,6 +66,8 @@ public class ViewReservationsGUI extends JPanel {
                 String.class, String.class, String.class, String.class, String.class,
                 String.class, String.class, String.class
         };
+
+        data = reservationController.viewReservationsGuest();
 
         DefaultTableModel model = new DefaultTableModel(data, columnNames) {
             @Override
@@ -252,7 +255,11 @@ public class ViewReservationsGUI extends JPanel {
                 int viewRow = table.getSelectedRow();
                 int modelRow =
                         table.convertRowIndexToModel(viewRow);
-                reservationController.viewReservationGuest(modelRow);
+                uiNavigator.add(new ReservationViewUI(uiNavigator, reservationController.viewReservationGuest(modelRow)),
+                        "RESERVATION_VIEW");
+                UINavigator.showCard("RESERVATION_VIEW");
+
+                //FIXME: switch to ReservationViewUI
                 javax.swing.SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {

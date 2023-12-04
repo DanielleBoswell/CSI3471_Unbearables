@@ -25,7 +25,6 @@ public class ReservationViewUI extends JPanel{
 
     private JPanel roomDescription, reserveOptions;
     private JLabel roomName;
-    private JTextArea description;
     private JLabel qualityLbl,
             bedTypeLbl,
             bedTotalLbl,
@@ -36,66 +35,91 @@ public class ReservationViewUI extends JPanel{
 
     private JButton cancelButton, modifyButton;
 
-//    private final class CancelReservation implements ActionListener {
-//
-//        @Override
-//        public void actionPerformed(ActionEvent e) {
-//            //controller.reserveRoom();
-//        }
-//    }
+    private final class CancelReservation implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            confirmCancelDialogueBox(controller.cancelReservationGuest());
+        }
+    }
+
+    private final class ConfirmedCancelReservation implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            isCancelledDialogueBox(controller.confirmCancellationGuest());
+        }
+    }
 
     //shows that the room is available
-//    public void canCancelDialogueBox() {
-//        SwingUtilities.invokeLater(new Runnable() {
-//            @Override
-//            public void run() {
-//                JDialog box = new JDialog();
-//                JPanel items = new JPanel();
-//                items.setLayout(new BoxLayout(items, BoxLayout.Y_AXIS));
-//                JLabel desc = new JLabel("A room is available at these specified dates!");
-//
-//                desc.setAlignmentX(Component.CENTER_ALIGNMENT);
-//                JButton confirmBtn = new JButton("Make Reservation"); // FIXME: sends to billing
-//                //confirmBtn.addActionListener(new MakeReservationGUI.ReserveRoom());
-//                confirmBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-//
-//
-//                box.setPreferredSize(new Dimension(600, 400));
-//                box.setTitle("Available Room");
-//                items.add(desc);
-//                items.add(confirmBtn);
-//                box.add(items);
-//                box.pack();
-//
-//                box.setLocationRelativeTo(getParent());
-//                box.setVisible(true);
-//
-//            }
-//        });
-//    }
+    public void confirmCancelDialogueBox(String description) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JDialog box = new JDialog();
+                JPanel items = new JPanel();
+                items.setLayout(new BoxLayout(items, BoxLayout.Y_AXIS));
+                JLabel desc = new JLabel(description);
 
-//    public void isCancelledDialogueBox() {
-//        SwingUtilities.invokeLater(new Runnable() {
-//            @Override
-//            public void run() {
-//                JDialog box = new JDialog();
-//                JPanel items = new JPanel();
-//                items.setLayout(new BoxLayout(items, BoxLayout.Y_AXIS));
-//                JLabel desc = new JLabel("");
-//                desc.setAlignmentX(Component.CENTER_ALIGNMENT);
-//
-//                box.setPreferredSize(new Dimension(600, 400));
-//                box.setTitle("Available Room");
-//                items.add(desc);
-//                box.add(items);
-//                box.pack();
-//
-//                box.setLocationRelativeTo(getParent());
-//                box.setVisible(true);
-//
-//            }
-//        });
-//    }
+                desc.setAlignmentX(Component.CENTER_ALIGNMENT);
+                JButton confirmBtn = new JButton("Confirm Cancellation"); // FIXME: sends to billing
+                confirmBtn.addActionListener(new ConfirmedCancelReservation());
+                confirmBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+
+                box.setPreferredSize(new Dimension(600, 400));
+                box.setTitle("Are you sure?");
+                items.add(desc);
+                items.add(confirmBtn);
+                box.add(items);
+                box.pack();
+
+                box.setLocationRelativeTo(getParent());
+                box.setVisible(true);
+
+            }
+        });
+    }
+
+    public void isCancelledDialogueBox(boolean ok) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JDialog box = new JDialog();
+                JPanel items = new JPanel();
+                items.setLayout(new BoxLayout(items, BoxLayout.Y_AXIS));
+                JButton backToReservationsButton;
+                JLabel desc;
+                if(ok){
+                    desc = new JLabel("Your Reservation has now been cancelled!");
+                    backToReservationsButton = new JButton("Go Back to All Reservations");
+                    backToReservationsButton.addActionListener(null);
+                }
+                else{
+                    desc = new JLabel("Your Reservation cannot be cancelled! Try again another time");
+                    backToReservationsButton = new JButton("Ok");
+                    backToReservationsButton.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+
+                        }
+                    });
+                }
+                desc.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+                box.setPreferredSize(new Dimension(600, 400));
+                box.setTitle("Reservation Cancellation");
+                items.add(desc);
+                box.add(items);
+                box.pack();
+                box.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+
+                box.setLocationRelativeTo(getParent());
+                box.setVisible(true);
+
+            }
+        });
+    }
 
     //makes the GUI for the frame
     public ReservationViewUI() {
@@ -110,19 +134,18 @@ public class ReservationViewUI extends JPanel{
         //else{
         roomDescription = new JPanel();
         reserveOptions = new JPanel();
-        roomName = new JLabel(room[0] + " Level");
+        roomName = new JLabel("Executive" + " Level");
         roomName.setFont(DefaultUI.getTitleFont());
-        description = new JTextArea("add room description here");
-        description.setEditable(false);
-        qualityLbl = new JLabel("Quality: " + room[0]);
-        bedTypeLbl = new JLabel("bedType: " + room[1]);
-        bedTotalLbl = new JLabel("Bed Total: " + room[2]);
-        smokingLbl = new JLabel("Smoking: " + room[3]);
+        qualityLbl = new JLabel("Quality: " + "Executive");
+        bedTypeLbl = new JLabel("bedType: " + "queen");
+        bedTotalLbl = new JLabel("Bed Total: " + 1);
+        smokingLbl = new JLabel("Smoking: " + "No");
 
         arrivalDateLbl = new JLabel("Start Date: " + "12-31-23");
         endDateLbl= new JLabel("End Date: " + "1-34-23");
-        guestTotalLbl = new JLabel("Total Guests: " + 12);
+        guestTotalLbl = new JLabel("Total Guests: " + 1);
         cancelButton = new JButton("Cancel Reservation");
+        modifyButton = new JButton("Modify Reservation"); // takes to Make Reservation
         //cancelButton.addActionListener(new MakeReservationGUI.ConfirmReserveRoom());
 
 
@@ -141,9 +164,6 @@ public class ReservationViewUI extends JPanel{
         //Adding labels and buttons to the frame, using y axis on grid
         constraints.gridy = 0; //0 starts at the top, etc
         roomDescription.add(roomName, constraints);
-
-        ++constraints.gridy;
-        roomDescription.add(description, constraints);
 
         ++constraints.gridy;
         roomDescription.add(qualityLbl, constraints);
@@ -168,7 +188,8 @@ public class ReservationViewUI extends JPanel{
 
         ++constraints.gridy;
         reserveOptions.add(cancelButton, constraints);
-        //reserveOption.add(modifyButton,constraints);
+        ++constraints.gridy;
+        reserveOptions.add(modifyButton,constraints);
 
         add(roomDescription);
         add(reserveOptions);
@@ -201,7 +222,7 @@ public class ReservationViewUI extends JPanel{
         frame.setLayout(new GridBagLayout());
 
         //Create and set up the content pane.
-        MakeReservationGUI newContentPane = new MakeReservationGUI();
+        ReservationViewUI newContentPane = new ReservationViewUI();
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
 

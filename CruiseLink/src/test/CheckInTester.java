@@ -47,15 +47,17 @@ public class CheckInTester {
         Date endDate1 = new Date();   // Replace with your desired end date
         boolean isCanceled1 = false;
         Long customerId1 = 1L;      // Replace with your desired customer ID
+        Long reservationId1 = 1L;
 
-        Reservation reservation1 = new Reservation(startDate1, endDate1, isCanceled1, customerId1, room1);
+        Reservation reservation1 = new Reservation(startDate1, endDate1, isCanceled1, reservationId1, customerId1, room1);
 
         Date startDate2 = new Date(); // Replace with your desired start date
         Date endDate2 = new Date();   // Replace with your desired end date
         boolean isCanceled2 = true;
         Long customerId2 = 2L;      // Replace with your desired customer ID
+        Long reservationId2 = 2L;
 
-        Reservation reservation2 = new Reservation(startDate2, endDate2, isCanceled2, customerId2, room2);
+        Reservation reservation2 = new Reservation(startDate2, endDate2, isCanceled2, reservationId2, customerId2, room2);
 
 
         Person person1 = new Person(1L, "John Doe", 30, "john_doe", "password123", "john@example.com", "Male");
