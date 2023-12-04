@@ -13,6 +13,7 @@ public class Reservation {
     private Room room;
     private Long customerId;
     private Long reservationId;
+    private String ship;
 
     public Reservation() {
         startDate = null;
@@ -88,6 +89,14 @@ public class Reservation {
 
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
+    }
+
+    public String getShip() {
+        return ship;
+    }
+
+    public void setShip(String ship) {
+        this.ship = ship;
     }
 
     @Override

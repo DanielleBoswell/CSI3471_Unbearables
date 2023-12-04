@@ -2,6 +2,7 @@ package UI;
 
 import Controller.CheckInController;
 import Controller.CheckInControllerImpl;
+import Controller.MyMenuBarControllerImpl;
 import Domain.Reservation;
 import Domain.Room;
 import Repository.ReservationDBO;
@@ -27,6 +28,8 @@ public class CheckInUI extends JPanel {
     // Table of Reservations
     private JTable reservationTable;
 
+    // Menu Bar
+    MyMenuBar menu;
 
     // Making a CheckIn controller impl object
     private CheckInControllerImpl checkInController;
@@ -44,6 +47,10 @@ public class CheckInUI extends JPanel {
 
     // This method creates the check in UI which will return the panel
     public JPanel createCheckInUIPanel() {
+        // add menu
+        //menu = new MyMenuBar(new MyMenuBarControllerImpl());
+        //this.add(menu);
+
         // Setting layout to GridBagLayout
         this.setLayout(new GridBagLayout());
 
@@ -56,7 +63,7 @@ public class CheckInUI extends JPanel {
         List<Reservation> resList = resDBO.findAll();
 
         String[] colNames = {"START_DATE", "END_DATE", "IS_CANCELED", "ROOM_NUMBER", "IS_SMOKING", "BED_TYPE",
-                "NUM_BEDS", "QUALITY_LVL"};
+                "NUM_BEDS", "QUALITY_LVL", "SHIP"};
 
         String tblData[][] = new String[resDBO.count()][8];
         int i = 0;
@@ -67,9 +74,18 @@ public class CheckInUI extends JPanel {
         }
 
         reservationTable = new JTable(tblData, colNames);
+        // Setting the preferred size of the JTable
+        reservationTable.setPreferredScrollableViewportSize(new Dimension(800, 500)); // Adjust as needed
 
-        this.add(reservationTable);
-        reservationTable.setVisible(true);
+
+        // Adding the JTable to a JScrollPane
+        JScrollPane scrollPane = new JScrollPane(reservationTable);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+        this.add(scrollPane);
+
+//        this.add(reservationTable);
+//        reservationTable.setVisible(true);
 
         // Returning the JPanel
         return this;
