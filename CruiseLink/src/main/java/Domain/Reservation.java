@@ -1,6 +1,7 @@
 package Domain;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class Reservation {
@@ -9,11 +10,14 @@ public class Reservation {
     private boolean isCanceled;
     private Room room;
 
+    private Long customerId;
+
     public Reservation() {
         startDate = null;
         endDate = null;
         isCanceled = false;
         room = null;
+        customerId = null;
     }
 
     public Reservation(Date start, Date end, boolean b, Room r) {
@@ -21,6 +25,14 @@ public class Reservation {
         endDate = end;
         isCanceled = b;
         room = r;
+    }
+
+    public Reservation(Date start, Date end, boolean b, Long id, Room r) {
+        startDate = start;
+        endDate = end;
+        isCanceled = b;
+        room = r;
+        customerId = id;
     }
 
     public Date getStartDate() {
@@ -55,6 +67,14 @@ public class Reservation {
         this.room = room;
     }
 
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,5 +95,14 @@ public class Reservation {
                 ", endDate = " + endDate +
                 ", isCanceled = " + isCanceled +
                 ", room = " + room;
+    }
+
+    public String[] toStringArray() {
+
+        String[] strArr = {startDate.toString(), endDate.toString(), Boolean.toString(isCanceled), Integer.toString(room.getRoomNumber()),
+            Boolean.toString(room.isSmoking()), room.getBedType().toString(), Integer.toString(room.getNumBeds()),
+            room.getQualityLevel().toString()};
+
+        return strArr;
     }
 }

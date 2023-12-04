@@ -10,7 +10,7 @@ public class guestCreator {
 
     Guest newUser = new Guest();
     AccountDatabase foundation = new AccountDatabase();
-    guestCreator() throws SQLException {
+    public guestCreator() throws SQLException {
         foundation.createAccountDatabase();
 
     }
@@ -24,12 +24,12 @@ public class guestCreator {
         return true;
     }
 
-    public void setDetails(String email, String name, String card, String address){
+    public void setDetails(String email, String name, String age, String password){
 
         newUser.setEmail(email);
         newUser.setName(name);
-        newUser.setCard(card);
-        newUser.setAddress(address);
+        newUser.setAge(Integer.parseInt(age));
+        newUser.setPassword(password);
     }
 
     public void saveUser(){

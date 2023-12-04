@@ -1,18 +1,11 @@
 package UI;
 
-import Controller.AdminControllerImpl;
-import Controller.GuestControllerImpl;
-import Controller.LoginControllerImpl;
-import Controller.TravelAgentControllerImpl;
-import Domain.Person;
+import Controller.*;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class UINavigator extends JFrame {
-
-    //Will try making a person object to track the user logged in
-    private Person currentUser;
 
     //Declaring a CardLayout to manage navigation of panels (GUIs)
     private static CardLayout cardLayout = null;
@@ -36,21 +29,8 @@ public class UINavigator extends JFrame {
     public static final String TRAVEL_AGENT_LANDING_PANEL = "Travel Agent Landing Panel";
     public static final String ADMIN_LANDING_PANEL = "Admin Landing Panel";
     public static final String GUEST_LANDING_PANEL = "Guest Landing Panel";
-
-    public static final String TRAVEL_AGENT_BILLING_PANEL = "Travel Agent Billing Panel";
-
-    public static final String TRAVEL_AGENT_MODIFY_ROOM_PANEL = "Travel Agent Modify Room Panel";
-
-
-
-
-
-
-
-
-
-
-
+    public static final String PROFILE_PAGE = "Profile Page";
+    public static final String CHECK_IN_PANEL = "Check In Panel";
 
     /* ----------- ADD IDENTIFIERS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
 
@@ -59,9 +39,6 @@ public class UINavigator extends JFrame {
 
     //Constructor for UINavigator class
     public UINavigator() {
-
-        //Make a new Person object
-        currentUser = new Person();
 
         //Creating a new JFrame with the title CruiseLink
         frame = new JFrame("CruiseLink");
@@ -95,18 +72,8 @@ public class UINavigator extends JFrame {
         cardPanel.add(createTravelAgentLanding(), TRAVEL_AGENT_LANDING_PANEL);
         cardPanel.add(createAdminLanding(), ADMIN_LANDING_PANEL);
         cardPanel.add(createGuestLanding(), GUEST_LANDING_PANEL);
-        cardPanel.add(createTravelAgentBilling(), TRAVEL_AGENT_BILLING_PANEL);
-        cardPanel.add(createTravelAgentModifyRoom(), TRAVEL_AGENT_MODIFY_ROOM_PANEL);
-
-
-
-
-
-
-
-
-
-
+        cardPanel.add(createProfilePage(), PROFILE_PAGE);
+        cardPanel.add(createCheckIn(), CHECK_IN_PANEL);
 
         /* ----------- ADD PANELS HERE FOR EACH GUI PAGE ----------- */
 
@@ -118,15 +85,6 @@ public class UINavigator extends JFrame {
 
         //Make the frame visible after all components have been added
         frame.setVisible(true);
-    }
-
-    //Getter and Setter for Person
-    public Person getCurrentUser() {
-        return currentUser;
-    }
-
-    public void setCurrentUser(Person currentUser) {
-        this.currentUser = currentUser;
     }
 
     //Method to create the launch panel
@@ -143,7 +101,7 @@ public class UINavigator extends JFrame {
     private JPanel createLogin() {
 
         //Make a new page object and pass this UINavigator to its constructor - essential
-        LoginGUI loginGUIInstance = new LoginGUI(this, currentUser); // -------------------------- Pass Person object here
+        LoginGUI loginGUIInstance = new LoginGUI(this);
 
         //Create an instance of controller
         LoginControllerImpl loginController = new LoginControllerImpl(this);
@@ -187,25 +145,19 @@ public class UINavigator extends JFrame {
         return guestLandingGUIInstance.createGuestLandingPanel();
     }
 
-    private JPanel createTravelAgentBilling() {
-        TravelAgentGenerateBillGUI travelAgentGenerateBillGUIInstance = new TravelAgentGenerateBillGUI(this);
-        return travelAgentGenerateBillGUIInstance.createTravelAgentBilling();
+    private JPanel createProfilePage() {
+        ProfilePageUI profilePageGUIInstance = new ProfilePageUI(this);
+        ProfileControllerImpl profileController= new ProfileControllerImpl(this);
+        profilePageGUIInstance.setController(profileController);
+        return profilePageGUIInstance.createProfilePagePanel();
     }
 
-    private JPanel createTravelAgentModifyRoom() {
-        TravelAgentModifyRoomGUI travelAgentModifyRoomGUIInstance = new TravelAgentModifyRoomGUI(this);
-        return travelAgentModifyRoomGUIInstance.createTravelAgentModifyRoom();
+    private JPanel createCheckIn() {
+        CheckInUI checkInUIInstance = new CheckInUI(this);
+        CheckInControllerImpl checkInController = new CheckInControllerImpl(this);
+        checkInUIInstance.setController(checkInController);
+        return checkInUIInstance.createCheckInUIPanel();
     }
-
-
-
-
-
-
-
-
-
-
 
 
     /* ----------- ADD PANEL METHODS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */

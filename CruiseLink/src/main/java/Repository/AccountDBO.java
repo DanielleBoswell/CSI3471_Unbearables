@@ -12,11 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Kyle Hoang 11/01/2023
- * This file implements the operations for the AccountDatabase
+ * Author: Kyle Hoang
+ * Created on: 11/01/2023
+ *
+ * This class implements operations for the ACCOUNT database.
+ * It uses a Connection to interact with the database.
+ *
  * Methods: save, delete, findById, findAll, find, count
- * NOTE: The database is currently modeled after Assignment 10's
- * The values should be changed to match Users
  */
 
 public class AccountDBO {
@@ -27,7 +29,8 @@ public class AccountDBO {
     }
 
     /**
-     * This function inserts or updates a Person on AccountDatabase
+     * @author Kyle Hoang
+     * This function inserts or updates a Person on PersonDatabase
      * @param person
      */
     public void save(Person person) {
@@ -45,6 +48,8 @@ public class AccountDBO {
                 preparedStatement.setString(4, person.getPassword());
                 preparedStatement.setString(5, person.getEmail());
                 preparedStatement.setString(6, person.getGender());
+                preparedStatement.setInt(7, this.count());
+
             } else {
                 // Insert a new person
                 saveSQL = "INSERT INTO Person (NAME, AGE, USERNAME, PASSWORD, EMAIL, GENDER) VALUES (?, ?, ?, ?, ?, ?)";
@@ -82,7 +87,8 @@ public class AccountDBO {
     }
 
     /**
-     * This function deletes a person from the AccountDatabase
+     * @author Kyle Hoang
+     * This function deletes a person from the PersonDatabase
      * @param id
      */
     public void delete(Long id) {
@@ -108,9 +114,10 @@ public class AccountDBO {
     }
 
     /**
-     * This function searches the AccountDatabase for a Person that matches id
+     * @author Kyle Hoang
+     * This function searches the PersonDatabase for a Person that matches id
      * @param id
-     * @return
+     * @return Person found
      */
     public Person findById(Long id) {
         PreparedStatement preparedStatement = null;
@@ -155,8 +162,9 @@ public class AccountDBO {
     }
 
     /**
+     * @author Kyle Hoang
      * This function returns a list of every Person in the AccountDatabase
-     * @return
+     * @return List of Persons in the PERSON database
      */
     public List<Person> findAll() {
         List<Person> persons = new ArrayList<>();
@@ -200,10 +208,11 @@ public class AccountDBO {
 
 
     /**
+     * @author Kyle Hoang
      * This function returns a list of people who match the given condition
-     * condition should be in format of "TABLEFIELD = value"
+     * which should be in format of "TABLEFIELD <operator> value"
      * @param condition
-     * @return
+     * @return List of Persons found using the condition
      */
     public List<Person> find(String condition) {
         List<Person> persons = new ArrayList<>();
@@ -245,6 +254,11 @@ public class AccountDBO {
         return persons;
     }
 
+    /**
+     * @author Kyle Hoang
+     * This method counts the number of Persons in PERSON database
+     * @return int which is number of Persons in PERSON database
+     */
     public int count() {
         Statement statement = null;
         ResultSet resultSet = null;
