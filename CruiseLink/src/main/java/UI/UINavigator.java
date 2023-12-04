@@ -30,7 +30,7 @@ public class UINavigator extends JFrame {
     public static final String ADMIN_LANDING_PANEL = "Admin Landing Panel";
     public static final String GUEST_LANDING_PANEL = "Guest Landing Panel";
     public static final String PROFILE_PAGE = "Profile Page";
-
+    public static final String CHECK_IN_PANEL = "Check In Panel";
 
     /* ----------- ADD IDENTIFIERS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
 
@@ -73,7 +73,7 @@ public class UINavigator extends JFrame {
         cardPanel.add(createAdminLanding(), ADMIN_LANDING_PANEL);
         cardPanel.add(createGuestLanding(), GUEST_LANDING_PANEL);
         cardPanel.add(createProfilePage(), PROFILE_PAGE);
-
+        cardPanel.add(createCheckIn(), CHECK_IN_PANEL);
 
         /* ----------- ADD PANELS HERE FOR EACH GUI PAGE ----------- */
 
@@ -152,6 +152,12 @@ public class UINavigator extends JFrame {
         return profilePageGUIInstance.createProfilePagePanel();
     }
 
+    private JPanel createCheckIn() {
+        CheckInUI checkInUIInstance = new CheckInUI(this);
+        CheckInControllerImpl checkInController = new CheckInControllerImpl(this);
+        checkInUIInstance.setController(checkInController);
+        return checkInUIInstance.createCheckInUIPanel();
+    }
 
 
     /* ----------- ADD PANEL METHODS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */

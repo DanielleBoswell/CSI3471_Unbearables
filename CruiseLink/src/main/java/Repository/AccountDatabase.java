@@ -16,7 +16,7 @@ import java.sql.Statement;
 
 public class AccountDatabase {
 
-    private Map<Integer, Guest> guestAccounts;
+/*    private Map<Integer, Guest> guestAccounts;
     private Map<Integer, Agent> agentAccounts;
     private Map<Integer, Admin> adminAccounts;
 
@@ -46,51 +46,49 @@ public class AccountDatabase {
 
     public Map<Integer, Guest> getGuestAccounts() {
         return guestAccounts;
-    }
+    }*/
 
 
 
 
     // Begin Kyle Hoang's implementation of Apache Derby Account Database
     /**
-     * Created by Kyle Hoang 11/01/2023
-     * This file implements the creation and deletion for the AccountDatabase
-     * Methods: save, delete, findById, findAll, find, count
-     * NOTE: The database is currently modeled after Assignment 10's
-     * The values should be changed to match Users
+     * Author: Kyle Hoang
+     * Created on: 11/01/2023
+     *
+     * This class provides methods for creating and deleting a database table for Persons.
+     * It also includes a method for obtaining a connection to the database.
+     *
+     * The reservation table, named "PERSON," stores details such as ID, name, age, username, password,
+     * email, and gender.
+     *
+     * Methods:
+     * - {@link #createAccountDatabase() createAccountDatabase}
+     * - {@link #deleteAccountDatabase() deleteAccountDatabase}
      */
 
-    private static final String DB_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
-    private static final String DB_CONNECTION = "jdbc:derby:ex1connect;create=true"; //"jdbc:derby:ex1connect;";
-    private static final String DB_USER = "";
-    private static final String DB_PASSWORD = "";
+    private static String DB_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
+    private static String DB_CONNECTION = "jdbc:derby:ex1connect;create=true"; //"jdbc:derby:ex1connect;";
+    private static String DB_USER = "";
+    private static String DB_PASSWORD = "";
 
-    public static void main(String[] argv) {
+/*    public static void main(String[] argv) {
         try {
             createAccountDatabase();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }
+    }*/
 
     /**
-     * This function creates a new database table for the accounts
-     * @throws SQLException
+     * @author Kyle Hoang
+     *
+     * This function creates a new database table PERSON for the Persons
+     * @throws SQLException if a SQL exception occurs during the database operations.
      */
-    private static void createAccountDatabase() throws SQLException {
+    public void createAccountDatabase() throws SQLException {
         Connection dbConnection = null;
         Statement statement = null;
-
-        /**
-         * Person details
-         * id
-         * name
-         * age
-         * username
-         * password
-         * email
-         * gender
-         */
 
         String createTableSQL = "CREATE TABLE PERSON(" + "ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY" +
                 "(START WITH 1, INCREMENT BY 1), " + "NAME VARCHAR(20) NOT NULL, " + "AGE INTEGER NOT NULL, "
@@ -117,7 +115,11 @@ public class AccountDatabase {
         }
     }
 
-    public static void deleteAccountDatabase() {
+    /**
+     * @author Kyle Hoang
+     * This function deletes the PERSON table
+     */
+    public void deleteAccountDatabase() {
         Connection dbConnection = null;
         Statement statement = null;
         String deleteTableSQL = "DROP TABLE PERSON";
@@ -152,9 +154,11 @@ public class AccountDatabase {
     }
 
     /**
+     * @author Kyle Hoang
      * This function gets the connection to the database
+     * @return Connection used to connect to the database
      */
-    private static Connection getDBConnection() {
+    public Connection getDBConnection() {
         Connection dbConnection = null;
         try {
             Class.forName(DB_DRIVER);
