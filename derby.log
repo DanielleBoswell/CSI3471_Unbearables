@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Mon Dec 04 16:27:08 CST 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-018c-36f1-3aff-00000710b538 
-on database directory C:\Users\nickr\activeRepCSI3471Proj\CSI3471_Unbearables\ex1connect with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1d44bcfa 
-Loaded from file:/C:/Users/nickr/activeRepCSI3471Proj/CSI3471_Unbearables/CruiseLink/lib/derby.jar
+Mon Dec 04 16:56:35 CST 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-018c-370c-32fa-00001f28e128 
+on database directory C:\Users\lordm\Desktop\Group Proj\CSI3471_Unbearables\ex1connect with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1d44bcfa 
+Loaded from file:/C:/Users/lordm/Desktop/Group%20Proj/CSI3471_Unbearables/CruiseLink/lib/derby.jar
 java.vendor=Eclipse Adoptium
 java.runtime.version=17.0.6+10
-user.dir=C:\Users\nickr\activeRepCSI3471Proj\CSI3471_Unbearables
+user.dir=C:\Users\lordm\Desktop\Group Proj\CSI3471_Unbearables
 os.name=Windows 11
 os.arch=amd64
 os.version=10.0

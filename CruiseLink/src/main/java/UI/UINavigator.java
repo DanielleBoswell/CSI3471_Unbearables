@@ -20,7 +20,10 @@ public class UINavigator extends JFrame {
     //Constant identifiers for our panels --- Add one for each page in software ---
     public static final String LAUNCH_PANEL = "Launch Panel";
     public static final String LOGIN_PANEL = "Login Panel";
+    public static final String TRAVEL_AGENT_BILLING_PANEL = "Travel Agent Billing Panel";
+    public static final String TRAVEL_AGENT_MODIFY_ROOM_PANEL = "Travel Agent Modify Room Panel";
     public static final String SIGNUP_PANEL = "Sign Up Panel";
+
 
     /* ----------- ADD IDENTIFIERS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
 
@@ -64,6 +67,9 @@ public class UINavigator extends JFrame {
         cardPanel.add(createLaunch(), LAUNCH_PANEL);
         cardPanel.add(createLogin(), LOGIN_PANEL);
         cardPanel.add(createSignup(), SIGNUP_PANEL);
+        cardPanel.add(createTravelAgentBilling(), TRAVEL_AGENT_BILLING_PANEL);
+        cardPanel.add(createTravelAgentModifyRoom(),TRAVEL_AGENT_MODIFY_ROOM_PANEL);
+
 
         /* ----------- ADD PANELS HERE FOR EACH GUI PAGE ----------- */
 
@@ -143,6 +149,20 @@ public class UINavigator extends JFrame {
         GuestControllerImpl guestController = new GuestControllerImpl(this);
         guestLandingGUIInstance.setController(guestController);
         return guestLandingGUIInstance.createGuestLandingPanel();
+    }
+
+    private JPanel createTravelAgentBilling() {
+        TravelAgentGenerateBillGUI travelAgentGenerateBillGUIInstance = new TravelAgentGenerateBillGUI(this);
+        TravelAgentControllerImpl agentController = new TravelAgentControllerImpl(this);
+        travelAgentGenerateBillGUIInstance.setController(agentController);
+        return travelAgentGenerateBillGUIInstance.createTravelAgentBilling();
+    }
+
+    private JPanel createTravelAgentModifyRoom() {
+        TravelAgentModifyRoomGUI travelAgentModifyRoomGUIInstance = new TravelAgentModifyRoomGUI(this);
+        TravelAgentControllerImpl agentController = new TravelAgentControllerImpl(this);
+        travelAgentModifyRoomGUIInstance.setController(agentController);
+        return travelAgentModifyRoomGUIInstance.createTravelAgentModifyRoom();
     }
 
     private JPanel createProfilePage() {

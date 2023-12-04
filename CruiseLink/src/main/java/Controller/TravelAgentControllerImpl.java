@@ -28,7 +28,9 @@ public class TravelAgentControllerImpl implements TravelAgentController { // ---
 
     public void onGenerateBillingInfo(){
 
-        System.out.println("Generating Billing Information");
+        //System.out.println("Generating Billing Information");
+
+        uiNavigator.showCard(UINavigator.TRAVEL_AGENT_BILLING_PANEL);
     }
 
     public void onMakeReservation(){
@@ -48,6 +50,8 @@ public class TravelAgentControllerImpl implements TravelAgentController { // ---
 
     public void onModifyRoom(){
 
-        System.out.println("Modifying Room");
+        //System.out.println("Modifying Room");
+
+        uiNavigator.showCard(UINavigator.TRAVEL_AGENT_MODIFY_ROOM_PANEL);
     }
 }
