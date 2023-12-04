@@ -11,11 +11,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ReservationDatabase {
-    public Map<Guest, ArrayList<Reservation>> reservationMap;
+public class RoomDatabase {
+    public Map<Guest, ArrayList<Reservation>> roomMap;
 
-    public ReservationDatabase(){
-        reservationMap = new HashMap<>();
+    public RoomDatabase(){
+        roomMap = new HashMap<>();
     }
 
     // Begin Kyle Hoang's implementation of Apache Derby Reservation Database
@@ -23,15 +23,15 @@ public class ReservationDatabase {
      * Author: Kyle Hoang
      * Created on: 11/01/2023
      *
-     * This class provides methods for creating and deleting a database table for reservations.
+     * This class provides methods for creating and deleting a database table for Rooms.
      * It also includes a method for obtaining a connection to the database.
      *
-     * The reservation table, named "RESERVATION," stores details such as customer ID, start date, end date,
-     * smoking status, bed type, number of beds, quality level, and cancellation status.
+     * The reservation table, named "ROOM," stores details such as room number, smoking status, bed type,
+     * number of beds, reservation status, and quality level.
      *
      * Methods:
-     * - {@link #createReservationDatabase() createReservationDatabase}
-     * - {@link #deleteReservationDatabase() deleteReservationDatabase}
+     * - {@link #createRoomDatabase() createRoomDatabase}
+     * - {@link #deleteRoomDatabase() deleteRoomDatabase}
      */
 
     private static  String DB_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
@@ -50,18 +50,17 @@ public class ReservationDatabase {
     /**
      * @author Kyle Hoang
      *
-     * This function creates a new database table RESERVATION for the Reservation
+     * This function creates a new database table ROOM for the Rooms
      * @throws SQLException if a SQL exception occurs during the database operations.
      */
-    public  void createReservationDatabase() throws SQLException {
+    public  void createRoomDatabase() throws SQLException {
         Connection dbConnection = null;
         Statement statement = null;
 
-        String createTableSQL = "CREATE TABLE RESERVATION(" + "CUSTOMER_ID INTEGER NOT NULL VARCHAR(20), " +
-                "START_DATE DATE NOT NULL, " + "END_DATE DATE NOT NULL, " + "IS_SMOKING SMALLINT NOT NULL, " +
-                "BED_TYPE VARCHAR(20) NOT NULL, " + "NUM_BEDS INTEGER NOT NULL, " +
-                "QUALITY_LVL VARCHAR(20) NOT NULL, " + "IS_CANCELED SMALLINT NOT NULL, "
-                + "CONSTRAINT primary_key PRIMARY KEY (CUSTOMER_ID) " + ")";
+        String createTableSQL = "CREATE TABLE ROOM(" + "ROOM_NUM INTEGER NOT NULL VARCHAR(20), " +
+                "IS_SMOKING SMALLINT NOT NULL, " + "BED_TYPE VARCHAR(20) NOT NULL, " + "NUM_BEDS INTEGER NOT NULL, " +
+                "IS_RESERVED SMALLINT NOT NULL, " + "QUALITY_LVL VARCHAR(20) NOT NULL, "
+                + "CONSTRAINT primary_key PRIMARY KEY (ROOM_NUM) " + ")";
 
         try {
             dbConnection = getDBConnection();
@@ -70,7 +69,7 @@ public class ReservationDatabase {
             System.out.println(createTableSQL);
             // Execute SQL statement to create the table
             statement.execute(createTableSQL);
-            System.out.println("Table \"RESERVATION\" is created!");
+            System.out.println("Table \"ROOM\" is created!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -85,12 +84,12 @@ public class ReservationDatabase {
 
     /**
      * @author Kyle Hoang
-     * This method deletes the RESERVATION database
+     * This method deletes the ROOM database
      */
-    public void deleteReservationDatabase() {
+    public void deleteRoomDatabase() {
         Connection dbConnection = null;
         Statement statement = null;
-        String deleteTableSQL = "DROP TABLE RESERVATION";
+        String deleteTableSQL = "DROP TABLE ROOM";
 
         try {
             dbConnection = getDBConnection();
@@ -99,7 +98,7 @@ public class ReservationDatabase {
             System.out.println(deleteTableSQL);
             // Execute SQL statement to drop the table
             statement.execute(deleteTableSQL);
-            System.out.println("Table \"RESERVATION\" is dropped!");
+            System.out.println("Table \"ROOM\" is dropped!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -124,7 +123,7 @@ public class ReservationDatabase {
     /**
      * @author Kyle Hoang
      * This function gets the connection to the database
-     * @return Connection used to connect to RESERVATION database
+     * @return Connection used to connect to the ROOM database
      */
     public Connection getDBConnection() {
         Connection dbConnection = null;

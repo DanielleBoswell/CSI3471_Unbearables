@@ -1,9 +1,6 @@
 package UI;
 
-import Controller.AdminControllerImpl;
-import Controller.GuestControllerImpl;
-import Controller.LoginControllerImpl;
-import Controller.TravelAgentControllerImpl;
+import Controller.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,7 +33,7 @@ public class UINavigator extends JFrame {
     public static final String CHOOSE_CRUISE_PANEL = "Choose Cruise Panel";
     public static final String CHOOSE_GUEST_PANEL = "Choose Guest Panel";
 
-
+    public static final String CHECK_IN_PANEL = "Check In Panel";
 
     /* ----------- ADD IDENTIFIERS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
 
@@ -82,7 +79,7 @@ public class UINavigator extends JFrame {
         cardPanel.add(createChooseCruise(), CHOOSE_CRUISE_PANEL);
         cardPanel.add(createChooseGuest(), CHOOSE_GUEST_PANEL);
 
-
+        cardPanel.add(createCheckIn(), CHECK_IN_PANEL);
 
         /* ----------- ADD PANELS HERE FOR EACH GUI PAGE ----------- */
 
@@ -167,7 +164,12 @@ public class UINavigator extends JFrame {
     }
 
 
-
+    private JPanel createCheckIn() {
+        CheckInUI checkInUIInstance = new CheckInUI(this);
+        CheckInControllerImpl checkInController = new CheckInControllerImpl(this);
+        checkInUIInstance.setController(checkInController);
+        return checkInUIInstance.createCheckInUIPanel();
+    }
 
 
 

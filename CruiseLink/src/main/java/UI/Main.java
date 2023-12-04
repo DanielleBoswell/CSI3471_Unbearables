@@ -8,8 +8,9 @@ import java.sql.SQLException;
 public class Main {
 
     public static void main(String[] args) {
+        guestInfoExpert some = null;
         try{
-            guestInfoExpert some = new guestInfoExpert();
+            some = new guestInfoExpert();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -21,5 +22,7 @@ public class Main {
             //Making a new UINavigator to construct the main frame with other GUIs as panels
             new UINavigator();
         });
+
+        //some.deleteAccountDatabase();
     }
 }
