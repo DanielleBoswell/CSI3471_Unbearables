@@ -16,7 +16,7 @@ public class Main {
 
     public static void main(String[] args) {
         ReservationDatabase rd = new ReservationDatabase();
-        rd.deleteReservationDatabase();
+        //rd.deleteReservationDatabase();
         try {
             rd.createReservationDatabase();
         } catch (SQLException e) {

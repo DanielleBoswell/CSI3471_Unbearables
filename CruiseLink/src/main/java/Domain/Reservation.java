@@ -125,7 +125,7 @@ public class Reservation {
 
         String[] strArr = {startDate.toString(), endDate.toString(), Boolean.toString(isCanceled), Integer.toString(room.getRoomNumber()),
             Boolean.toString(room.isSmoking()), room.getBedType().toString(), Integer.toString(room.getNumBeds()),
-            room.getQualityLevel().toString()};
+            room.getQualityLevel().toString(), this.ship};
 
         return strArr;
     }

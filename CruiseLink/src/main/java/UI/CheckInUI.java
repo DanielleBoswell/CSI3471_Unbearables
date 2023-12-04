@@ -68,6 +68,7 @@ public class CheckInUI extends JPanel {
         String tblData[][] = new String[resDBO.count()][8];
         int i = 0;
         for (Reservation res : resList) {
+            res.getRoom().setRoomNumber(i);
             String row[] = res.toStringArray();
             tblData[i] = row;
             ++i;
