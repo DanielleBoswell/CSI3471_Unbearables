@@ -43,11 +43,11 @@ public class ProfilePageUI {
         // for testing purposes
         // TODO: find way to get the guest's info for this part
         user = new Person();
-        user.setName("Tom Brooks");
-        user.setUsername("blahblah42");
-        user.setAge(34);
-        user.setEmail("tbrooksss@gmail.com");
-        user.setPassword("imCool123");
+        user.setName("Alice Smith");
+        user.setUsername("aliceS");
+        user.setAge(25);
+        user.setEmail("alice.smith@gmail.com");
+        user.setPassword("alice1");
         Date d = new Date(2003,04,12);
 
         // init picture
