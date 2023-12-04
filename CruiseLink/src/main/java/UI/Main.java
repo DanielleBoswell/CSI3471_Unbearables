@@ -8,6 +8,8 @@ import Domain.Room;
 import InfoExpert.guestInfoExpert;
 import Repository.ReservationDBO;
 import Repository.ReservationDatabase;
+import Repository.RoomDBO;
+import Repository.RoomDatabase;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -16,14 +18,17 @@ public class Main {
 
     public static void main(String[] args) {
         ReservationDatabase rd = new ReservationDatabase();
+        RoomDatabase roomDatabase = new RoomDatabase();
         //rd.deleteReservationDatabase();
         try {
+            roomDatabase.createRoomDatabase();
             rd.createReservationDatabase();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
         ReservationDBO rDBO = new ReservationDBO(rd.getDBConnection());
+        RoomDBO roomDBO = new RoomDBO(roomDatabase.getDBConnection());
 
 
         // Sample Bed Types

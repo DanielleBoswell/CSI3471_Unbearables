@@ -55,7 +55,7 @@ public class CreateReservation_ChooseGuest extends JPanel {
         //Create a table with a sorter.
         //DefaultTableModel model = new DefaultTableModel(m.data, m.columnNames);
         final Class<?>[] columnClass = new Class[]{
-                String.class, String.class, String.class, Integer.class, Boolean.class
+                String.class, String.class, String.class, String.class, String.class
         };
         DefaultTableModel model = new DefaultTableModel(m.data, m.columnNames) {
             @Override

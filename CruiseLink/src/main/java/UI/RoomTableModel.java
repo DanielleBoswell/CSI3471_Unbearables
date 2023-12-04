@@ -1,6 +1,8 @@
 package UI;
 
 import Domain.Guest;
+import Domain.Person;
+import Domain.Room;
 
 import javax.swing.table.AbstractTableModel;
 import java.sql.*;
@@ -10,37 +12,46 @@ class RoomTableModel extends AbstractTableModel {
 
     static Boolean DEBUG = false;
 
-    public String[] columnNames = {"Quality Level",
+    public String[] columnNames = {"Room Number",
+            "isSmoking",
             "Bed Type",
             "Number of Beds",
-            "isSmoking"};
+            "Quality Level"};
 
     //create function
-    public Object[][] data = {
-            {"Executive", "Twin", "2", "True"},
-            {"Comfort", "Full", "2", "False"},
-            {"Economy", "Queen", "1", "True"},
-            {"Comfort", "Queen", "3", "False"},
-            {"Economy", "King", "1", "True"}
-    };
-    Object[][] fillTable(Object[][] table) {
+    Object[][] fillTable() {
         try {
             Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
             Connection con = DriverManager.getConnection("jdbc:derby:ex1connect;");
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM Room");
+            ResultSet rs = statement.executeQuery("SELECT * FROM ROOM WHERE IS_RESERVED = 0");
 
+            int count = 0;
+            Object[][] table = new Object[rs.getFetchSize()][5];
             if(rs.next()){
-                Guest tmp = new Guest();
 
-//                tmp.setId((long)id);
-//                tmp.setName(rs.getString("NAME"));
-//                tmp.setEmail(rs.getString("EMAIL"));
-//                tmp.setAge(rs.getInt("AGE"));
-//                tmp.setGender(rs.getString("GENDER"));
-//                tmp.setSalary(rs.getLong("SALARY"));
+                String roomNum = rs.getString("ROOM_NUM");
+
+                String isSmoking = rs.getString("IS_SMOKING");
+
+                String bedType = rs.getString("BED_TYPE");
+
+                String numBeds = rs.getString("NUM_BEDS");
+
+                String qualityLevel = rs.getString("QUALITY_LVL");
 
 
+
+                table[count][0] = roomNum;
+                if(isSmoking.equals(0)){
+                    table[count][1] = "False";
+                }else{
+                    table[count][1] = "True";
+                }
+                table[count][2] = bedType;
+                table[count][3] = numBeds;
+                table[count][4] = qualityLevel;
+                count++;
             }
 
             return table;
@@ -51,6 +62,8 @@ class RoomTableModel extends AbstractTableModel {
             throw new RuntimeException(e);
         }
     }
+
+    public Object[][] data = fillTable();
 
     public int getColumnCount() {
         return columnNames.length;
