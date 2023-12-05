@@ -54,7 +54,7 @@ public class GuestProfilePageUI {
         user.setAge(25);
         user.setEmail("alice.smith@gmail.com");
         user.setPassword("alice1");
-        Date d = new Date(2003,04,12);
+        Date d = new Date(1998,04,12);
 
         // init picture
         information = new JPanel();

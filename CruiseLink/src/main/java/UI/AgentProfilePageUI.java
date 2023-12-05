@@ -44,14 +44,14 @@ public class AgentProfilePageUI {
     //this is a hardcoded WIP
     public static JPanel createAgentProfilePagePanel() {
         // for testing purposes
-        // TODO: find way to get the guest's info for this part
+        // TODO: find way to get the agent's info for this part
         user = new Person();
-        user.setName("Bob");
+        user.setName("Bob Johnson");
         user.setUsername("bobJ");
-        user.setAge(25);
-        user.setEmail("bob.j@gmail.com");
+        user.setAge(34);
+        user.setEmail("bob.johnson@gmail.com");
         user.setPassword("bob2");
-        Date d = new Date(2003,04,12);
+        Date d = new Date(1989,11,04);
 
         // init picture
         information = new JPanel();
