@@ -24,7 +24,7 @@ public class ReservationGuestViewController {
     }
 
     public boolean confirmCancellationGuest(){
-        boolean ok = cancelReservationServices.confirmCancellation(0l,0l);
+        boolean ok = cancelReservationServices.confirmCancellation();
         return ok;
     }
 

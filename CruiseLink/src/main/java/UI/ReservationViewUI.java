@@ -45,73 +45,28 @@ public class ReservationViewUI extends JPanel{
 
     //shows that the room is available
     public void confirmCancelDialogueBox(String description) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                JDialog box = new JDialog();
-                JPanel items = new JPanel();
-                items.setLayout(new BoxLayout(items, BoxLayout.Y_AXIS));
-                JLabel desc = new JLabel(description);
-
-                desc.setAlignmentX(Component.CENTER_ALIGNMENT);
-                JButton confirmBtn = new JButton("Confirm Cancellation"); // FIXME: sends to billing
-                confirmBtn.addActionListener(new ConfirmedCancelReservation());
-                confirmBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-                box.setPreferredSize(new Dimension(600, 400));
-                box.setTitle("Are you sure?");
-                items.add(desc);
-                items.add(confirmBtn);
-                items.add(backButton);
-                box.add(items);
-
-                box.pack();
-
-                box.setLocationRelativeTo(getParent());
-                box.setVisible(true);
-
-            }
-        });
+        int ans = JOptionPane.showConfirmDialog(this, "Confirm Cancellation",
+                "Are you sure?", JOptionPane.YES_NO_OPTION);
+        if (ans==0){
+            isCancelledDialogueBox(controller.confirmCancellationGuest());
+        }
     }
 
     public void isCancelledDialogueBox(boolean ok) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
                 JDialog box = new JDialog();
                 JPanel items = new JPanel();
                 items.setLayout(new BoxLayout(items, BoxLayout.Y_AXIS));
                 JButton backToReservationsButton;
                 JLabel desc;
-                if(ok){
-                    desc = new JLabel("Your Reservation has now been cancelled!");
-                    backToReservationsButton = new JButton("Go Back to All Reservations");
-                    backToReservationsButton.addActionListener(null);
+                if(ok) {
+                    JOptionPane.showMessageDialog(this, "Your Reservation has now been cancelled!",
+                            "Reservation Cancelled", JOptionPane.WARNING_MESSAGE);
+                    UINavigator.goBack();
                 }
                 else{
-                    desc = new JLabel("Your Reservation cannot be cancelled! Try again another time");
-                    backToReservationsButton = new JButton("Ok");
-                    backToReservationsButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-
-                        }
-                    });
+                    JOptionPane.showMessageDialog(this, "Your Reservation cannot be cancelled! Try again another time",
+                            "Reservation Cannot be Cancelled", JOptionPane.WARNING_MESSAGE);
                 }
-                desc.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-                box.setPreferredSize(new Dimension(600, 400));
-                box.setTitle("Reservation Cancellation");
-                items.add(desc);
-                box.add(items);
-                box.pack();
-                box.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-
-                box.setLocationRelativeTo(getParent());
-                box.setVisible(true);
-
-            }
-        });
     }
 
     //makes the GUI for the frame
@@ -147,7 +102,7 @@ public class ReservationViewUI extends JPanel{
 //        guestTotalLbl = new JLabel("Total Guests: " + controller.get);
         cancelButton = new JButton("Cancel Reservation");
         modifyButton = new JButton("Modify Reservation"); // takes to Make Reservation
-        //cancelButton.addActionListener(new MakeReservationGUI.ConfirmReserveRoom());
+        cancelButton.addActionListener(new ReservationViewUI.CancelReservation());
         backButton = new JButton("Go Back");
         backButton.addActionListener(new ActionListener() {
             @Override

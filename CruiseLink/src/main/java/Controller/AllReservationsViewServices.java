@@ -6,26 +6,31 @@ import Repository.ReservationDBO;
 import Repository.ReservationDatabase;
 import Repository.ShipDatabase;
 
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Vector;
 
 public class AllReservationsViewServices {
-    private SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+    private final SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
     private List<Reservation> list; // save list of reservations of guest
-    private ReservationDatabase reservationDatabase = new ReservationDatabase();
-    private ReservationDBO reservationDBO = new ReservationDBO(reservationDatabase.getDBConnection());
+    private final ReservationDatabase reservationDatabase = new ReservationDatabase();
+    private final ReservationDBO reservationDBO = new ReservationDBO(reservationDatabase.getDBConnection());
 
+    /**
+     *
+     * @param guestID
+     * @return Object[][]
+     */
     public Object[][] viewUncancelledReservations(long guestID){ // convert to id of Guest???
-        //list = reservationDBO.find("CUSTOMER_ID = " + guestID + " AND IS_CANCELED = 0"); //make sure only uncancelled res
-        //list = reservationDBO.findAll();
-        try {
-            list = List.of(new Reservation[]{new Reservation(sdf.parse("01-14-2024"), sdf.parse("01-28-2024"), false, 123L, 1L, new Room())
-                    , new Reservation(sdf.parse("01-14-2024"), sdf.parse("01-28-2024"), false, 334L, 1L, new Room())});
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+        reservationDBO.save(new Reservation(new Date(2023,12,31), new Date(2024,1,14), false, 123L, 1L, new Room()));
+        list = reservationDBO.find("CUSTOMER_ID = " + guestID + " AND IS_CANCELED = 0"); //make sure only uncancelled res
+//        list = List.of(new Reservation[]{new Reservation(new Date(2023,12,31), new Date(2024,1,14), false, 123L, 1L, new Room()),
+//                new Reservation(new Date(2024,1,14), new Date(2024,12,28), false, 334L, 1L, new Room())});
+
+
+
         Object[][] reservations = new Object[20][];//connect to list
         Vector<Object[]> a = new Vector<>();
         for(Reservation r : list){
@@ -37,9 +42,13 @@ public class AllReservationsViewServices {
         return reservations;
     }
 
-    public ReservationViewServices viewReservation(long reservationID) throws ParseException { //based on database
-        //selectedReservation = ReservationDatabaseController.getReservation(long reservationID);
-        Reservation selectedReservation = new Reservation(sdf.parse("01-14-2024"),sdf.parse("01-28-2024"),false,new Room()); //mock reservation
+    /**
+     *
+     * @param reservationID
+     * @return ReservationViewServices
+     */
+    public ReservationViewServices viewReservation(long reservationID) { //based on database
+        Reservation selectedReservation = reservationDBO.findByReservationId(reservationID);
 //        Object[] reservation = {selectedReservation.getReservationId(),
 //                selectedReservation.getShipName(),
 //                sdf.format(selectedReservation.getStartDate()),
@@ -48,6 +57,11 @@ public class AllReservationsViewServices {
         return new ReservationViewServices(selectedReservation);
     }
 
+    /**
+     *
+     * @param row
+     * @return ReservationViewServices
+     */
     public ReservationViewServices viewReservation(int row) { //based on list
         Reservation selectedReservation = list.get(row);
 

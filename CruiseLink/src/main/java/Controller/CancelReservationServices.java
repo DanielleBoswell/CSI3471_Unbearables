@@ -1,6 +1,8 @@
 package Controller;
 
 import Domain.Reservation;
+import Repository.ReservationDBO;
+import Repository.ReservationDatabase;
 
 import java.util.Date;
 import java.util.logging.Logger;
@@ -34,7 +36,7 @@ public class CancelReservationServices {
         return "Do you want to cancel this reservation?"; // connect to billinginfo
     }
 
-    public boolean confirmCancellation(long guestID, long reservationID){
+    public boolean confirmCancellation(){
         boolean charged, isCancelled = true;
         if(!ok){
             charged = false; // connect to billing info
@@ -46,7 +48,11 @@ public class CancelReservationServices {
         }
 
         if(charged){
-            //isCancelled = ReservationDatabaseController.setReservationStatus(reservationID,"CANCELLED");
+            ReservationDatabase rd = new ReservationDatabase();
+            ReservationDBO dbo = new ReservationDBO(rd.getDBConnection());
+            reservation.setCanceled(true);
+            dbo.save(reservation);
+            isCancelled = true;
             // basically connect to reservationDatabase
         }
         return charged && isCancelled;

@@ -261,7 +261,7 @@ public class ViewReservationsGUI extends JPanel {
                         table.convertRowIndexToModel(viewRow);
                 UINavigator.addCard(new ReservationViewUI(uiNavigator, reservationController.viewReservationGuest(modelRow)),
                         UINavigator.RESERVATION_VIEW);
-                UINavigator.showCard("RESERVATION_VIEW");
+                UINavigator.showCard(UINavigator.RESERVATION_VIEW);
 
                 //FIXME: switch to ReservationViewUI
                 javax.swing.SwingUtilities.invokeLater(new Runnable() {

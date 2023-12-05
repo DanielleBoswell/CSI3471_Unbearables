@@ -4,6 +4,7 @@ import Domain.Country;
 import Domain.Ship;
 import Domain.TravelPath;
 
+import java.sql.Date;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,36 +23,32 @@ public class ShipDatabase {
         Ship ship3 = new Ship("Cruise 3",40,null);
         ship3.setId(3);
 
-        try {
-            TravelPath p1 = new TravelPath();
-            p1.addCountry(new Country("USA", sdf.parse("01-06-2023"), sdf.parse("01-07-2023")));
-            p1.addCountry(new Country("Puerto Rico", sdf.parse("01-09-2023"), sdf.parse("01-10-2023")));
-            p1.addCountry(new Country("Bahamas", sdf.parse("01-11-2023"), sdf.parse("01-12-2023")));
-            p1.addCountry(new Country("Mexico", sdf.parse("01-15-2023"), sdf.parse("01-16-2023")));
-            p1.addCountry(new Country("USA", sdf.parse("01-17-2023"), sdf.parse("01-17-2023")));
 
-            ship1.path = p1;
+        TravelPath p1 = new TravelPath();
+        p1.addCountry(new Country("USA", new Date(2024,1,6), new Date(2024,1,7)));
+        p1.addCountry(new Country("Puerto Rico", new Date(2024,1,9), new Date(2024,1,10)));
+        p1.addCountry(new Country("Bahamas", new Date(2024,1,11), new Date(2024,1,12)));
+        p1.addCountry(new Country("Mexico", new Date(2024,1,15), new Date(2024,1,16)));
+        p1.addCountry(new Country("USA", new Date(2024,1,17), new Date(2024,1,18)));
 
-            TravelPath p2= new TravelPath();
-            p2.addCountry(new Country("Spain", sdf.parse("01-06-2023"), sdf.parse("01-07-2023")));
-            p2.addCountry(new Country("France", sdf.parse("01-08-2023"), sdf.parse("01-09-2023")));
-            p2.addCountry(new Country("England", sdf.parse("01-11-2023"), sdf.parse("01-12-2023")));
-            p2.addCountry(new Country("Norway", sdf.parse("01-15-2023"), sdf.parse("01-16-2023")));
-            p2.addCountry(new Country("Spain", sdf.parse("01-22-2023"), sdf.parse("01-22-2023")));
+        ship1.path = p1;
 
-            ship2.path = p2;
+        TravelPath p2= new TravelPath();
+        p2.addCountry(new Country("Spain", new Date(2024,1,6), new Date(2024,1,7)));
+        p2.addCountry(new Country("France", new Date(2024,1,8), new Date(2024,1,9)));
+        p2.addCountry(new Country("England", new Date(2024,1,11), new Date(2024,1,12)));
+        p2.addCountry(new Country("Norway", new Date(2024,1,15), new Date(2024,1,16)));
+        p2.addCountry(new Country("Spain", new Date(2024,1,22), new Date(2024,1,22)));
 
-            TravelPath p3= new TravelPath();
-            p3.addCountry(new Country("Sweden", sdf.parse("01-06-2023"), sdf.parse("01-07-2023")));
-            p3.addCountry(new Country("Finland", sdf.parse("01-08-2023"), sdf.parse("01-09-2023")));
-            p3.addCountry(new Country("Sweden", sdf.parse("01-10-2023"), sdf.parse("01-10-2023")));
+        ship2.path = p2;
 
-            ship3.path = p3;
+        TravelPath p3= new TravelPath();
+        p3.addCountry(new Country("Sweden", new Date(2024,1,6), new Date(2024,1,7)));
+        p3.addCountry(new Country("Finland", new Date(2024,1,8), new Date(2024,1,9)));
+        p3.addCountry(new Country("Sweden", new Date(2024,1,10), new Date(2024,1,10)));
 
+        ship3.path = p3;
 
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
 
         shipMap.put(ship1.getId(),ship1);
         shipMap.put(ship2.getId(),ship1);
