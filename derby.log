@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Mon Dec 04 16:56:35 CST 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-018c-370c-32fa-00001f28e128 
-on database directory C:\Users\lordm\Desktop\Group Proj\CSI3471_Unbearables\ex1connect with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1d44bcfa 
-Loaded from file:/C:/Users/lordm/Desktop/Group%20Proj/CSI3471_Unbearables/CruiseLink/lib/derby.jar
-java.vendor=Eclipse Adoptium
-java.runtime.version=17.0.6+10
-user.dir=C:\Users\lordm\Desktop\Group Proj\CSI3471_Unbearables
-os.name=Windows 11
-os.arch=amd64
-os.version=10.0
+Tue Dec 05 16:58:46 CST 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-018c-3c34-8d8c-00001fb8c7e0 
+on database directory /Users/Emma/CSI_3471/GroupProject/CSI3471_Unbearables/ex1connect with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@251a69d7 
+Loaded from file:/Users/Emma/CSI_3471/GroupProject/CSI3471_Unbearables/CruiseLink/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=17.0.7+8-LTS-224
+user.dir=/Users/Emma/CSI_3471/GroupProject/CSI3471_Unbearables
+os.name=Mac OS X
+os.arch=aarch64
+os.version=13.6.2
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

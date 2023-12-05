@@ -12,7 +12,7 @@ public class ProfileControllerImpl implements ProfileController{
 
     public void onViewProfile() {
         // switch to profile page
-        uiNavigator.showCard(UINavigator.PROFILE_PAGE);
+        //uiNavigator.showCard(UINavigator.PROFILE_PAGE);
     }
 
     public void returnToGuestLandingPage() {

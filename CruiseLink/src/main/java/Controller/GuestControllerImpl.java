@@ -33,7 +33,7 @@ public class GuestControllerImpl implements GuestController {
 
     public void onViewProfile() {
         //ProfileControllerImpl.onViewProfile();
-        uiNavigator.showCard(UINavigator.PROFILE_PAGE);
+        uiNavigator.showCard(UINavigator.GUEST_PROFILE_PAGE);
         System.out.println("Viewing Profile");
     }
 }

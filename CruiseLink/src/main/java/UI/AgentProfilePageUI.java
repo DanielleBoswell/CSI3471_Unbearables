@@ -1,7 +1,5 @@
-// Author: Emma Aars
 package UI;
 
-import Controller.GuestControllerImpl;
 import Controller.ProfileControllerImpl;
 import Domain.Person;
 
@@ -9,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Date;
 
-public class ProfilePageUI {
+public class AgentProfilePageUI {
     public static final int TEXT_BOX_WIDTH = 20;
 
     private static Person user;
@@ -23,7 +21,7 @@ public class ProfilePageUI {
 
     private static JButton confirm, cancel;
 
-    private static Font defaultFont = new Font("Serif", Font.PLAIN, 16);
+    private static Font defaultFont = new Font("Comic Sans MS", Font.PLAIN, 16);
 
     // setting controller
     private static ProfileControllerImpl profileController;
@@ -34,20 +32,25 @@ public class ProfilePageUI {
 
     private static UINavigator UINavigator;
 
-    public ProfilePageUI(UINavigator UINavigator) {
+    public AgentProfilePageUI(UINavigator UINavigator) {
         this.UINavigator = UINavigator;
     }
 
+    public static void AgentFunctionality() {
+        cancel.addActionListener(e -> profileController.returnToAgentLandingPage());
+        confirm.addActionListener(e -> profileController.alterAgentInformation());
+    }
+
     //this is a hardcoded WIP
-    public static JPanel createProfilePagePanel() {
+    public static JPanel createAgentProfilePagePanel() {
         // for testing purposes
         // TODO: find way to get the guest's info for this part
         user = new Person();
-        user.setName("Alice Smith");
-        user.setUsername("aliceS");
+        user.setName("Bob");
+        user.setUsername("bobJ");
         user.setAge(25);
-        user.setEmail("alice.smith@gmail.com");
-        user.setPassword("alice1");
+        user.setEmail("bob.j@gmail.com");
+        user.setPassword("bob2");
         Date d = new Date(2003,04,12);
 
         // init picture
@@ -168,9 +171,7 @@ public class ProfilePageUI {
         mainPanel.add(buttons);
 
         // action listeners for the buttons
-        // TODO: find some way to determine if the person is a guest or agent to determine which landing page is needed
-        cancel.addActionListener(e -> profileController.returnToGuestLandingPage());
-        confirm.addActionListener(e -> profileController.alterGuestInformation());
+        AgentFunctionality();
 
         return mainPanel;
     }

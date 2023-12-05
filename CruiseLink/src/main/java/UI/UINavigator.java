@@ -1,6 +1,8 @@
 package UI;
 
 import Controller.*;
+import Domain.Agent;
+import Domain.Guest;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,7 +38,9 @@ public class UINavigator extends JFrame {
     public static final String CHOOSE_CRUISE_PANEL = "Choose Cruise Panel";
     public static final String CHOOSE_GUEST_PANEL = "Choose Guest Panel";
 
-    public static final String PROFILE_PAGE = "Profile Page";
+    public static final String GUEST_PROFILE_PAGE = "Guest Profile Page";
+    public static final String AGENT_PROFILE_PAGE = "Agent Profile Page";
+
     public static final String CHECK_IN_PANEL = "Check In Panel";
 
     /* ----------- ADD IDENTIFIERS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
@@ -86,7 +90,8 @@ public class UINavigator extends JFrame {
         cardPanel.add(createChooseCruise(), CHOOSE_CRUISE_PANEL);
         cardPanel.add(createChooseGuest(), CHOOSE_GUEST_PANEL);
 
-        cardPanel.add(createProfilePage(), PROFILE_PAGE);
+        cardPanel.add(createGuestProfilePage(), GUEST_PROFILE_PAGE);
+        cardPanel.add(createAgentProfilePage(), AGENT_PROFILE_PAGE);
         cardPanel.add(createCheckIn(), CHECK_IN_PANEL);
 
         /* ----------- ADD PANELS HERE FOR EACH GUI PAGE ----------- */
@@ -185,11 +190,18 @@ public class UINavigator extends JFrame {
         return travelAgentModifyRoomGUIInstance.createTravelAgentModifyRoom();
     }
 
-    private JPanel createProfilePage() {
-        ProfilePageUI profilePageGUIInstance = new ProfilePageUI(this);
+    private JPanel createGuestProfilePage() {
+        GuestProfilePageUI profilePageGUIInstance = new GuestProfilePageUI(this);
         ProfileControllerImpl profileController= new ProfileControllerImpl(this);
         profilePageGUIInstance.setController(profileController);
-        return profilePageGUIInstance.createProfilePagePanel();
+        return profilePageGUIInstance.createGuestProfilePagePanel();
+    }
+
+    private JPanel createAgentProfilePage() {
+        AgentProfilePageUI profilePageGUIInstance = new AgentProfilePageUI(this);
+        ProfileControllerImpl profileController= new ProfileControllerImpl(this);
+        profilePageGUIInstance.setController(profileController);
+        return profilePageGUIInstance.createAgentProfilePagePanel();
     }
 
     private JPanel createCheckIn() {
