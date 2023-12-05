@@ -27,7 +27,7 @@ public class GuestControllerImpl implements GuestController {
     }
 
     public void onModifyReservation() {
-
+        uiNavigator.showCard(UINavigator.CHOOSE_CRUISE_PANEL);
         System.out.println("Modifying Reservation");
     }
 

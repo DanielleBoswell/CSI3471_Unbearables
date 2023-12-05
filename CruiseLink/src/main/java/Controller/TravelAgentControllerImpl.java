@@ -17,7 +17,7 @@ public class TravelAgentControllerImpl implements TravelAgentController { // ---
     }
 
     public void onModifyReservation(){
-
+        uiNavigator.showCard(UINavigator.CHOOSE_GUEST_PANEL);
         System.out.println("Modifying Reservation");
     }
 
