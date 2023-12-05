@@ -1,5 +1,6 @@
 package Controller;
 
+import Domain.Person;
 import UI.UINavigator;
 
 import javax.swing.*;
@@ -10,16 +11,23 @@ import java.io.IOException;
 
 public class LoginControllerImpl implements LoginController {
 
+    // ----------------------------------------- Need to make a Person object -----------------------------------------
+    private Person currentUser;
+
     //Reference to the UINavigator for changing panels
     private UINavigator uiNavigator;
 
     //Constructor to set the UINavigator instance
     public LoginControllerImpl(UINavigator uiNavigator) {
+        this.currentUser = currentUser; // --------------------- Set in constructor ---------------------
         this.uiNavigator = uiNavigator;
     }
 
     @Override
-    public void onLoginPressed(String username, String password) { // -------------- Working ------------------
+    public void onLoginPressed(String username, String password) { //Was built using a CSV format, not database format
+
+        //---------- Here is where I would set a Persons info and pass it around for the currentUser ----------
+        // ----------- Need to verify persons username and password from the database, if verified then set the currentUsers information and pass it between UIs ---------
 
         String csvFilePath = "sample_users.csv";
 

@@ -4,6 +4,7 @@ import Controller.SignUpControllerImpl;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.Period;
@@ -118,11 +119,32 @@ public class SignUpGUI extends JPanel {
             else {
 
                 //Creation was successful
-                JOptionPane.showMessageDialog(this,  "Account successfully created",
-                        "Account status", JOptionPane.INFORMATION_MESSAGE);
+
 
                 //Pass the Strings to the controller for account creation
-                //signUpController.onSignUpSubmit(firstName, lastName, age, email, username, password, confirmPassword);
+                try {
+                    String returnMessage = null;
+                    signUpController = new SignUpControllerImpl();
+                    returnMessage = signUpController.onSignUpSubmit(firstName, lastName, String.valueOf(age),
+                            email, username, password, confirmPassword);
+                    if(returnMessage.equals("email")){
+                        JOptionPane.showMessageDialog(this, "Must select a new email",
+                                "Email Taken", JOptionPane.WARNING_MESSAGE);
+                    }else if(returnMessage.equals("username")){
+                        JOptionPane.showMessageDialog(this, "Must select a new Username",
+                                "Username Taken", JOptionPane.WARNING_MESSAGE);
+                    }else if(returnMessage.equals("true")){
+                        JOptionPane.showMessageDialog(this,  "Account successfully created",
+                                "Account status", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Must select a new Account made",
+                                "Account Saved", JOptionPane.WARNING_MESSAGE);
+                    }
+
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
 
                 //Clear the text boxes
                 this.clearTextFields();

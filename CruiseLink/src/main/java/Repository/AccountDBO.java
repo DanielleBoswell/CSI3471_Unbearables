@@ -48,6 +48,8 @@ public class AccountDBO {
                 preparedStatement.setString(4, person.getPassword());
                 preparedStatement.setString(5, person.getEmail());
                 preparedStatement.setString(6, person.getGender());
+                preparedStatement.setInt(7, this.count());
+
             } else {
                 // Insert a new person
                 saveSQL = "INSERT INTO Person (NAME, AGE, USERNAME, PASSWORD, EMAIL, GENDER) VALUES (?, ?, ?, ?, ?, ?)";
