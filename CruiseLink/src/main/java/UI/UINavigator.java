@@ -20,7 +20,10 @@ public class UINavigator extends JFrame {
     //Constant identifiers for our panels --- Add one for each page in software ---
     public static final String LAUNCH_PANEL = "Launch Panel";
     public static final String LOGIN_PANEL = "Login Panel";
+    public static final String TRAVEL_AGENT_BILLING_PANEL = "Travel Agent Billing Panel";
+    public static final String TRAVEL_AGENT_MODIFY_ROOM_PANEL = "Travel Agent Modify Room Panel";
     public static final String SIGNUP_PANEL = "Sign Up Panel";
+
 
     /* ----------- ADD IDENTIFIERS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
 
@@ -29,7 +32,11 @@ public class UINavigator extends JFrame {
     public static final String TRAVEL_AGENT_LANDING_PANEL = "Travel Agent Landing Panel";
     public static final String ADMIN_LANDING_PANEL = "Admin Landing Panel";
     public static final String GUEST_LANDING_PANEL = "Guest Landing Panel";
+    public static final String CHOOSE_ROOM_PANEL = "Choose Room Panel";
+    public static final String CHOOSE_CRUISE_PANEL = "Choose Cruise Panel";
+    public static final String CHOOSE_GUEST_PANEL = "Choose Guest Panel";
 
+    public static final String PROFILE_PAGE = "Profile Page";
     public static final String CHECK_IN_PANEL = "Check In Panel";
 
     /* ----------- ADD IDENTIFIERS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
@@ -64,6 +71,9 @@ public class UINavigator extends JFrame {
         cardPanel.add(createLaunch(), LAUNCH_PANEL);
         cardPanel.add(createLogin(), LOGIN_PANEL);
         cardPanel.add(createSignup(), SIGNUP_PANEL);
+        cardPanel.add(createTravelAgentBilling(), TRAVEL_AGENT_BILLING_PANEL);
+        cardPanel.add(createTravelAgentModifyRoom(),TRAVEL_AGENT_MODIFY_ROOM_PANEL);
+
 
         /* ----------- ADD PANELS HERE FOR EACH GUI PAGE ----------- */
 
@@ -72,7 +82,11 @@ public class UINavigator extends JFrame {
         cardPanel.add(createTravelAgentLanding(), TRAVEL_AGENT_LANDING_PANEL);
         cardPanel.add(createAdminLanding(), ADMIN_LANDING_PANEL);
         cardPanel.add(createGuestLanding(), GUEST_LANDING_PANEL);
+        cardPanel.add(createChooseRoom(), CHOOSE_ROOM_PANEL);
+        cardPanel.add(createChooseCruise(), CHOOSE_CRUISE_PANEL);
+        cardPanel.add(createChooseGuest(), CHOOSE_GUEST_PANEL);
 
+        cardPanel.add(createProfilePage(), PROFILE_PAGE);
         cardPanel.add(createCheckIn(), CHECK_IN_PANEL);
 
         /* ----------- ADD PANELS HERE FOR EACH GUI PAGE ----------- */
@@ -144,7 +158,39 @@ public class UINavigator extends JFrame {
         guestLandingGUIInstance.setController(guestController);
         return guestLandingGUIInstance.createGuestLandingPanel();
     }
+    private JPanel createChooseRoom() {
+        CreateReservation_ChooseRoom x = new CreateReservation_ChooseRoom(this);
+        return x.CreateReservation_ChooseRoom_creator();
+    }
+    private JPanel createChooseCruise() {
+        CreateReservation_ChooseCruise x = new CreateReservation_ChooseCruise(this);
+        return x.CreateReservation_ChooseCruise_creator();
+    }
+    private JPanel createChooseGuest() {
+        CreateReservation_ChooseGuest x = new CreateReservation_ChooseGuest(this);
+        return x.CreateReservation_ChooseGuest_creator();
+    }
 
+    private JPanel createTravelAgentBilling() {
+        TravelAgentGenerateBillGUI travelAgentGenerateBillGUIInstance = new TravelAgentGenerateBillGUI(this);
+        TravelAgentControllerImpl agentController = new TravelAgentControllerImpl(this);
+        travelAgentGenerateBillGUIInstance.setController(agentController);
+        return travelAgentGenerateBillGUIInstance.createTravelAgentBilling();
+    }
+
+    private JPanel createTravelAgentModifyRoom() {
+        TravelAgentModifyRoomGUI travelAgentModifyRoomGUIInstance = new TravelAgentModifyRoomGUI(this);
+        TravelAgentControllerImpl agentController = new TravelAgentControllerImpl(this);
+        travelAgentModifyRoomGUIInstance.setController(agentController);
+        return travelAgentModifyRoomGUIInstance.createTravelAgentModifyRoom();
+    }
+
+    private JPanel createProfilePage() {
+        ProfilePageUI profilePageGUIInstance = new ProfilePageUI(this);
+        ProfileControllerImpl profileController= new ProfileControllerImpl(this);
+        profilePageGUIInstance.setController(profileController);
+        return profilePageGUIInstance.createProfilePagePanel();
+    }
 
     private JPanel createCheckIn() {
         CheckInUI checkInUIInstance = new CheckInUI(this);
@@ -152,11 +198,6 @@ public class UINavigator extends JFrame {
         checkInUIInstance.setController(checkInController);
         return checkInUIInstance.createCheckInUIPanel();
     }
-
-
-
-
-
 
     /* ----------- ADD PANEL METHODS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
 

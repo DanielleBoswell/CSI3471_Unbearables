@@ -44,7 +44,7 @@ public class ReservationDBO {
             if (res.getReservationId() != null) { //FIX ME: HOW DO?
                 // Update an existing person
                 saveSQL = "UPDATE RESERVATION SET CUSTOMER_ID = ?, START_DATE = ?, END_DATE = ?, IS_SMOKING = ?, BED_TYPE = ?," +
-                        " NUM_BEDS = ?, IS_CANCELED = ?, QUALITY_LVL = ?, CHECK_IN_STATUS = ? " +
+                        " NUM_BEDS = ?, IS_CANCELED = ?, QUALITY_LVL = ?, CHECK_IN_STATUS = ? , SHIP = ?" +
                         "WHERE RESERVATION_ID = ?";
                 preparedStatement = dbConnection.prepareStatement(saveSQL);
                 preparedStatement.setLong(1, res.getCustomerId());
@@ -56,13 +56,14 @@ public class ReservationDBO {
                 preparedStatement.setBoolean(7, res.isCanceled());
                 preparedStatement.setString(8, res.getRoom().getQualityLevel().toString());
                 preparedStatement.setString(9, res.getIsCheckedIn().toString());
-                preparedStatement.setLong(10, res.getReservationId());
+                preparedStatement.setString(10, res.getShip());
+                preparedStatement.setLong(11, res.getReservationId());
 
 
             } else {
                 // Insert a new person
                 saveSQL = "INSERT INTO RESERVATION (CUSTOMER_ID, START_DATE, END_DATE, IS_SMOKING, BED_TYPE, NUM_BEDS," +
-                        " IS_CANCELED, QUALITY_LVL, CHECK_IN_STATUS) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
+                        " IS_CANCELED, QUALITY_LVL, CHECK_IN_STATUS, SHIP) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 preparedStatement = dbConnection.prepareStatement(saveSQL, Statement.RETURN_GENERATED_KEYS);
                 preparedStatement.setLong(1, res.getCustomerId()); //FIX ME: HOW DO?
                 preparedStatement.setDate(2, (Date) res.getStartDate());

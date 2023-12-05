@@ -17,6 +17,7 @@ public class Reservation {
 
     private Long customerId;
     private Long reservationId;
+    private String ship;
 
     public Reservation() {
         startDate = null;
@@ -109,6 +110,14 @@ public class Reservation {
 
     }
 
+    public String getShip() {
+        return ship;
+    }
+
+    public void setShip(String ship) {
+        this.ship = ship;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -142,7 +151,7 @@ public class Reservation {
 
         String[] strArr = {startDate.toString(), endDate.toString(), Boolean.toString(isCanceled), Integer.toString(room.getRoomNumber()),
             Boolean.toString(room.isSmoking()), room.getBedType().toString(), Integer.toString(room.getNumBeds()),
-            room.getQualityLevel().toString()};
+            room.getQualityLevel().toString(), this.ship};
 
         return strArr;
     }

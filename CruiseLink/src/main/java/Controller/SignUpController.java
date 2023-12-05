@@ -1,6 +1,9 @@
 package Controller;
 
+import java.sql.SQLException;
+
 public interface SignUpController {
-    void onSignUpSubmit(String firstName, String lastName, String age, String email,
-                        String username, String password, String confirmPassword);
+
+    String onSignUpSubmit(String firstName, String lastName, String age, String email, String username,
+                          String password, String confirmPassword) throws SQLException;
 }

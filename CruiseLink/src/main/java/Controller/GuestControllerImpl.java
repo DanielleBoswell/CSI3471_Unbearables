@@ -12,7 +12,7 @@ public class GuestControllerImpl implements GuestController {
     }
 
     public void onSearchCruises() {
-
+        uiNavigator.showCard(UINavigator.CHOOSE_CRUISE_PANEL);
         System.out.println("Searching Cruises");
     }
 
@@ -32,7 +32,8 @@ public class GuestControllerImpl implements GuestController {
     }
 
     public void onViewProfile() {
-
+        //ProfileControllerImpl.onViewProfile();
+        uiNavigator.showCard(UINavigator.PROFILE_PAGE);
         System.out.println("Viewing Profile");
     }
 }

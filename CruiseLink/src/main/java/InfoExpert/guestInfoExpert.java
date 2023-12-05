@@ -12,6 +12,7 @@ import java.util.Map;
 public class guestInfoExpert {
 
     Map<Integer, Guest> accounts1;
+
     AccountDatabase foundation = new AccountDatabase();
     public guestInfoExpert() throws SQLException {
         foundation.createAccountDatabase();
@@ -33,11 +34,17 @@ public class guestInfoExpert {
      */
     public boolean doesUsernameExist(String username){
 
-        List<Person> possible = accounts.find(username);
+        List<Person> possible = accounts.find("username");
 
+        boolean x = false;
         String taken = null;
+        if(possible.isEmpty()) {
+            //x = true;
+            return x;
+        }
         taken = String.valueOf(possible.stream().
                 filter(e-> e.getUsername().equals(username)).findFirst().get());
+
         return taken != null;
     }
 
@@ -49,9 +56,13 @@ public class guestInfoExpert {
      * exists false it exist true if not
      */
     public boolean doesEmailExist(String email){
-        List<Person> possible = accounts.find(email);
-
+        List<Person> possible = accounts.find("email");
+        boolean x = false;
         String taken = null;
+        if(possible.isEmpty()){
+            //x = true;
+            return x;
+        }
         taken = String.valueOf(possible.stream().
                 filter(e-> e.getEmail().equals(email)).findFirst().get());
         return taken != null;
