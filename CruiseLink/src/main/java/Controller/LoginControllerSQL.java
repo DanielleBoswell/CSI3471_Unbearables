@@ -1,5 +1,11 @@
 package Controller;
 
+import Domain.Admin;
+import Domain.Agent;
+import Domain.Guest;
+import Domain.Person;
+import Repository.AccountDBO;
+import Repository.AccountDatabase;
 import UI.UINavigator;
 
 import javax.swing.*;
@@ -7,22 +13,55 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
-public class LoginControllerImpl implements LoginController {
+public class LoginControllerSQL implements LoginController{
 
-    //Reference to the UINavigator for changing panels
     private UINavigator uiNavigator;
 
+    public LoginControllerSQL(UINavigator uiNavigator) {
+    }
+
     //Constructor to set the UINavigator instance
-    public LoginControllerImpl(UINavigator uiNavigator) {
+    public void LoginControllerImpl(UINavigator uiNavigator) {
         this.uiNavigator = uiNavigator;
     }
 
     @Override
-    public void onLoginPressed(String username, String password) { // -------------- Working ------------------
+    public void onLoginPressed(String username, String password) throws SQLException { // -------------- Working ------------------
 
         String csvFilePath = "sample_users.csv";
+        AccountDatabase foundation = new AccountDatabase();
+        foundation.createAccountDatabase();
 
+        AccountDBO accounts = new AccountDBO(foundation.getDBConnection());
+
+        Person possible = accounts.findByUsername(username);
+        if(possible== null){
+            JOptionPane.showMessageDialog(null, "Invalid username or password", "Login Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+/*        String taken = null;
+        taken = String.valueOf(possible.stream().
+                filter(e-> e.getUsername().equals(username)).findFirst().get());*/
+
+        if(!possible.getPassword().equals(password)){
+            JOptionPane.showMessageDialog(null, "Invalid username or password", "Login Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+/*        Person loginPerson = possible.stream().
+                filter(e-> e.getUsername().equals(username)).findFirst().get();*/
+        if(possible instanceof Person){
+            uiNavigator.showCard(UINavigator.GUEST_LANDING_PANEL);
+            return;
+        } else if (possible instanceof Agent) {
+            uiNavigator.showCard(UINavigator.TRAVEL_AGENT_LANDING_PANEL);
+            return;
+        }else if (possible instanceof Admin) {
+            uiNavigator.showCard(UINavigator.ADMIN_LANDING_PANEL);
+            return;
+        }
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
             String line;
@@ -76,4 +115,5 @@ public class LoginControllerImpl implements LoginController {
         //Need to prompt user for email for reset link
 
     }
+
 }

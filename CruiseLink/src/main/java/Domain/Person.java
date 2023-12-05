@@ -23,13 +23,13 @@ public class Person {
     }
 
     public Person() {
-        this.id = 0L;
+        this.id = -1L;
         this.name = null;
         this.age = 0;
         this.username = null;
         this.password = null;
         this.email = null;
-        this.gender = null;
+        this.gender = "Male";
     }
 
 

@@ -104,10 +104,11 @@ public class UINavigator extends JFrame {
         LoginGUI loginGUIInstance = new LoginGUI(this);
 
         //Create an instance of controller
-        LoginControllerImpl loginController = new LoginControllerImpl(this);
+        //LoginControllerImpl loginController = new LoginControllerImpl(this);
+        LoginControllerSQL loginController = new LoginControllerSQL(this);
 
         //Set the controller to the LoginGUI
-        loginGUIInstance.setController(loginController);
+        loginGUIInstance.setControllerSQL(loginController);
 
         //This will return the log in panel
         return loginGUIInstance.createLoginPanel();
