@@ -3,7 +3,9 @@ package Controller;
 
 public interface ProfileController {
     void onViewProfile();
-    void returnToLandingPage();
-    void alterInformation();
+    void returnToGuestLandingPage();
+    void alterGuestInformation();
+    void returnToAgentLandingPage();
+    void alterAgentInformation();
 
 }

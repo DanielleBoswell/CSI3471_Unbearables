@@ -168,8 +168,9 @@ public class ProfilePageUI {
         mainPanel.add(buttons);
 
         // action listeners for the buttons
-        cancel.addActionListener(e -> profileController.returnToLandingPage());
-        confirm.addActionListener(e -> profileController.alterInformation());
+        // TODO: find some way to determine if the person is a guest or agent to determine which landing page is needed
+        cancel.addActionListener(e -> profileController.returnToGuestLandingPage());
+        confirm.addActionListener(e -> profileController.alterGuestInformation());
 
         return mainPanel;
     }

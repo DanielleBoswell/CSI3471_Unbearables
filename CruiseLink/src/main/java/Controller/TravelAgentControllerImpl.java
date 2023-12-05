@@ -44,7 +44,7 @@ public class TravelAgentControllerImpl implements TravelAgentController { // ---
     }
 
     public void onModifyProfile(){
-
+        uiNavigator.showCard(UINavigator.PROFILE_PAGE);
         System.out.println("Modifying Profile");
     }
 
