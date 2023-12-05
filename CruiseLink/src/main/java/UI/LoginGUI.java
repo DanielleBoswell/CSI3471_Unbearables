@@ -1,11 +1,13 @@
 package UI;
 
 import Controller.LoginControllerImpl;
+import Controller.LoginControllerSQL;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 
 public class LoginGUI extends JPanel {
 
@@ -28,11 +30,16 @@ public class LoginGUI extends JPanel {
     private JLabel forgotPasswordLink;
 
     //Making a Login controller impl object
+/*
     private LoginControllerImpl loginController;
-
+*/
+    private LoginControllerSQL loginController2;
     //Sets the controller
-    public void setController(LoginControllerImpl loginController) {
+/*    public void setController(LoginControllerImpl loginController) {
         this.loginController = loginController;
+    }*/
+    public void setControllerSQL(LoginControllerSQL loginController) {
+        this.loginController2 = loginController;
     }
 
     //Making a UINavigator instance for login
@@ -82,20 +89,26 @@ public class LoginGUI extends JPanel {
             String password = new String(passwordField.getPassword());
 
             this.clearTextFields();
-
+            try {
+                loginController2.onLoginPressed(username, password);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
             //Pass to controller
-            loginController.onLoginPressed(username, password);
+            //loginController.onLoginPressed(username, password);
         });
 
         //Sign up button action listener
         signUpButton.addActionListener(e -> {
 
             this.clearTextFields();
-
-            //Call sign up through controller
-            if (loginController != null) {
-                loginController.onSignUpPressed();
+            if (loginController2 != null) {
+                loginController2.onSignUpPressed();
             }
+            //Call sign up through controller
+/*            if (loginController != null) {
+                loginController.onSignUpPressed();
+            }*/
         });
 
         //Listens for mouse clicks on the forgot password link

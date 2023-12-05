@@ -38,7 +38,7 @@ public class AccountDBO {
         String saveSQL;
 
         try {
-            if (person.getId() != null) {
+            if (person.getId() > 0L) {
                 // Update an existing person
                 saveSQL = "UPDATE Person SET NAME = ?, AGE = ?, USERNAME = ?, PASSWORD = ?, EMAIL = ?, GENDER = ? WHERE ID = ?";
                 preparedStatement = dbConnection.prepareStatement(saveSQL);
@@ -160,7 +160,47 @@ public class AccountDBO {
 
         return null; // Return null if no person with the given ID is found
     }
+    public Person findByUsername(String username) {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
 
+        try {
+            String findByIdSQL = "SELECT * FROM Person WHERE USERNAME = ?";
+            preparedStatement = dbConnection.prepareStatement(findByIdSQL);
+            preparedStatement.setString(1, username);
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                Person person = new Person(
+                        resultSet.getLong("ID"),
+                        resultSet.getString("NAME"),
+                        resultSet.getInt("AGE"),
+                        resultSet.getString("USERNAME"),
+                        resultSet.getString("PASSWORD"),
+                        resultSet.getString("EMAIL"),
+                        resultSet.getString("GENDER")
+                );
+
+                return person;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error closing result set or statement: " + e.getMessage());
+            }
+        }
+
+        return null; // Return null if no person with the given ID is found
+    }
     /**
      * @author Kyle Hoang
      * This function returns a list of every Person in the AccountDatabase
