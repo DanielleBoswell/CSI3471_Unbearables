@@ -39,6 +39,9 @@ public class UINavigator extends JFrame {
     public static final String PROFILE_PAGE = "Profile Page";
     public static final String CHECK_IN_PANEL = "Check In Panel";
 
+    public static final String VIEW_GUEST_RESERVATIONS = "View Guest Reservations";
+    public static final String RESERVATION_VIEW = "View Guest Reservation";
+
     /* ----------- ADD IDENTIFIERS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
 
     //Main frame for our software (Main window)
@@ -209,8 +212,7 @@ public class UINavigator extends JFrame {
     }
 
     public static void addCard(JPanel panel, String identifier){
-        cardPanel.add(panel, identifier);
-    }
+        cardPanel.add(panel, identifier);}
 
     public static void goBack(){
         cardLayout.previous(cardPanel);

@@ -12,15 +12,14 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ViewReservationsGUI extends JPanel {
     private UINavigator uiNavigator;
+    public AllReservationsGuestViewController reservationController;
 
-    public ViewReservationsGUI(UINavigator uiNavigator){
-        this.uiNavigator = uiNavigator;
-    }
 
-    public AllReservationsGuestViewController reservationController = new AllReservationsGuestViewController();
+
 
     //Minitask1
 //    private final class RemoveLineActionListener implements ActionListener {
@@ -47,15 +46,17 @@ public class ViewReservationsGUI extends JPanel {
     private JTable table;
     private JTextField filterText;
     private JTextField statusText;
-    private JButton viewButton;
+    private JButton viewButton, backButton;
     private TableRowSorter<DefaultTableModel> sorter;
     private String[] columnNames = {"ID","Cruise","Quality","Start Date","End Date"};
     private Object[][] data = {{"123", "AA", "BLARH", "12/31/23","1/14/24"},
                                 {"333", "EA", "Business", "12/31/23","1/14/24"}};
 
 
-    public ViewReservationsGUI() {
+    public ViewReservationsGUI(UINavigator uiNavigator){
         super();
+        this.uiNavigator = uiNavigator;
+        this.reservationController  = new AllReservationsGuestViewController();
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         //Create a table with a sorter.
@@ -162,6 +163,9 @@ public class ViewReservationsGUI extends JPanel {
 
         //Create a separate form for filterText and statusText
         JPanel form = new JPanel();
+        backButton = new JButton("Go Back");
+        backButton.addActionListener(e -> UINavigator.showCard(UINavigator.GUEST_LANDING_PANEL));
+        form.add(backButton);
         JLabel l1 = new JLabel("Search:", SwingConstants.TRAILING);
         form.add(l1);
         filterText = new JTextField(20);
@@ -205,7 +209,7 @@ public class ViewReservationsGUI extends JPanel {
         add(dialogButton);
 
         //SpringUtilities.makeCompactGrid(form, 2, 2, 6, 6, 6, 6);
-
+        setOpaque(true);
     }
 
     public abstract class AbstractTableAction<T extends JTable, M extends TableModel> extends AbstractAction {
@@ -255,8 +259,8 @@ public class ViewReservationsGUI extends JPanel {
                 int viewRow = table.getSelectedRow();
                 int modelRow =
                         table.convertRowIndexToModel(viewRow);
-                uiNavigator.add(new ReservationViewUI(uiNavigator, reservationController.viewReservationGuest(modelRow)),
-                        "RESERVATION_VIEW");
+                UINavigator.addCard(new ReservationViewUI(uiNavigator, reservationController.viewReservationGuest(modelRow)),
+                        UINavigator.RESERVATION_VIEW);
                 UINavigator.showCard("RESERVATION_VIEW");
 
                 //FIXME: switch to ReservationViewUI
@@ -294,29 +298,29 @@ public class ViewReservationsGUI extends JPanel {
      * this method should be invoked from the
      * event-dispatching thread.
      */
-    private static void createAndShowGUI() {
-        //Create and set up the window.
-        JFrame frame = new JFrame("Table View");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //UINavigator i = new UINavigator();
-        //Create and set up the content pane.
-        ViewReservationsGUI newContentPane = new ViewReservationsGUI();
-        newContentPane.setOpaque(true); //content panes must be opaque
-        frame.setContentPane(newContentPane);
+//    private static void createAndShowGUI() {
+//        //Create and set up the window.
+//        JFrame frame = new JFrame("Table View");
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        //UINavigator i = new UINavigator();
+//        //Create and set up the content pane.
+//        ViewReservationsGUI newContentPane = new ViewReservationsGUI();
+//        newContentPane.setOpaque(true); //content panes must be opaque
+//        frame.setContentPane(newContentPane);
+//
+//        //Display the window.
+//        frame.pack();
+//        frame.setVisible(true);
+//    }
 
-        //Display the window.
-        frame.pack();
-        frame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-
-        //Schedule a job for the event-dispatching thread:
-        //creating and showing this application's GUI.
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowGUI();
-            }
-        });
-    }
+//    public static void main(String[] args) {
+//
+//        //Schedule a job for the event-dispatching thread:
+//        //creating and showing this application's GUI.
+//        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+//            public void run() {
+//                createAndShowGUI();
+//            }
+//        });
+//    }
 }

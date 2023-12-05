@@ -62,7 +62,7 @@ public class ReservationDatabase {
                 "START_DATE DATE NOT NULL, " + "END_DATE DATE NOT NULL, " + "IS_SMOKING SMALLINT NOT NULL, " +
                 "BED_TYPE VARCHAR(20) NOT NULL, " + "NUM_BEDS INTEGER NOT NULL, " +
                 "QUALITY_LVL VARCHAR(20) NOT NULL, " + "CHECK_IN_STATUS VARCHAR(20) NOT NULL, "
-                + "IS_CANCELED SMALLINT NOT NULL, " + "SHIP VARCHAR(20) NOT NULL)";//", "
+                + "IS_CANCELED SMALLINT NOT NULL, " + "SHIP_ID INTEGER NOT NULL)";//", "
                 //+ "CONSTRAINT primary_key PRIMARY KEY (RESERVATION_ID) " + ")";
 
         try {

@@ -59,7 +59,7 @@ public class ShipDatabase {
     }
 
 
-    public Ship getById(long id){
+    static public Ship getById(long id){
         return shipMap.get(id);
     }
 

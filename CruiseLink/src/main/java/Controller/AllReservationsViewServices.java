@@ -2,6 +2,9 @@ package Controller;
 
 import Domain.Reservation;
 import Domain.Room;
+import Repository.ReservationDBO;
+import Repository.ReservationDatabase;
+import Repository.ShipDatabase;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,17 +14,19 @@ import java.util.Vector;
 public class AllReservationsViewServices {
     private SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
     private List<Reservation> list; // save list of reservations of guest
+    private ReservationDatabase reservationDatabase = new ReservationDatabase();
+    private ReservationDBO reservationDBO = new ReservationDBO(reservationDatabase.getDBConnection());
 
     public Object[][] viewUncancelledReservations(long guestID){ // convert to id of Guest???
-        //list = ReservationDatabaseController.getReservations(long guestID); //make sure only uncancelled res
+        //list = reservationDBO.find("CUSTOMER_ID = " + guestID + " AND IS_CANCELED = 0"); //make sure only uncancelled res
+        //list = reservationDBO.findAll();
         try {
-            list = List.of(new Reservation[]{new Reservation(sdf.parse("01-14-2024"), sdf.parse("01-28-2024"), false, new Room())
-                    , new Reservation(sdf.parse("01-14-2024"), sdf.parse("01-28-2024"), false, new Room())});
+            list = List.of(new Reservation[]{new Reservation(sdf.parse("01-14-2024"), sdf.parse("01-28-2024"), false, 123L, 1L, new Room())
+                    , new Reservation(sdf.parse("01-14-2024"), sdf.parse("01-28-2024"), false, 334L, 1L, new Room())});
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-        Object[][] reservations ={{"123", "AA", "Executive", "12-31-2023","01-14-2024"},
-                                    {"333", "EA", "Business", "12-31-2023","01-14-2024"}};//connect to list
+        Object[][] reservations = new Object[20][];//connect to list
         Vector<Object[]> a = new Vector<>();
         for(Reservation r : list){
             a.add(new Object[]{r.getReservationId(), r.getShipName(),r.getRoom().getQualityLevel().name(),
@@ -45,12 +50,7 @@ public class AllReservationsViewServices {
 
     public ReservationViewServices viewReservation(int row) { //based on list
         Reservation selectedReservation = list.get(row);
-        try {
-            selectedReservation = new Reservation(sdf.parse("01-14-2024"), sdf.parse("01-28-2024"), false, new Room()); //mock reservation
-        }
-        catch(ParseException e){
 
-        }
         return new ReservationViewServices(selectedReservation);
     }
 }

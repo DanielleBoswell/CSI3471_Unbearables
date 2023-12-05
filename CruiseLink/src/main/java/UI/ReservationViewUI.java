@@ -13,15 +13,7 @@ public class ReservationViewUI extends JPanel{
     private UINavigator uiNavigator;
     private ReservationGuestViewController controller;
 
-    /**
-     * constructor
-     * @param uiNavigator
-     * @param rGVC
-     */
-    public ReservationViewUI(UINavigator uiNavigator, ReservationGuestViewController rGVC){
-        this.uiNavigator = uiNavigator;
-        this.controller = rGVC;
-    }
+
 
     private JPanel roomDescription, reserveOptions;
     private JLabel roomName;
@@ -33,7 +25,7 @@ public class ReservationViewUI extends JPanel{
             endDateLbl,
             guestTotalLbl;
 
-    private JButton cancelButton, modifyButton;
+    private JButton cancelButton, modifyButton, backButton;
 
     private final class CancelReservation implements ActionListener {
 
@@ -66,12 +58,13 @@ public class ReservationViewUI extends JPanel{
                 confirmBtn.addActionListener(new ConfirmedCancelReservation());
                 confirmBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-
                 box.setPreferredSize(new Dimension(600, 400));
                 box.setTitle("Are you sure?");
                 items.add(desc);
                 items.add(confirmBtn);
+                items.add(backButton);
                 box.add(items);
+
                 box.pack();
 
                 box.setLocationRelativeTo(getParent());
@@ -122,8 +115,16 @@ public class ReservationViewUI extends JPanel{
     }
 
     //makes the GUI for the frame
-    public ReservationViewUI() {
+    /**
+     * constructor
+     * @param uiNavigator
+     * @param rGVC
+     */
+    public ReservationViewUI(UINavigator uiNavigator, ReservationGuestViewController rGVC){
         super();
+
+        this.uiNavigator = uiNavigator;
+        this.controller = rGVC;
 
         //try {
         String[] room = new String[0];
@@ -134,19 +135,28 @@ public class ReservationViewUI extends JPanel{
         //else{
         roomDescription = new JPanel();
         reserveOptions = new JPanel();
-        roomName = new JLabel("Executive" + " Level");
+        roomName = new JLabel(controller.getQualityLevel() + " Level");
         roomName.setFont(DefaultUI.getTitleFont());
-        qualityLbl = new JLabel("Quality: " + "Executive");
-        bedTypeLbl = new JLabel("bedType: " + "queen");
-        bedTotalLbl = new JLabel("Bed Total: " + 1);
-        smokingLbl = new JLabel("Smoking: " + "No");
+        qualityLbl = new JLabel("Quality: " + controller.getQualityLevel());
+        bedTypeLbl = new JLabel("bedType: " + controller.getBedType());
+        bedTotalLbl = new JLabel("Bed Total: " + controller.getNumBeds());
+        smokingLbl = new JLabel("Smoking: " + controller.getNoSmoking());
 
-        arrivalDateLbl = new JLabel("Start Date: " + "12-31-23");
-        endDateLbl= new JLabel("End Date: " + "1-34-23");
-        guestTotalLbl = new JLabel("Total Guests: " + 1);
+        arrivalDateLbl = new JLabel("Start Date: " + controller.getStartDate());
+        endDateLbl= new JLabel("End Date: " + controller.getEndDate());
+//        guestTotalLbl = new JLabel("Total Guests: " + controller.get);
         cancelButton = new JButton("Cancel Reservation");
         modifyButton = new JButton("Modify Reservation"); // takes to Make Reservation
         //cancelButton.addActionListener(new MakeReservationGUI.ConfirmReserveRoom());
+        backButton = new JButton("Go Back");
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UINavigator.goBack();
+            }
+        });
+        backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
 
         //}
@@ -182,9 +192,9 @@ public class ReservationViewUI extends JPanel{
 
         ++constraints.gridy;
         reserveOptions.add(endDateLbl, constraints);
-
-        ++constraints.gridy;
-        reserveOptions.add(guestTotalLbl, constraints);
+//
+//        ++constraints.gridy;
+//        reserveOptions.add(guestTotalLbl, constraints);
 
         ++constraints.gridy;
         reserveOptions.add(cancelButton, constraints);
@@ -193,6 +203,7 @@ public class ReservationViewUI extends JPanel{
 
         add(roomDescription);
         add(reserveOptions);
+        add(backButton);
 
         //Instead of pack, directly set the frame to be visible
         setVisible(true);
@@ -206,38 +217,38 @@ public class ReservationViewUI extends JPanel{
 //        return side;
 //    }
 
-    public static void createAndShowGUI() {
-        JFrame frame = new JFrame("CruiseLink - View Room");
-        //frame.setUndecorated(true);  //This makes the GUI have no window decorations
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Makes the window close when exit button clicked
-        frame.setResizable(false);   //Disables resizing
+//    public static void createAndShowGUI() {
+//        JFrame frame = new JFrame("CruiseLink - View Room");
+//        //frame.setUndecorated(true);  //This makes the GUI have no window decorations
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Makes the window close when exit button clicked
+//        frame.setResizable(false);   //Disables resizing
+//
+//        //This block allows fullscreen mode
+//        GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+//        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//        frame.setAlwaysOnTop(true);
+//        env.getDefaultScreenDevice().setFullScreenWindow(frame); //Enables Fullscreen
+//
+//        //Setting layout to Grid Bag Layout
+//        frame.setLayout(new GridBagLayout());
+//
+//        //Create and set up the content pane.
+//        ReservationViewUI newContentPane = new ReservationViewUI();
+//        newContentPane.setOpaque(true); //content panes must be opaque
+//        frame.setContentPane(newContentPane);
+//
+//        //Display the window.
+//        frame.pack();
+//        frame.setVisible(true);
+//    }
 
-        //This block allows fullscreen mode
-        GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.setAlwaysOnTop(true);
-        env.getDefaultScreenDevice().setFullScreenWindow(frame); //Enables Fullscreen
-
-        //Setting layout to Grid Bag Layout
-        frame.setLayout(new GridBagLayout());
-
-        //Create and set up the content pane.
-        ReservationViewUI newContentPane = new ReservationViewUI();
-        newContentPane.setOpaque(true); //content panes must be opaque
-        frame.setContentPane(newContentPane);
-
-        //Display the window.
-        frame.pack();
-        frame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowGUI();
-            }
-        });
-    }
+//    public static void main(String[] args) {
+//        SwingUtilities.invokeLater(new Runnable() {
+//            public void run() {
+//                createAndShowGUI();
+//            }
+//        });
+//    }
 
 
 }

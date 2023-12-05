@@ -9,9 +9,7 @@ public class GuestLandingPage {
 
     private JLabel guestLabel;
     private JButton searchCruisesButton;
-    private JButton cancelReservationButton;
-    private JButton modifyReservationButton;
-    private JButton viewReservationButton;
+    private JButton viewReservationsButton;
     private JButton profileButton;
 
     private JButton logoutButton;
@@ -50,20 +48,14 @@ public class GuestLandingPage {
 
         //Create and add buttons
         searchCruisesButton = addButton("Search Cruises", guestLandingPanel, gbc, 1);
-        cancelReservationButton = addButton("Cancel Reservation", guestLandingPanel, gbc, 2);
-        modifyReservationButton = addButton("Modify Reservation", guestLandingPanel, gbc, 3);
-        viewReservationButton = addButton("View Reservation", guestLandingPanel, gbc, 4);
-        profileButton = addButton("View Profile", guestLandingPanel, gbc, 5);
-        logoutButton = addButton("Log Out", guestLandingPanel, gbc, 6);
+        viewReservationsButton = addButton("View Reservations", guestLandingPanel, gbc, 2);
+        profileButton = addButton("View Profile", guestLandingPanel, gbc, 3);
+        logoutButton = addButton("Log Out", guestLandingPanel, gbc, 4);
 
         //Set action listeners for each button -- Will require controller --
         searchCruisesButton.addActionListener(e -> guestController.onSearchCruises());
 
-        cancelReservationButton.addActionListener(e -> guestController.onCancelReservation());
-
-        modifyReservationButton.addActionListener(e -> guestController.onModifyReservation());
-
-        viewReservationButton.addActionListener(e -> guestController.onViewReservation());
+        viewReservationsButton.addActionListener(e -> guestController.onViewReservation());
 
         //guestController.onViewProfile()
         profileButton.addActionListener(e -> guestController.onViewProfile());
