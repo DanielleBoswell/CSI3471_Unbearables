@@ -1,8 +1,8 @@
 package Domain;
 
 import Repository.ShipDatabase;
-
-import java.util.Date;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,7 +30,7 @@ public class Reservation {
         customerId = null;
         reservationId = null;
         isCheckedIn = CheckInStatus.IS_NOT_CHECKED_IN;
-        creationDate = new Date();
+        creationDate = Date.valueOf(LocalDate.now());
     }
 
 
@@ -46,7 +46,7 @@ public class Reservation {
     }
 
     public Reservation(Date start, Date end, boolean b, Room r) {
-        this(start,end,b,r,new Date());
+        this(start,end,b,r,Date.valueOf(LocalDate.now()));
     }
 
     public Reservation(Date start, Date end, boolean b, Long rId, Long cId, Room r) {

@@ -11,7 +11,7 @@ package Domain;
  *
  */
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
