@@ -23,12 +23,14 @@ class RoomTableModel extends AbstractTableModel {
         try {
             Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
             Connection con = DriverManager.getConnection("jdbc:derby:ex1connect;");
-            Statement statement = con.createStatement();
+            Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
             ResultSet rs = statement.executeQuery("SELECT * FROM ROOM WHERE IS_RESERVED = 0");
 
+            rs.last();
+            Object[][] table = new Object[rs.getRow()][5];
+            rs.beforeFirst();
             int count = 0;
-            Object[][] table = new Object[rs.getFetchSize()][5];
-            if(rs.next()){
+            while(rs.next()){
 
                 String roomNum = rs.getString("ROOM_NUM");
 
