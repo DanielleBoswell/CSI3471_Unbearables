@@ -6,21 +6,26 @@ import java.sql.*;
 
 class GuestTableModel extends AbstractTableModel {
     static Boolean DEBUG = false;
-    public String[] columnNames = {"User ID", "Username", "Email", "Gender", "Age"};
+    public String[] columnNames = {"User ID", "Name", "Username", "Email", "Gender", "Age"};
 
 
     Object[][] fillTable() {
         try {
             Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
             Connection con = DriverManager.getConnection("jdbc:derby:ex1connect;");
-            Statement statement = con.createStatement();
+            Statement statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
             ResultSet rs = statement.executeQuery("SELECT * FROM PERSON");
 
             int count = 0;
-            Object[][] table = new Object[rs.getFetchSize()][5];
-            if(rs.next()){
 
-                String userID = rs.getString("NAME");
+            rs.last();
+            Object[][] table = new Object[rs.getRow()][6];
+            rs.beforeFirst();
+            while(rs.next()){
+
+                String userID = rs.getString("ID");
+
+                String name = rs.getString("NAME");
 
                 String username = rs.getString("USERNAME");
 
@@ -33,10 +38,11 @@ class GuestTableModel extends AbstractTableModel {
 
 
                 table[count][0] = userID;
-                table[count][1] = username;
-                table[count][2] = email;
-                table[count][3] = gender;
-                table[count][4] = age;
+                table[count][1] = name;
+                table[count][2] = username;
+                table[count][3] = email;
+                table[count][4] = gender;
+                table[count][5] = age;
 
                 count++;
             }

@@ -57,6 +57,8 @@ public class CreateReservation_ChooseCruise extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Cruise 2 button pressed!");
+                uiNavigator.showCard(UINavigator.CHOOSE_ROOM_PANEL);
+
             }
         });
 
@@ -64,6 +66,7 @@ public class CreateReservation_ChooseCruise extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Cruise 3 button pressed!");
+                uiNavigator.showCard(UINavigator.CHOOSE_ROOM_PANEL);
             }
         });
 

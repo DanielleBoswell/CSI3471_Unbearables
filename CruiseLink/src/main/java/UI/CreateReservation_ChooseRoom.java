@@ -113,6 +113,7 @@ public class CreateReservation_ChooseRoom extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 //insert function here todo
                 System.out.println("Submit button clicked!");
+                uiNavigator.showCard(UINavigator.GUEST_LANDING_PANEL);
             }
         });
         JButton dialogButton = new JButton("Cancel");
@@ -120,7 +121,7 @@ public class CreateReservation_ChooseRoom extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Cancel button clicked!");
-
+                uiNavigator.showCard(UINavigator.TRAVEL_AGENT_LANDING_PANEL);
             }
         });
 
