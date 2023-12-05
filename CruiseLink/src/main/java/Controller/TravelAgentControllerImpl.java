@@ -22,7 +22,7 @@ public class TravelAgentControllerImpl implements TravelAgentController { // ---
     }
 
     public void onProcessCheckInOut(){
-
+        uiNavigator.showCard(UINavigator.CHECK_IN_PANEL);
         System.out.println("Processing Check-In/Out");
     }
 

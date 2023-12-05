@@ -240,7 +240,8 @@ public class ReservationDBO {
                                 Room.BedType.valueOf(resultSet.getString("BED_TYPE")),
                                 resultSet.getInt("NUM_BEDS"),
                                 Room.QualityLevel.valueOf(resultSet.getString("QUALITY_LVL"))
-                        )
+                        ),
+                        resultSet.getString("SHIP")
                 );
                 resList.add(res);
             }
