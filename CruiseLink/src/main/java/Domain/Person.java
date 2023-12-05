@@ -29,7 +29,7 @@ public class Person {
         this.username = null;
         this.password = null;
         this.email = null;
-        this.gender = null;
+        this.gender = "Male";
     }
 
 

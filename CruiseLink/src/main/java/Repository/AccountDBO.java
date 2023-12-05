@@ -38,7 +38,7 @@ public class AccountDBO {
         String saveSQL;
 
         try {
-            if (person.getId() != null) {
+            if (person.getId() > 0) {
                 // Update an existing person
                 saveSQL = "UPDATE Person SET NAME = ?, AGE = ?, USERNAME = ?, PASSWORD = ?, EMAIL = ?, GENDER = ? WHERE ID = ?";
                 preparedStatement = dbConnection.prepareStatement(saveSQL);
