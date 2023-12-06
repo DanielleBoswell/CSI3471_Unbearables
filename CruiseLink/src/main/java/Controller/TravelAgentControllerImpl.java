@@ -17,7 +17,7 @@ public class TravelAgentControllerImpl implements TravelAgentController { // ---
     }
 
     public void onModifyReservation(){
-
+        uiNavigator.showCard(UINavigator.CHOOSE_GUEST_PANEL);
         System.out.println("Modifying Reservation");
     }
 
@@ -44,7 +44,7 @@ public class TravelAgentControllerImpl implements TravelAgentController { // ---
     }
 
     public void onModifyProfile(){
-
+        uiNavigator.showCard(UINavigator.AGENT_PROFILE_PAGE);
         System.out.println("Modifying Profile");
     }
 

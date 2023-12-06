@@ -27,13 +27,13 @@ public class GuestControllerImpl implements GuestController {
     }
 
     public void onModifyReservation() {
-
+        uiNavigator.showCard(UINavigator.CHOOSE_CRUISE_PANEL);
         System.out.println("Modifying Reservation");
     }
 
     public void onViewProfile() {
         //ProfileControllerImpl.onViewProfile();
-        uiNavigator.showCard(UINavigator.PROFILE_PAGE);
+        uiNavigator.showCard(UINavigator.GUEST_PROFILE_PAGE);
         System.out.println("Viewing Profile");
     }
 }
