@@ -50,7 +50,12 @@ public class AddRoomControllerImpl implements AddRoomController {
     }
 
     @Override
-    public void onCancelPressed() {
+    public void onCancelPressed(UINavigator UINavigator) {
         System.out.println("Cancel Button pressed!");
+        JOptionPane.showMessageDialog(null, "Check In/Check Out canceled",
+                "Returning to travel agent home page", JOptionPane.ERROR_MESSAGE);
+
+        //Return to travel agent home page
+        UINavigator.showCard(UINavigator.TRAVEL_AGENT_LANDING_PANEL);
     }
 }

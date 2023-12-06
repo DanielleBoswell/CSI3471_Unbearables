@@ -127,6 +127,7 @@ public class AddRoomGUI extends JPanel {
         cancel = new JButton("Cancel");
         cancel.setForeground(Color.RED);
         cancel.setFont(defaultFont);
+        cancel.addActionListener(e -> onCancel(uiNavigator));
         ++constraints.gridy;
         this.add(cancel, constraints);
 
@@ -143,6 +144,22 @@ public class AddRoomGUI extends JPanel {
         //this.setVisible(true);
         return this;
     }
+
+
+    /**
+     * @author originally Kyle Thomspon, modified for use by Kyle Hoang
+     * This method sends user to Travel Agent Landing Page
+     * @param UINavigator
+     */
+    private void onCancel(UINavigator UINavigator){
+
+        JOptionPane.showMessageDialog(null, "Add Room canceled",
+                "Returning to travel agent home page", JOptionPane.ERROR_MESSAGE);
+
+        //Return to travel agent home page
+        UINavigator.showCard(UINavigator.TRAVEL_AGENT_LANDING_PANEL);
+    }
+
 
     /**
      * This method is from an old version of the UI, before UINavigator.
