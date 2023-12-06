@@ -30,7 +30,7 @@ public class GuestControllerImpl implements GuestController {
     }
 
     public void onModifyReservation() {
-
+        uiNavigator.showCard(UINavigator.CHOOSE_CRUISE_PANEL);
         System.out.println("Modifying Reservation");
         UINavigator.addCard(new ViewReservationsGUI(uiNavigator), UINavigator.VIEW_GUEST_RESERVATIONS);
         UINavigator.showCard(UINavigator.VIEW_GUEST_RESERVATIONS);
@@ -39,7 +39,9 @@ public class GuestControllerImpl implements GuestController {
 
     public void onViewProfile() {
         //ProfileControllerImpl.onViewProfile();
-        UINavigator.showCard(UINavigator.PROFILE_PAGE);
+
+        uiNavigator.showCard(UINavigator.GUEST_PROFILE_PAGE);
+
         System.out.println("Viewing Profile");
     }
 }

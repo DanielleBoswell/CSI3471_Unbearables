@@ -60,6 +60,17 @@ public class Reservation {
         ship = ShipDatabase.getById(1L);
     }
 
+    public Reservation(Date start, Date end, boolean b, Long rId, Long cId, Room r, Ship s) {
+        this();
+        startDate = start;
+        endDate = end;
+        isCanceled = b;
+        room = r;
+        customerId = cId;
+        reservationId = rId;
+        this.ship = s;
+    }
+
     public Date getStartDate() {
         return startDate;
     }
