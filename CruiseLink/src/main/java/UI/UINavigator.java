@@ -42,6 +42,7 @@ public class UINavigator extends JFrame {
     public static final String AGENT_PROFILE_PAGE = "Agent Profile Page";
 
     public static final String CHECK_IN_PANEL = "Check In Panel";
+    public static final String ADD_ROOM_PANEL = "Add Room Panel";
 
     /* ----------- ADD IDENTIFIERS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
 
@@ -93,6 +94,7 @@ public class UINavigator extends JFrame {
         cardPanel.add(createGuestProfilePage(), GUEST_PROFILE_PAGE);
         cardPanel.add(createAgentProfilePage(), AGENT_PROFILE_PAGE);
         cardPanel.add(createCheckIn(), CHECK_IN_PANEL);
+        cardPanel.add(createAddRoom(), ADD_ROOM_PANEL);
 
         /* ----------- ADD PANELS HERE FOR EACH GUI PAGE ----------- */
 
@@ -209,6 +211,13 @@ public class UINavigator extends JFrame {
         CheckInControllerImpl checkInController = new CheckInControllerImpl(this);
         checkInUIInstance.setController(checkInController);
         return checkInUIInstance.createCheckInUIPanel();
+    }
+
+    private JPanel createAddRoom() {
+        AddRoomGUI addRoomGUIInstance = new AddRoomGUI(this);
+        AddRoomControllerImpl addRoomController = new AddRoomControllerImpl(this);
+        addRoomGUIInstance.setController(addRoomController);
+        return addRoomGUIInstance.createAddRoomUIPanel();
     }
 
 

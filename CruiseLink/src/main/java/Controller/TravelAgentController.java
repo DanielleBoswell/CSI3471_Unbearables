@@ -17,4 +17,6 @@ public interface TravelAgentController {
     void onModifyProfile();
 
     void onModifyRoom();
+
+    void onAddRoom();
 }

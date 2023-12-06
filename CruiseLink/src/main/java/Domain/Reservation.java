@@ -43,6 +43,17 @@ public class Reservation {
         reservationId = rId;
     }
 
+    public Reservation(Date start, Date end, boolean b, Long rId, Long cId, Room r, String s) {
+        this();
+        startDate = start;
+        endDate = end;
+        isCanceled = b;
+        room = r;
+        customerId = cId;
+        reservationId = rId;
+        this.ship = s;
+    }
+
     public Date getStartDate() {
         return startDate;
     }
