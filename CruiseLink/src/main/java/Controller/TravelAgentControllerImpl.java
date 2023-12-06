@@ -54,4 +54,9 @@ public class TravelAgentControllerImpl implements TravelAgentController { // ---
 
         uiNavigator.showCard(UINavigator.TRAVEL_AGENT_MODIFY_ROOM_PANEL);
     }
+
+    public void onAddRoom(){
+        System.out.println("Adding Room");
+        uiNavigator.showCard(UINavigator.ADD_ROOM_PANEL);
+    }
 }

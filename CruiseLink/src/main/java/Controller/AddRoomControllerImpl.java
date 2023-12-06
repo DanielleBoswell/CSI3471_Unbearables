@@ -1,10 +1,20 @@
 package Controller;
 
 import Domain.Room;
+import UI.UINavigator;
 
 import javax.swing.*;
 
 public class AddRoomControllerImpl implements AddRoomController {
+
+    private UINavigator uiNavigator;
+
+    //Constructor to set the UINavigator instance
+    public AddRoomControllerImpl(UINavigator uiNavigator) {
+        this.uiNavigator = uiNavigator;
+    }
+
+
     @Override
     public void onAddPressed(JComboBox qualityLvl, JComboBox bedType, JComboBox bedNum, JTextField roomNum, JCheckBox isSmoking) {
         System.out.println("Add Button pressed!");
