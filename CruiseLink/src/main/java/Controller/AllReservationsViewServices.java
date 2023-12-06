@@ -12,22 +12,40 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Vector;
 
+/**
+ * Services to allow users to view all reservations of a guest
+ * Can be implemented for both Guest users and Travel Agent users
+ * @author Danielle Boswell
+ */
 public class AllReservationsViewServices {
+    /**
+     * used for conversion of dates to proper format
+     */
     private final SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+    /**
+     * holds the reservations of the guest
+     */
     private List<Reservation> list; // save list of reservations of guest
+    /**
+     * for connecting to reservation database
+     */
     private final ReservationDatabase reservationDatabase = new ReservationDatabase();
+    /**
+     * For interacting with reservation database
+     */
     private final ReservationDBO reservationDBO = new ReservationDBO(reservationDatabase.getDBConnection());
 
     /**
+     * used to view all uncancelled reservations of a specified guest
+     * modifies list to hold the guest's reservations
+     * returns the object version to be handled by the controller
      *
-     * @param guestID
+     * @param guestID id of guest
      * @return Object[][]
+     * @author Danielle Boswell
      */
     public Object[][] viewUncancelledReservations(long guestID){ // convert to id of Guest???
-        //reservationDBO.save(new Reservation(new Date(2023,12,31), new Date(2024,1,14), false, 123L, 1L, new Room()));
         list = reservationDBO.find("CUSTOMER_ID = " + guestID + " AND IS_CANCELED = 0"); //make sure only uncancelled res
-//        list = List.of(new Reservation[]{new Reservation(new Date(2023,12,31), new Date(2024,1,14), false, 123L, 1L, new Room()),
-//                new Reservation(new Date(2024,1,14), new Date(2024,12,28), false, 334L, 1L, new Room())});
 
 
 
@@ -43,24 +61,26 @@ public class AllReservationsViewServices {
     }
 
     /**
+     * prepares to view a single chosen reservation by ID
      *
-     * @param reservationID
+     * @param reservationID id of reservation
      * @return ReservationViewServices
+     * @author Danielle Boswell
      */
     public ReservationViewServices viewReservation(long reservationID) { //based on database
         Reservation selectedReservation = reservationDBO.findByReservationId(reservationID);
-//        Object[] reservation = {selectedReservation.getReservationId(),
-//                selectedReservation.getShipName(),
-//                sdf.format(selectedReservation.getStartDate()),
-//                sdf.format(selectedReservation.getEndDate())};
 
         return new ReservationViewServices(selectedReservation);
     }
 
     /**
+     * prepares to view a single chosen reservation straight from list
+     * returns a service that allows access to view information of
+     * a single reservation
      *
-     * @param row
+     * @param row row of reservation
      * @return ReservationViewServices
+     * @author Danielle Boswell
      */
     public ReservationViewServices viewReservation(int row) { //based on list
         Reservation selectedReservation = list.get(row);

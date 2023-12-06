@@ -15,32 +15,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ViewReservationsGUI extends JPanel {
+    /**
+     * to navigate between pages
+     */
     private UINavigator uiNavigator;
+    /**
+     * for page functionality
+     */
     public AllReservationsGuestViewController reservationController;
-
-
-
-
-    //Minitask1
-//    private final class RemoveLineActionListener implements ActionListener {
-//
-//        @Override
-//        public void actionPerformed(ActionEvent e) {
-//            int viewRow = table.getSelectedRow();
-//            if (viewRow < 0) {
-//                JOptionPane.showMessageDialog(null, "No row selected!");
-//            } else {
-//                int modelRow = table.convertRowIndexToModel(viewRow);
-//                DefaultTableModel model = (DefaultTableModel) table.getModel();
-//                int answer = JOptionPane
-//                        .showConfirmDialog(null,
-//                                "Do you want to remove " + model.getValueAt(modelRow, 0) + " "
-//                                        + model.getValueAt(modelRow, 1) + "?",
-//                                "Warning", JOptionPane.YES_NO_OPTION);
-//                if (answer == 0) model.removeRow(modelRow);
-//            }
-//        }
-//    }
 
     boolean DEBUG = false;
     private JTable table;
@@ -49,20 +31,21 @@ public class ViewReservationsGUI extends JPanel {
     private JButton viewButton, backButton;
     private TableRowSorter<DefaultTableModel> sorter;
     private String[] columnNames = {"ID","Cruise","Quality","Start Date","End Date"};
-    private Object[][] data = {{"123", "AA", "BLARH", "12/31/23","1/14/24"},
-                                {"333", "EA", "Business", "12/31/23","1/14/24"}};
+    private Object[][] data;
 
-
+    /**
+     * constructor to create all elements on the UI
+     * to view all reservations of Guest
+     *
+     * @param uiNavigator uiNavigator
+     * @author Danielle Boswell
+     */
     public ViewReservationsGUI(UINavigator uiNavigator){
         super();
         this.uiNavigator = uiNavigator;
         this.reservationController  = new AllReservationsGuestViewController();
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        //Create a table with a sorter.
-        //TASK2
-        //TASK6
-        //DefaultTableModel model = new DefaultTableModel(data, columnNames);
         final Class<?>[] columnClass = new Class[] {
                 String.class, String.class, String.class, String.class, String.class,
                 String.class, String.class, String.class
@@ -83,33 +66,8 @@ public class ViewReservationsGUI extends JPanel {
             }
         };
 
-        //get from CSV file
-//        try (BufferedReader br = new BufferedReader(
-//                new InputStreamReader(getClass().getResourceAsStream("/cars.csv")))) {
-//            String line;
-//            br.readLine();
-//            while ((line = br.readLine()) != null) {
-//                // System.out.println(line);
-//                String[] row = line.split(",");
-//                Vector<Object> correction = new Vector<>();
-//                for (int i = 0; i < 5; i++) {
-//                    correction.add(row[i]);
-//                }
-//                model.addRow(correction);
-//            }
-//        }
-//        catch(FileNotFoundException e){
-//            e.printStackTrace();
-//        }
-//        catch(IOException e) {
-//            e.printStackTrace();
-//        }
-//        catch(NullPointerException e) {
-//            e.printStackTrace();
-//        }
 
         Box b1 = Box.createHorizontalBox();
-        //b1.add(initMenu(model));
         b1.add(Box.createHorizontalGlue());
         add(b1);
 
@@ -120,45 +78,28 @@ public class ViewReservationsGUI extends JPanel {
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         table.setFillsViewportHeight(true);
 
-        //TASK5
         ViewReservationFromTableAction viewAction = new ViewReservationFromTableAction(table, (DefaultTableModel)table.getModel());
-//        JToolBar toolbar = new JToolBar();
-//        Box floatRightBox = Box.createHorizontalBox();
-//        floatRightBox.add(Box.createHorizontalGlue());
-//        toolbar.add(viewAction);
-//        floatRightBox.add(toolbar);
-//        add(floatRightBox);
 
-        //For the purposes of this example, better to have a single
-        //selection.
+        // Better to have a single selection.
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
-        //TASK5
-        //table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-
-        //TASK7
-        //TableFilterHeader filterHeader = new TableFilterHeader(table, AutoChoices.ENABLED);
-
-        //When selection changes, provide user with row numbers for
-        //both view and model.
-        table.getSelectionModel().addListSelectionListener(
-                new ListSelectionListener() {
-                    public void valueChanged(ListSelectionEvent event) {
-                        int viewRow = table.getSelectedRow();
-                        if (viewRow < 0) {
-                            //Selection got filtered away.
-                            //statusText.setText("");
-                        } else {
-                            int modelRow =
-                                    table.convertRowIndexToModel(viewRow);
-//                            statusText.setText(
-//                                    String.format("Selected Row in view: %d. " +
-//                                                    "Selected Row in model: %d.",
-//                                            viewRow, modelRow));
-                        }
-                    }
-                }
-        );
+//        table.getSelectionModel().addListSelectionListener(
+//                new ListSelectionListener() {
+//                    public void valueChanged(ListSelectionEvent event) {
+//                        int viewRow = table.getSelectedRow();
+//                        if (viewRow < 0) {
+//                            //Selection got filtered away.
+//                            //statusText.setText("");
+//                        } else {
+//                            int modelRow =
+//                                    table.convertRowIndexToModel(viewRow);
+////                            statusText.setText(
+////                                    String.format("Selected Row in view: %d. " +
+////                                                    "Selected Row in model: %d.",
+////                                            viewRow, modelRow));
+//                        }
+//                    }
+//                }
+//        );
 
 
         //Create a separate form for filterText and statusText
@@ -184,34 +125,29 @@ public class ViewReservationsGUI extends JPanel {
                 });
         l1.setLabelFor(filterText);
         form.add(filterText);
-//        JLabel l2 = new JLabel("Status:", SwingConstants.TRAILING);
-//        //form.add(l2);
-//        statusText = new JTextField();
-//        l2.setLabelFor(statusText);
-//        //form.add(statusText);
-        //TASK
+
         add(form);
 
         //Create the scroll pane and add the table to it.
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.createVerticalScrollBar();
-
-
-        //Add the scroll pane to this panel.
         add(scrollPane);
 
 
-
-
-        //TASK4
         JButton dialogButton = new JButton("View Reservation");
         dialogButton.addActionListener(viewAction);
         add(dialogButton);
-
-        //SpringUtilities.makeCompactGrid(form, 2, 2, 6, 6, 6, 6);
         setOpaque(true);
     }
 
+    /**
+     *
+     * Reservation view
+     *
+     * @param <T>
+     * @param <M>
+     * @author Danielle Boswell
+     */
     public abstract class AbstractTableAction<T extends JTable, M extends TableModel> extends AbstractAction {
 
         private T table;
@@ -232,8 +168,18 @@ public class ViewReservationsGUI extends JPanel {
 
     }
 
+    /**
+     * For selecting and viewing a single reservation
+     * @author Danielle Boswell
+     */
     public class ViewReservationFromTableAction extends AbstractTableAction<JTable, DefaultTableModel> {
 
+        /**
+         * Enacting selecting and viewing a single reservation
+         * @param table the table
+         * @param model the model of reservations
+         * @author Danielle Boswell
+         */
         public ViewReservationFromTableAction(JTable table, DefaultTableModel model) {
             super(table, model);
             putValue(NAME, "View Selected Reservation");
@@ -247,6 +193,11 @@ public class ViewReservationsGUI extends JPanel {
             setEnabled(getTable().getSelectedRowCount() > 0);
         }
 
+        /**
+         * Views the reservation and switches the page
+         * @param e the event to be processed
+         * @author Danielle Boswell
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("...");
@@ -262,26 +213,16 @@ public class ViewReservationsGUI extends JPanel {
                 UINavigator.addCard(new ReservationViewUI(uiNavigator, reservationController.viewReservationGuest(modelRow)),
                         UINavigator.RESERVATION_VIEW);
                 UINavigator.showCard(UINavigator.RESERVATION_VIEW);
-
-                //FIXME: switch to ReservationViewUI
-                javax.swing.SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-
-                    }
-                });
             }
         }
 
     }
 
     /**
-     * Update the row filter regular expression from the expression in
-     * the text box.
+     * Filters the reservations
      */
     private void newFilter() {
         RowFilter<DefaultTableModel, Object> rf = null;
-        //If current expression doesn't parse, don't update.
         try {
             rf = RowFilter.regexFilter(filterText.getText(), 0, 1, 2);
         } catch (java.util.regex.PatternSyntaxException e) {
@@ -289,38 +230,4 @@ public class ViewReservationsGUI extends JPanel {
         }
         sorter.setRowFilter(rf);
     }
-
-
-
-
-    /**
-     * Create the GUI and show it.  For thread safety,
-     * this method should be invoked from the
-     * event-dispatching thread.
-     */
-//    private static void createAndShowGUI() {
-//        //Create and set up the window.
-//        JFrame frame = new JFrame("Table View");
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        //UINavigator i = new UINavigator();
-//        //Create and set up the content pane.
-//        ViewReservationsGUI newContentPane = new ViewReservationsGUI();
-//        newContentPane.setOpaque(true); //content panes must be opaque
-//        frame.setContentPane(newContentPane);
-//
-//        //Display the window.
-//        frame.pack();
-//        frame.setVisible(true);
-//    }
-
-//    public static void main(String[] args) {
-//
-//        //Schedule a job for the event-dispatching thread:
-//        //creating and showing this application's GUI.
-//        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-//            public void run() {
-//                createAndShowGUI();
-//            }
-//        });
-//    }
 }

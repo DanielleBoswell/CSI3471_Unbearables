@@ -7,23 +7,40 @@ import Repository.ReservationDatabase;
 import java.util.Date;
 import java.util.logging.Logger;
 
+/**
+ * Services to allow user to cancel a reservation
+ *
+ * @author Danielle Boswell
+ */
 public class CancelReservationServices {
+    /**
+     * Reservation to be cancelled
+     */
     Reservation reservation;
-    //Logger logger = new Logger(this.getClass().getName());
+
+    /**
+     * Tracks if the guest has to be charged a fee
+     * for cancellation
+     */
     boolean ok = false;
 
     public CancelReservationServices(){}
 
+    /**
+     * Sets the reservation to be cancelled
+     *
+     * @param r
+     * @author Danielle Boswell
+     */
     public CancelReservationServices(Reservation r){
         reservation = r;
     }
 
-    private void setReservation(long reservationID){
-
-        reservation = new Reservation(); // connect to Reservation Database
-    }
-
-
+    /**
+     * Makes sure that the reservation can be cancelled with no fee
+     * @return ok
+     * @author Danielle Boswell
+     */
     public boolean canCancelReservation(){
         Date d = new Date();
         long diff = d.getTime() - reservation.getCreationDate().getTime();
@@ -32,10 +49,23 @@ public class CancelReservationServices {
         return ok;
     }
 
+    /**
+     * Displays if there is a fee to be paid
+     * @return String
+     * @author Danielle Boswell
+     */
     public String getCancellationDesc(){
-        return "Do you want to cancel this reservation?"; // connect to billinginfo
+        return "Sorry, but a fee of $50.00 will be charged to your account \n";
     }
 
+    /**
+     * actually cancels the reservation (after charging the guest
+     * a fee if cancellation is past the limit)
+     * Confirms cancellation by returning if true or false
+     *
+     * @return boolean
+     * @author Danielle Boswell
+     */
     public boolean confirmCancellation(){
         boolean charged, isCancelled = true;
         if(!ok){

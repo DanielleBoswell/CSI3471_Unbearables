@@ -7,10 +7,21 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * UI for viewing a single reservation
+ * Can be used to lead to cancelling or modifying a reservation
+ * @author Danielle Boswell
+ */
 public class ReservationViewUI extends JPanel{
 
 
+    /**
+     * used to navigate between pages
+     */
     private UINavigator uiNavigator;
+    /**
+     * used to interact with reservation
+     */
     private ReservationGuestViewController controller;
 
 
@@ -27,6 +38,10 @@ public class ReservationViewUI extends JPanel{
 
     private JButton cancelButton, modifyButton, backButton;
 
+    /**
+     * For confirming if the user wants to cancel the reservation
+     * @author Danielle Boswell
+     */
     private final class CancelReservation implements ActionListener {
 
         @Override
@@ -35,6 +50,10 @@ public class ReservationViewUI extends JPanel{
         }
     }
 
+    /**
+     * For cancelling the reservation
+     * @author Danielle Boswell
+     */
     private final class ConfirmedCancelReservation implements ActionListener {
 
         @Override
@@ -44,6 +63,12 @@ public class ReservationViewUI extends JPanel{
     }
 
     //shows that the room is available
+
+    /**
+     * shows pop up to confirm if the guest wants to cancel the reservation
+     * @param description description of cancellation
+     * @author Danielle Boswell
+     */
     public void confirmCancelDialogueBox(String description) {
         int ans = JOptionPane.showConfirmDialog(this, "Confirm Cancellation",
                 "Are you sure?", JOptionPane.YES_NO_OPTION);
@@ -53,6 +78,11 @@ public class ReservationViewUI extends JPanel{
         }
     }
 
+    /**
+     * pops up dialog displaying that reservation is cancelled or not
+     * @param ok ok for no fee
+     * @author Danielle Boswell
+     */
     public void isCancelledDialogueBox(boolean ok) {
                 if(ok) {
                     JOptionPane.showMessageDialog(this, "Your Reservation has now been cancelled!",
@@ -68,9 +98,11 @@ public class ReservationViewUI extends JPanel{
 
     //makes the GUI for the frame
     /**
-     * constructor
-     * @param uiNavigator
-     * @param rGVC
+     * constructor to create the UI
+     *
+     * @param uiNavigator uiNavigator
+     * @param rGVC reservation guest controller
+     * @author Danielle Boswell
      */
     public ReservationViewUI(UINavigator uiNavigator, ReservationGuestViewController rGVC){
         super();
@@ -78,13 +110,6 @@ public class ReservationViewUI extends JPanel{
         this.uiNavigator = uiNavigator;
         this.controller = rGVC;
 
-        //try {
-        String[] room = new String[0];
-        //controller.getRoomInfo()
-        //if(room.length < 5) {
-        //throw
-        //}
-        //else{
         roomDescription = new JPanel();
         reserveOptions = new JPanel();
         roomName = new JLabel(controller.getQualityLevel() + " Level");
@@ -145,9 +170,6 @@ public class ReservationViewUI extends JPanel{
 
         ++constraints.gridy;
         reserveOptions.add(endDateLbl, constraints);
-//
-//        ++constraints.gridy;
-//        reserveOptions.add(guestTotalLbl, constraints);
 
         ++constraints.gridy;
         reserveOptions.add(cancelButton, constraints);
@@ -161,47 +183,7 @@ public class ReservationViewUI extends JPanel{
         //Instead of pack, directly set the frame to be visible
         setVisible(true);
     }
-//    public JPanel initSideMenu(){
-//        JPanel side = super.initSideMenu();
-//        JButton srchCruiseBtn = new JButton("Search Cruise Reservations");
-//        side.add(srchCruiseBtn);
-//        JButton myReservationsBtn = new JButton("My Reservations");
-//        side.add (myReservationsBtn);
-//        return side;
-//    }
 
-//    public static void createAndShowGUI() {
-//        JFrame frame = new JFrame("CruiseLink - View Room");
-//        //frame.setUndecorated(true);  //This makes the GUI have no window decorations
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Makes the window close when exit button clicked
-//        frame.setResizable(false);   //Disables resizing
-//
-//        //This block allows fullscreen mode
-//        GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
-//        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//        frame.setAlwaysOnTop(true);
-//        env.getDefaultScreenDevice().setFullScreenWindow(frame); //Enables Fullscreen
-//
-//        //Setting layout to Grid Bag Layout
-//        frame.setLayout(new GridBagLayout());
-//
-//        //Create and set up the content pane.
-//        ReservationViewUI newContentPane = new ReservationViewUI();
-//        newContentPane.setOpaque(true); //content panes must be opaque
-//        frame.setContentPane(newContentPane);
-//
-//        //Display the window.
-//        frame.pack();
-//        frame.setVisible(true);
-//    }
-
-//    public static void main(String[] args) {
-//        SwingUtilities.invokeLater(new Runnable() {
-//            public void run() {
-//                createAndShowGUI();
-//            }
-//        });
-//    }
 
 
 }
