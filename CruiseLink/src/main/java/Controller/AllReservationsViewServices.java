@@ -24,10 +24,10 @@ public class AllReservationsViewServices {
      * @return Object[][]
      */
     public Object[][] viewUncancelledReservations(long guestID){ // convert to id of Guest???
-        reservationDBO.save(new Reservation(new Date(2023,12,31), new Date(2024,1,14), false, 123L, 1L, new Room()));
-        list = reservationDBO.find("CUSTOMER_ID = " + guestID + " AND IS_CANCELED = 0"); //make sure only uncancelled res
-//        list = List.of(new Reservation[]{new Reservation(new Date(2023,12,31), new Date(2024,1,14), false, 123L, 1L, new Room()),
-//                new Reservation(new Date(2024,1,14), new Date(2024,12,28), false, 334L, 1L, new Room())});
+        //reservationDBO.save(new Reservation(new Date(2023,12,31), new Date(2024,1,14), false, 123L, 1L, new Room()));
+        //list = reservationDBO.find("CUSTOMER_ID = " + guestID + " AND IS_CANCELED = 0"); //make sure only uncancelled res
+        list = List.of(new Reservation[]{new Reservation(new Date(2023,12,31), new Date(2024,1,14), false, 123L, 1L, new Room()),
+                new Reservation(new Date(2024,1,14), new Date(2024,12,28), false, 334L, 1L, new Room())});
 
 
 

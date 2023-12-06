@@ -61,7 +61,7 @@ public class ReservationViewUI extends JPanel{
                 if(ok) {
                     JOptionPane.showMessageDialog(this, "Your Reservation has now been cancelled!",
                             "Reservation Cancelled", JOptionPane.WARNING_MESSAGE);
-                    UINavigator.goBack();
+                    UINavigator.showCard(UINavigator.VIEW_GUEST_RESERVATIONS);
                 }
                 else{
                     JOptionPane.showMessageDialog(this, "Your Reservation cannot be cancelled! Try again another time",
@@ -107,7 +107,8 @@ public class ReservationViewUI extends JPanel{
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                UINavigator.goBack();
+                UINavigator.showCard(UINavigator.VIEW_GUEST_RESERVATIONS);
+
             }
         });
         backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
