@@ -7,35 +7,88 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Date;
 
+/**
+ * This class contains the code for the travel agent's profile page.
+ * It uses the profile controller to actually function.
+ * @author Emma
+ */
 public class AgentProfilePageUI {
+    /**
+     * This is the standard width of the text boxes used.
+     */
     public static final int TEXT_BOX_WIDTH = 20;
 
+    /**
+     * This is the user whose information should be displayed.
+     */
     private static Person user;
+    /**
+     * These are the various panels used to organize the UI components.
+     */
     private static JPanel information, picture, buttons;
+    /**
+     * These are the labels used in the UI.
+     */
     private static JLabel label, name, username, newPassword, oldPassword, dob,
             email, uUsername, uOldPassword, backslash;
+    /**
+     * This is the user's profile picture. Used to resize the image.
+     */
     private static ImageIcon profPic;
+    /**
+     * This is used to actually apply the image to the UI.
+     */
     private static Image image;
+    /**
+     * These are the text fields used to show user data, and they are editable.
+     */
     private static JTextField uName, year, uEmail, day, month;
+    /**
+     * This is used to hide the new password being entered.
+     */
     private static JPasswordField uPassword;
 
+    /**
+     * These are the buttons that save the changes or return to the travel
+     * agent's landing page.
+     */
     private static JButton confirm, cancel;
 
+    /**
+     * This is the default font and size used for much of the text components.
+     */
     private static Font defaultFont = new Font("Comic Sans MS", Font.PLAIN, 16);
 
-    // setting controller
+    /**
+     * This is the controller to be used to connect functionality.
+      */
     private static ProfileControllerImpl profileController;
 
+    /**
+     * This initializes the controller for the travel agent profile page.
+     * @param profileController
+     */
     public void setController(ProfileControllerImpl profileController) {
         this.profileController = profileController;
     }
 
+    /**
+     * This is the UI navigator used to switch between pages.
+     */
     private static UINavigator UINavigator;
 
+    /**
+     * This initializes the Ui navigator to be used when switching pages.
+     * @param UINavigator
+     */
     public AgentProfilePageUI(UINavigator UINavigator) {
         this.UINavigator = UINavigator;
     }
 
+    /**
+     * This defines the functionality of the confirm and cancel buttons.
+     * It uses the profile controller.
+     */
     public static void AgentFunctionality() {
         cancel.addActionListener(e -> profileController.returnToAgentLandingPage());
         confirm.addActionListener(e -> profileController.alterAgentInformation());
