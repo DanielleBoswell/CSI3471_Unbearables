@@ -6,10 +6,7 @@ import Domain.Person;
 import Domain.Reservation;
 import Domain.Room;
 import InfoExpert.guestInfoExpert;
-import Repository.ReservationDBO;
-import Repository.ReservationDatabase;
-import Repository.RoomDBO;
-import Repository.RoomDatabase;
+import Repository.*;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -52,7 +49,7 @@ public class Main {
         Reservation reservation1 = new Reservation(startDate1, endDate1, isCanceled1, room1);
         reservation1.setCustomerId(1L);
         reservation1.setReservationId(1L);
-        reservation1.setShip("Cruise1");
+        reservation1.setShip(ShipDatabase.getById(1L));
 
         Date startDate2 = new Date(3,7,2024); // Replace with your desired start date
         Date endDate2 = new Date(3,15,2024);   // Replace with your desired end date
@@ -62,7 +59,7 @@ public class Main {
         Reservation reservation2 = new Reservation(startDate2, endDate2, isCanceled2, room2);
         reservation2.setCustomerId(2L);
         reservation2.setReservationId(2L);
-        reservation2.setShip("Cruise2");
+        reservation2.setShip(ShipDatabase.getById(2L));
 
         Person person1 = new Person(1L, "John Doe", 30, "john_doe", "password123", "john@example.com", "Male");
         Person person2 = new Person(2L, "Jane Smith", 25, "jane_smith", "pass456", "jane@example.com", "Female");

@@ -17,6 +17,7 @@ public class TravelAgentLandingPage {
     private JButton modifyProfileButton;
 
     private JButton modifyRoomButton;
+    private JButton addRoomButton;
 
     private JButton logoutButton;
 
@@ -61,7 +62,8 @@ public class TravelAgentLandingPage {
         cancelReservationButton = addButton("Cancel Reservation", travelAgentLandingPanel, gbc, 6);
         modifyProfileButton = addButton("Modify Profile", travelAgentLandingPanel, gbc, 7);
         modifyRoomButton = addButton("Modify Room", travelAgentLandingPanel, gbc, 8);
-        logoutButton = addButton("Log Out", travelAgentLandingPanel, gbc, 9);
+        addRoomButton = addButton("Add Room", travelAgentLandingPanel, gbc, 9);
+        logoutButton = addButton("Log Out", travelAgentLandingPanel, gbc, 10);
 
         //Set action listeners for each button -- Will require controller --
         viewRoomStatusButton.addActionListener(e -> travelAgentController.onViewRoomStatus());
@@ -79,6 +81,8 @@ public class TravelAgentLandingPage {
         modifyProfileButton.addActionListener(e -> travelAgentController.onModifyProfile());
 
         modifyRoomButton.addActionListener(e -> travelAgentController.onModifyRoom());
+
+        addRoomButton.addActionListener(e -> travelAgentController.onAddRoom());
 
         logoutButton.addActionListener(e -> UINavigator.showCard(UINavigator.LOGIN_PANEL));
 

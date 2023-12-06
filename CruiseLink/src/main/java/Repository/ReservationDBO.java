@@ -54,9 +54,9 @@ public class ReservationDBO {
                 preparedStatement.setString(5, res.getRoom().getBedType().toString());
                 preparedStatement.setInt(6, res.getRoom().getNumBeds());
                 preparedStatement.setBoolean(7, res.isCanceled());
-                preparedStatement.setString(8, res.getRoom().getQualityLevel().toString());
+                preparedStatement.setString(8, res.getRoom().getQualityLevel().name());
                 preparedStatement.setString(9, res.getIsCheckedIn().toString());
-                preparedStatement.setString(10, res.getShip());
+                preparedStatement.setLong(10, res.getShip().getId());
                 preparedStatement.setLong(11, res.getReservationId());
 
 
@@ -72,8 +72,10 @@ public class ReservationDBO {
                 preparedStatement.setString(5, res.getRoom().getBedType().toString());
                 preparedStatement.setInt(6, res.getRoom().getNumBeds());
                 preparedStatement.setBoolean(7, res.isCanceled());
-                preparedStatement.setString(8, res.getRoom().getQualityLevel().toString());
+                preparedStatement.setString(8, res.getRoom().getQualityLevel().name());
                 preparedStatement.setString(9, res.getIsCheckedIn().toString());
+                preparedStatement.setLong(10, res.getShip().getId());
+
 
             }
 
@@ -160,7 +162,7 @@ public class ReservationDBO {
                                 Room.QualityLevel.valueOf(resultSet.getString("QUALITY_LVL"))
                                 )
                 );
-
+                res.setShip(ShipDatabase.getById(resultSet.getLong("SHIP")));
                 return res;
             }
         } catch (SQLException e) {
@@ -240,9 +242,9 @@ public class ReservationDBO {
                                 Room.BedType.valueOf(resultSet.getString("BED_TYPE")),
                                 resultSet.getInt("NUM_BEDS"),
                                 Room.QualityLevel.valueOf(resultSet.getString("QUALITY_LVL"))
-                        ),
-                        resultSet.getString("SHIP")
+                        )
                 );
+                res.setShip(ShipDatabase.getById(resultSet.getLong("SHIP")));
                 resList.add(res);
             }
         } catch (SQLException e) {
@@ -295,7 +297,7 @@ public class ReservationDBO {
                                 Room.QualityLevel.valueOf(resultSet.getString("QUALITY_LVL"))
                         )
                 );
-
+                res.setShip(ShipDatabase.getById(resultSet.getLong("SHIP")));
                 res.setIsCheckedIn(Reservation.CheckInStatus.valueOf(resultSet.getString("CHECK_IN_STATUS")));
                 resList.add(res);
             }

@@ -25,6 +25,11 @@ public class CheckInUI extends JPanel {
     private Label firstNameLabel;
     private Label lastNameLabel;
 
+    // Buttons
+    private JButton checkInButton;
+    private JButton checkOutButton;
+    private JButton cancelButton;
+
     // Table of Reservations
     private JTable reservationTable;
 
@@ -85,10 +90,31 @@ public class CheckInUI extends JPanel {
 
         this.add(scrollPane);
 
+        checkInButton = new JButton("Check In");
+        this.add(checkInButton);
+
+        checkOutButton = new JButton("Check Out");
+        this.add(checkOutButton);
+
+        cancelButton = new JButton("Cancel");
+        cancelButton.setForeground(Color.RED);
+        cancelButton.addActionListener(e -> onCancel(uiNavigator));
+        this.add(cancelButton);
+
 //        this.add(reservationTable);
 //        reservationTable.setVisible(true);
 
         // Returning the JPanel
         return this;
+    }
+
+
+    private void onCancel(UINavigator UINavigator){
+
+        JOptionPane.showMessageDialog(null, "Check In/Check Out canceled",
+                "Returning to travel agent home page", JOptionPane.ERROR_MESSAGE);
+
+        //Return to travel agent home page
+        UINavigator.showCard(UINavigator.TRAVEL_AGENT_LANDING_PANEL);
     }
 }

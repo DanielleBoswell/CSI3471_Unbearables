@@ -21,12 +21,13 @@ import java.util.Map;
 public class Ship {
 
     //Attributes
-    String name;
-    int capacity;
-    int twinRooms;
-    int fullRooms;
-    int queenRooms;
-    int kingRooms;
+    private String name;
+    private int capacity;
+    private int twinRooms;
+    private int fullRooms;
+    private int queenRooms;
+    private int kingRooms;
+    private long id;
 
     //added by Spencer Hammack
     public Map<Integer,Room> roomMap;
@@ -96,4 +97,8 @@ public class Ship {
     public void setKingRooms(int kingRooms) {
         this.kingRooms = kingRooms;
     }
+
+    public void setId(long id){this.id = id;}
+
+    public long getId(){return id;}
 }

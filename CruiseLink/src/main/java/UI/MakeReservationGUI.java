@@ -217,12 +217,11 @@ public class MakeReservationGUI extends DefaultUI {
         frame.pack();
         frame.setVisible(true);
     }
-
-    public static void runGUI() {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowGUI();
-            }
-        });
-    }
+//
+//    public static void main(String[] args) {
+//        UINavigator ui = new UINavigator();
+//        UINavigator.addCard(new MakeReservationGUI(), "Admin Landing Panel");
+//
+//        UINavigator.showCard("Admin Landing Panel");
+//    }
 }

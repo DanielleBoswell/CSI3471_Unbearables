@@ -12,16 +12,23 @@ public class ProfileControllerImpl implements ProfileController{
 
     public void onViewProfile() {
         // switch to profile page
-        uiNavigator.showCard(UINavigator.PROFILE_PAGE);
+        //uiNavigator.showCard(UINavigator.PROFILE_PAGE);
     }
 
-    // TODO: make usable for guest AND travel agents
-    public void returnToLandingPage() {
+    public void returnToGuestLandingPage() {
         uiNavigator.showCard(UINavigator.GUEST_LANDING_PANEL);
     }
 
-    public void alterInformation() {
+    public void alterGuestInformation() {
         // TODO: add functionality here (go to different controller/services??)
         uiNavigator.showCard(UINavigator.GUEST_LANDING_PANEL);
+    }
+
+    public void returnToAgentLandingPage() {
+        uiNavigator.showCard(UINavigator.TRAVEL_AGENT_LANDING_PANEL);
+    }
+
+    public void alterAgentInformation() {
+        uiNavigator.showCard(UINavigator.TRAVEL_AGENT_LANDING_PANEL);
     }
 }

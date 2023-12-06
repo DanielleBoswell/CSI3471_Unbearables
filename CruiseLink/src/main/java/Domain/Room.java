@@ -9,7 +9,18 @@ public class Room {
     private Integer roomNumber = null;
     private int numBeds;
     private boolean isReserved;
-    public enum QualityLevel {EXECUTIVE, BUSINESS, COMFORT, ECONOMY};
+    public enum QualityLevel {EXECUTIVE("Executive"), BUSINESS("Business"), COMFORT("Comfort"), ECONOMY("Economy");
+
+        private final String name;
+        private QualityLevel(String s){
+            name = s;
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
+    };
     private QualityLevel qualityLevel;
 
 

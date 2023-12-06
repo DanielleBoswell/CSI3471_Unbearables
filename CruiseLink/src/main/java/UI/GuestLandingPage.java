@@ -53,13 +53,13 @@ public class GuestLandingPage {
         cancelReservationButton = addButton("Cancel Reservation", guestLandingPanel, gbc, 2);
         modifyReservationButton = addButton("Modify Reservation", guestLandingPanel, gbc, 3);
         viewReservationButton = addButton("View Reservation", guestLandingPanel, gbc, 4);
-        profileButton = addButton("View Profile", guestLandingPanel, gbc, 5);
+        profileButton = addButton("Modify Profile", guestLandingPanel, gbc, 5);
         logoutButton = addButton("Log Out", guestLandingPanel, gbc, 6);
 
         //Set action listeners for each button -- Will require controller --
         searchCruisesButton.addActionListener(e -> guestController.onSearchCruises());
 
-        cancelReservationButton.addActionListener(e -> guestController.onCancelReservation());
+        cancelReservationButton.addActionListener(e -> guestController.onModifyReservation());
 
         modifyReservationButton.addActionListener(e -> guestController.onModifyReservation());
 

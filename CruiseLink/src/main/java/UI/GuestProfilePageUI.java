@@ -1,15 +1,16 @@
 // Author: Emma Aars
 package UI;
 
-import Controller.GuestControllerImpl;
 import Controller.ProfileControllerImpl;
+import Domain.Agent;
+import Domain.Guest;
 import Domain.Person;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Date;
 
-public class ProfilePageUI {
+public class GuestProfilePageUI {
     public static final int TEXT_BOX_WIDTH = 20;
 
     private static Person user;
@@ -23,7 +24,7 @@ public class ProfilePageUI {
 
     private static JButton confirm, cancel;
 
-    private static Font defaultFont = new Font("Serif", Font.PLAIN, 16);
+    private static Font defaultFont = new Font("Comic Sans MS", Font.PLAIN, 16);
 
     // setting controller
     private static ProfileControllerImpl profileController;
@@ -34,12 +35,17 @@ public class ProfilePageUI {
 
     private static UINavigator UINavigator;
 
-    public ProfilePageUI(UINavigator UINavigator) {
+    public GuestProfilePageUI(UINavigator UINavigator) {
         this.UINavigator = UINavigator;
     }
 
+    public static void GuestFunctionality() {
+        cancel.addActionListener(e -> profileController.returnToGuestLandingPage());
+        confirm.addActionListener(e -> profileController.alterGuestInformation());
+    }
+
     //this is a hardcoded WIP
-    public static JPanel createProfilePagePanel() {
+    public static JPanel createGuestProfilePagePanel() {
         // for testing purposes
         // TODO: find way to get the guest's info for this part
         user = new Person();
@@ -48,7 +54,7 @@ public class ProfilePageUI {
         user.setAge(25);
         user.setEmail("alice.smith@gmail.com");
         user.setPassword("alice1");
-        Date d = new Date(2003,04,12);
+        Date d = new Date(1998,04,12);
 
         // init picture
         information = new JPanel();
@@ -168,8 +174,7 @@ public class ProfilePageUI {
         mainPanel.add(buttons);
 
         // action listeners for the buttons
-        cancel.addActionListener(e -> profileController.returnToLandingPage());
-        confirm.addActionListener(e -> profileController.alterInformation());
+        GuestFunctionality();
 
         return mainPanel;
     }
