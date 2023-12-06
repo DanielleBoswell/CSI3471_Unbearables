@@ -63,7 +63,7 @@ public class ReservationDBO {
             } else {
                 // Insert a new person
                 saveSQL = "INSERT INTO RESERVATION (CUSTOMER_ID, START_DATE, END_DATE, IS_SMOKING, BED_TYPE, NUM_BEDS," +
-                        " IS_CANCELED, QUALITY_LVL, CHECK_IN_STATUS, SHIP_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        " IS_CANCELED, QUALITY_LVL, CHECK_IN_STATUS, SHIP) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 preparedStatement = dbConnection.prepareStatement(saveSQL, Statement.RETURN_GENERATED_KEYS);
                 preparedStatement.setLong(1, res.getCustomerId()); //FIX ME: HOW DO?
                 preparedStatement.setDate(2, (Date) res.getStartDate());
