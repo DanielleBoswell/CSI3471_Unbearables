@@ -43,9 +43,8 @@ public class UINavigator extends JFrame {
 
     public static final String CHECK_IN_PANEL = "Check In Panel";
     public static final String ADD_ROOM_PANEL = "Add Room Panel";
-
-    public static final String VIEW_GUEST_RESERVATIONS = "View Guest Reservations";
     public static final String RESERVATION_VIEW = "View Guest Reservation";
+    public static final String VIEW_GUEST_RESERVATIONS = "View Guest Reservations";
 
     /* ----------- ADD IDENTIFIERS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
 

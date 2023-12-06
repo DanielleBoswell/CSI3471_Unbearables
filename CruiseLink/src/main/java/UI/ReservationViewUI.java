@@ -48,19 +48,16 @@ public class ReservationViewUI extends JPanel{
         int ans = JOptionPane.showConfirmDialog(this, "Confirm Cancellation",
                 "Are you sure?", JOptionPane.YES_NO_OPTION);
         if (ans==0){
+            System.out.println("CANCELLING RESERVATION");
             isCancelledDialogueBox(controller.confirmCancellationGuest());
         }
     }
 
     public void isCancelledDialogueBox(boolean ok) {
-                JDialog box = new JDialog();
-                JPanel items = new JPanel();
-                items.setLayout(new BoxLayout(items, BoxLayout.Y_AXIS));
-                JButton backToReservationsButton;
-                JLabel desc;
                 if(ok) {
                     JOptionPane.showMessageDialog(this, "Your Reservation has now been cancelled!",
                             "Reservation Cancelled", JOptionPane.WARNING_MESSAGE);
+                    UINavigator.addCard(new ViewReservationsGUI(uiNavigator),UINavigator.VIEW_GUEST_RESERVATIONS);
                     UINavigator.showCard(UINavigator.VIEW_GUEST_RESERVATIONS);
                 }
                 else{
