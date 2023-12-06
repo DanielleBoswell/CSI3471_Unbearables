@@ -7,6 +7,16 @@ import java.awt.*;
 
 public class UINavigator extends JFrame {
 
+    int personType = 0;
+
+    public int getPersonType() {
+        return personType;
+    }
+
+    public void setPersonType(int personType) {
+        this.personType = personType;
+    }
+
     //Declaring a CardLayout to manage navigation of panels (GUIs)
     private static CardLayout cardLayout = null;
 
@@ -35,7 +45,6 @@ public class UINavigator extends JFrame {
     public static final String CHOOSE_ROOM_PANEL = "Choose Room Panel";
     public static final String CHOOSE_CRUISE_PANEL = "Choose Cruise Panel";
     public static final String CHOOSE_GUEST_PANEL = "Choose Guest Panel";
-
     public static final String PROFILE_PAGE = "Profile Page";
     public static final String CHECK_IN_PANEL = "Check In Panel";
 

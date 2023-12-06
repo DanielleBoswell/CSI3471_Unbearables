@@ -27,7 +27,7 @@ class RoomTableModel extends AbstractTableModel {
             ResultSet rs = statement.executeQuery("SELECT * FROM ROOM WHERE IS_RESERVED = 0");
 
             rs.last();
-            Object[][] table = new Object[rs.getRow()][5];
+            Object[][] table = new Object[rs.getRow()][6];
             rs.beforeFirst();
             int count = 0;
             while(rs.next()){

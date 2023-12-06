@@ -13,6 +13,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 
 public class CreateReservation_ChooseRoom extends JPanel {
 
@@ -113,7 +114,38 @@ public class CreateReservation_ChooseRoom extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 //insert function here todo
                 System.out.println("Submit button clicked!");
-                uiNavigator.showCard(UINavigator.GUEST_LANDING_PANEL);
+
+                Object id = table.getModel().getValueAt(table.getSelectedRow(),0);
+
+                String idStr = id.toString();
+
+
+                String command = "UPDATE Room SET is_reserved = 1 WHERE room_num = " + idStr;
+
+                try{
+                    Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+                    Connection con = DriverManager.getConnection("jdbc:derby:ex1connect;");
+                    PreparedStatement statement = con.prepareStatement(command);
+//                    ResultSet rs = statement.executeQuery(command);
+                    int updated = statement.executeUpdate();
+                    if(updated > 0) {
+                        System.out.println("data uploaded");
+                    } else {
+                        System.out.println("data failed upload");
+                    }
+                    statement.close();
+                    con.close();
+                } catch (SQLException se) {
+                    throw new RuntimeException(se);
+                } catch (ClassNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                if(uiNavigator.getPersonType() == 0) {
+                    uiNavigator.showCard(UINavigator.GUEST_LANDING_PANEL);
+                }else{
+                    uiNavigator.showCard(UINavigator.TRAVEL_AGENT_LANDING_PANEL);
+                }
             }
         });
         JButton dialogButton = new JButton("Cancel");
@@ -121,7 +153,11 @@ public class CreateReservation_ChooseRoom extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Cancel button clicked!");
-                uiNavigator.showCard(UINavigator.TRAVEL_AGENT_LANDING_PANEL);
+                if(uiNavigator.getPersonType() == 0) {
+                    uiNavigator.showCard(UINavigator.GUEST_LANDING_PANEL);
+                }else{
+                    uiNavigator.showCard(UINavigator.TRAVEL_AGENT_LANDING_PANEL);
+                }
             }
         });
 
