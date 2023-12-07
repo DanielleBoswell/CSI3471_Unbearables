@@ -1,4 +1,3 @@
-// Author: Emma Aars
 package UI;
 
 import Controller.ProfileControllerImpl;
@@ -10,6 +9,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Date;
 
+/**
+ * This class contains the code for the guest's profile page.
+ * It uses the profile controller to actually function.
+ * @author Emma
+ */
 public class GuestProfilePageUI {
     /**
      * This is the standard width of the text boxes used.

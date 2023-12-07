@@ -7,42 +7,87 @@ import Controller.CheckInControllerImpl;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This class contains the code for the travel agent's profile page.
+ * It uses the profile controller to actually function.
+ * @author Emma and Kyle Hoang
+ */
 public class AddRoomGUI extends JPanel {
-    // global constants
+    /**
+     * This is the number of columns.
+     */
     private static final int COLUMNS = 5;
 
-    // drop down selection items
+    /**
+     * These are the lists for the combo box options.
+     */
     private static String[] qLevels = {"EXECUTIVE", "BUSINESS", "COMFORT", "ECONOMY"};
     private static String[] bedTypes = {"TWIN", "FULL", "QUEEN", "KING"};
     private static String[] numBeds = {"1", "2", "3"};
 
-    // other components
+    /**
+     * This is the frame.
+     */
     private static JFrame frame;
+    /**
+     * These are the labels.
+     */
     private static JLabel roomNumLbl, smokingLbl, qualityLbl, bedTypeLbl, bedNumLbl;
+    /**
+     * These are the combo boxes for limited options.
+     */
     private static JComboBox qualityLvl, bedType, bedNum;
-    private static JComponent content;
+    /**
+     * This is the checkbox for smoking status.
+     */
     private static JCheckBox isSmoking;
+    /**
+     * This is the text field to decide the room number.
+     */
     private static JTextField roomNum;
+    /**
+     * These are the concel and add buttons.
+     */
     private static JButton cancel, add;
 
+    /**
+     * This is the menu bar.
+     */
     private static JMenuBar menuBar;
+    /**
+     * This is the actual menu.
+     */
     private static JMenu menu;
+    /**
+     * This is the default font for this UI.
+     */
     private static Font defaultFont = new Font("Comic Sans MS", Font.PLAIN, 14);
+    /**
+     * This is the controller for this page.
+     */
     private static AddRoomController controller;
 
-    //AddRoomGUI constructor takes the AddRoomController and sets it
+    /**
+     * This initializes the controller to be used.
+     */
     public AddRoomGUI(AddRoomController controller) {
         this.controller = controller;
     }
 
-    // Sets the controller
+    /**
+     * This initializes the controller to be used.
+     */
     public void setController (AddRoomControllerImpl addRoomController) { this.controller = addRoomController; }
 
 
-    // Making a UINavigator instance for check in
+    /**
+     * This is the UI navigator for this UI.
+     */
     private UINavigator uiNavigator;
 
-    // Constructor accepting UINavigator instance - Need this for switching panels
+    /**
+     * This initializes the UI navigator to be used to switch pages.
+     */
     public AddRoomGUI (UINavigator uiNavigator) {
         this.uiNavigator = uiNavigator;
     }
@@ -163,6 +208,7 @@ public class AddRoomGUI extends JPanel {
 
     /**
      * This method is from an old version of the UI, before UINavigator.
+     * @Author Emma
      */
     public static void createGUI() {
         // Create and set up the window.
