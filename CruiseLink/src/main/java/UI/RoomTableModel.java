@@ -7,7 +7,10 @@ import Domain.Room;
 import javax.swing.table.AbstractTableModel;
 import java.sql.*;
 
-
+/**
+ * @author Spencer Hammack
+ * This table creates and stores the data that is used to fill the choose room table
+ */
 class RoomTableModel extends AbstractTableModel {
 
     static Boolean DEBUG = false;

@@ -17,7 +17,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
-
+/**
+ * @author Spencer Hammack
+ * This frame provides the interface for choose cruise
+ */
 public class CreateReservation_ChooseCruise extends JPanel {
     JPanel panel;
     JLabel chooseCruise;

@@ -15,6 +15,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 
+/**
+ * @author Spencer Hammack
+ * This frame provides the interface for choose room
+ */
+
 public class CreateReservation_ChooseRoom extends JPanel {
 
     UINavigator uiNavigator;
