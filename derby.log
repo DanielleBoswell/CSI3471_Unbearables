@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Tue Dec 05 19:31:31 CST 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-018c-3cc0-67cb-00001fb8c7e0 
+Wed Dec 06 19:41:48 CST 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-018c-41f0-2bc5-00001fb8b4d8 
 on database directory /Users/Emma/CSI_3471/GroupProject/CSI3471_Unbearables/ex1connect with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@251a69d7 
 Loaded from file:/Users/Emma/CSI_3471/GroupProject/CSI3471_Unbearables/CruiseLink/lib/derby.jar
 java.vendor=Oracle Corporation
