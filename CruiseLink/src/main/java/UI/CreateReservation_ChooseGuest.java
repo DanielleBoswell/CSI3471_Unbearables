@@ -122,6 +122,7 @@ public class CreateReservation_ChooseGuest extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 //insert function here todo
                 System.out.println("Submit button clicked!");
+                uiNavigator.setPersonType(1);
                 uiNavigator.showCard(UINavigator.CHOOSE_CRUISE_PANEL);
             }
         });
