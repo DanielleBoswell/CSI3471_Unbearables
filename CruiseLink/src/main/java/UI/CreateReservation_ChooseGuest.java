@@ -13,6 +13,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @author Spencer Hammack
+ * This frame provides the interface for choose guest
+ */
+
 public class CreateReservation_ChooseGuest extends JPanel {
 
     UINavigator uiNavigator;

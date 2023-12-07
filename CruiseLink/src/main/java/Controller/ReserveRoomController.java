@@ -6,6 +6,10 @@ import Domain.Room;
 import Domain.Ship;
 import Repository.ReservationDatabase;
 
+/**
+ * @author Spencer Hammack
+ * This class provides the methods to reserve a room
+ */
 public class ReserveRoomController {
     public void reserveRoom(ReservationDatabase d, Guest p, Ship s, Room r){
         if(s.roomMap.containsKey(r.getRoomNumber()) && !s.roomMap.get(r.getRoomNumber()).getIsReserved()){

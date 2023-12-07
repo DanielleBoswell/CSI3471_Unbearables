@@ -9,6 +9,16 @@ import java.awt.*;
 
 public class UINavigator extends JFrame {
 
+    int personType = 0;
+
+    public int getPersonType() {
+        return personType;
+    }
+
+    public void setPersonType(int personType) {
+        this.personType = personType;
+    }
+
     //Declaring a CardLayout to manage navigation of panels (GUIs)
     private static CardLayout cardLayout = null;
 
@@ -37,10 +47,8 @@ public class UINavigator extends JFrame {
     public static final String CHOOSE_ROOM_PANEL = "Choose Room Panel";
     public static final String CHOOSE_CRUISE_PANEL = "Choose Cruise Panel";
     public static final String CHOOSE_GUEST_PANEL = "Choose Guest Panel";
-
     public static final String GUEST_PROFILE_PAGE = "Guest Profile Page";
     public static final String AGENT_PROFILE_PAGE = "Agent Profile Page";
-
     public static final String CHECK_IN_PANEL = "Check In Panel";
     public static final String ADD_ROOM_PANEL = "Add Room Panel";
     public static final String RESERVATION_VIEW = "View Guest Reservation";

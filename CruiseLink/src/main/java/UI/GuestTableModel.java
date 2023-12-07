@@ -3,7 +3,10 @@ package UI;
 import javax.swing.table.AbstractTableModel;
 import java.sql.*;
 
-
+/**
+ * @author Spencer Hammack
+ * This table creates and stores the data that is used to fill the choose guest table
+ */
 class GuestTableModel extends AbstractTableModel {
     static Boolean DEBUG = false;
     public String[] columnNames = {"User ID", "Name", "Username", "Email", "Gender", "Age"};

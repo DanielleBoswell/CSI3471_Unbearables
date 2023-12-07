@@ -6,6 +6,11 @@ import Repository.ReservationDatabase;
 
 import java.util.ArrayList;
 
+/**
+ * @author Spencer Hammack
+ * This class provides the methods to change and add to the reservation database
+ */
+
 public class ReservationDatabaseController {
     void addReservation(ReservationDatabase database, Guest p, Reservation r){
         ArrayList<Reservation> tmp = new ArrayList<>();

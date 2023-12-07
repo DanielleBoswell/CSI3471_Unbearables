@@ -7,7 +7,10 @@ import Domain.Room;
 import javax.swing.table.AbstractTableModel;
 import java.sql.*;
 
-
+/**
+ * @author Spencer Hammack
+ * This table creates and stores the data that is used to fill the choose room table
+ */
 class RoomTableModel extends AbstractTableModel {
 
     static Boolean DEBUG = false;
@@ -27,7 +30,7 @@ class RoomTableModel extends AbstractTableModel {
             ResultSet rs = statement.executeQuery("SELECT * FROM ROOM WHERE IS_RESERVED = 0");
 
             rs.last();
-            Object[][] table = new Object[rs.getRow()][5];
+            Object[][] table = new Object[rs.getRow()][6];
             rs.beforeFirst();
             int count = 0;
             while(rs.next()){
