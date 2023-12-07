@@ -1,16 +1,17 @@
 package Domain;
 
-/* Team: UnBEARables
+/** Team: UnBEARables
  * Course: CSI 3471
  * Project: CruiseLink
  * Filename: TravelPath.java
  * Creation Date: 10/15/2023
  * Modified Date: 10/18/2023
  * Description: Contains the travel path of Ship
+ * @Author Danielle Boswell
  *
  */
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -31,7 +32,7 @@ public class TravelPath {
     /**
      * gets number of days of Travel Path
      *
-     * @return
+     * @return days of travel
      */
     public int getDays() {
         return days;
@@ -40,7 +41,7 @@ public class TravelPath {
     /**
      * sets number of days of Travel Path
      *
-     * @param days
+     * @param
      */
     public void setDays(int days) {
         this.days = days;
@@ -49,7 +50,7 @@ public class TravelPath {
     /**
      * gets the start date of Travel Path
      *
-     * @return
+     * @return Date
      */
     public Date getStartDate() {
         return startDate;
@@ -67,7 +68,7 @@ public class TravelPath {
     /**
      * gets the end date of Travel Path
      *
-     * @return
+     * @return Date
      */
     public Date getEndDate() {
         return endDate;
@@ -85,7 +86,7 @@ public class TravelPath {
     /**
      * gets the path of the Travel Path
      *
-     * @return
+     * @return Date
      */
     public Map<Date,Country> getPath() {
         return path;

@@ -1,6 +1,7 @@
 package Controller;
 
 import UI.UINavigator;
+import UI.ViewReservationsGUI;
 
 public class GuestControllerImpl implements GuestController {
 
@@ -18,7 +19,9 @@ public class GuestControllerImpl implements GuestController {
 
     public void onViewReservation() {
 
-        System.out.println("Viewing Reservation");
+        UINavigator.addCard(new ViewReservationsGUI(uiNavigator), UINavigator.VIEW_GUEST_RESERVATIONS);
+        UINavigator.showCard(UINavigator.VIEW_GUEST_RESERVATIONS);
+        System.out.println("Viewing all reservations");
     }
 
     public void onCancelReservation() {
@@ -27,13 +30,17 @@ public class GuestControllerImpl implements GuestController {
     }
 
     public void onModifyReservation() {
-        uiNavigator.showCard(UINavigator.CHOOSE_CRUISE_PANEL);
         System.out.println("Modifying Reservation");
+        UINavigator.addCard(new ViewReservationsGUI(uiNavigator), UINavigator.VIEW_GUEST_RESERVATIONS);
+        UINavigator.showCard(UINavigator.VIEW_GUEST_RESERVATIONS);
+        System.out.println("viewing all reservations");
     }
 
     public void onViewProfile() {
         //ProfileControllerImpl.onViewProfile();
+
         uiNavigator.showCard(UINavigator.GUEST_PROFILE_PAGE);
+
         System.out.println("Viewing Profile");
     }
 }

@@ -11,7 +11,7 @@ package Domain;
  *
  */
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Country {
     private String name,

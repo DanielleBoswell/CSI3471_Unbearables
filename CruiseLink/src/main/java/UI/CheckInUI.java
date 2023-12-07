@@ -51,6 +51,12 @@ public class CheckInUI extends JPanel {
     }
 
     // This method creates the check in UI which will return the panel
+
+    /**
+     * @author Kyle Hoang
+     * This method creates and returns the JPanel which is the CheckIn/CheckOut Panel
+     * @return JPanel to be added to uiNavigator
+     */
     public JPanel createCheckInUIPanel() {
         // add menu
         //menu = new MyMenuBar(new MyMenuBarControllerImpl());
@@ -108,7 +114,11 @@ public class CheckInUI extends JPanel {
         return this;
     }
 
-
+    /**
+     * @author originally Kyle Thomspon, modified for use by Kyle Hoang
+     * This method sends user to Travel Agent Landing Page
+     * @param UINavigator
+     */
     private void onCancel(UINavigator UINavigator){
 
         JOptionPane.showMessageDialog(null, "Check In/Check Out canceled",

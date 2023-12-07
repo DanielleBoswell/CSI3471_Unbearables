@@ -43,6 +43,8 @@ public class UINavigator extends JFrame {
 
     public static final String CHECK_IN_PANEL = "Check In Panel";
     public static final String ADD_ROOM_PANEL = "Add Room Panel";
+    public static final String RESERVATION_VIEW = "View Guest Reservation";
+    public static final String VIEW_GUEST_RESERVATIONS = "View Guest Reservations";
 
     /* ----------- ADD IDENTIFIERS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
 
@@ -206,6 +208,11 @@ public class UINavigator extends JFrame {
         return profilePageGUIInstance.createAgentProfilePagePanel();
     }
 
+    /**
+     * @author Kyle Hoang
+     * This method is used to create and provide access to the CheckIn/CheckOut UI
+     * @return JPanel
+     */
     private JPanel createCheckIn() {
         CheckInUI checkInUIInstance = new CheckInUI(this);
         CheckInControllerImpl checkInController = new CheckInControllerImpl(this);
@@ -213,13 +220,17 @@ public class UINavigator extends JFrame {
         return checkInUIInstance.createCheckInUIPanel();
     }
 
+    /**
+     * @author Kyle Hoang
+     * This method is used to create and provide access to the AddRoomUI
+     * @return JPanel
+     */
     private JPanel createAddRoom() {
         AddRoomGUI addRoomGUIInstance = new AddRoomGUI(this);
         AddRoomControllerImpl addRoomController = new AddRoomControllerImpl(this);
         addRoomGUIInstance.setController(addRoomController);
         return addRoomGUIInstance.createAddRoomUIPanel();
     }
-
 
     /* ----------- ADD PANEL METHODS HERE FOR EACH GUI PAGE LIKE ABOVE ----------- */
 
@@ -229,4 +240,12 @@ public class UINavigator extends JFrame {
         //Tells the card layout to show the panel with the specified identifier
         cardLayout.show(cardPanel, identifier);
     }
+
+    public static void addCard(JPanel panel, String identifier){
+        cardPanel.add(panel, identifier);}
+
+    public static void goBack(){
+        cardLayout.previous(cardPanel);
+    }
+
 }

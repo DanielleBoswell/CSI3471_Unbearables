@@ -59,7 +59,7 @@ public class GuestLandingPage {
         //Set action listeners for each button -- Will require controller --
         searchCruisesButton.addActionListener(e -> guestController.onSearchCruises());
 
-        cancelReservationButton.addActionListener(e -> guestController.onCancelReservation());
+        cancelReservationButton.addActionListener(e -> guestController.onModifyReservation());
 
         modifyReservationButton.addActionListener(e -> guestController.onModifyReservation());
 
