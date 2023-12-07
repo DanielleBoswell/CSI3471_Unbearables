@@ -94,7 +94,11 @@ public class AgentProfilePageUI {
         confirm.addActionListener(e -> profileController.alterAgentInformation());
     }
 
-    //this is a hardcoded WIP
+    /**
+     * This creates the UI for the travel agent profile page.
+     * Agent info is hardcoded.
+     * @return mainPanel
+     */
     public static JPanel createAgentProfilePagePanel() {
         // for testing purposes
         // TODO: find way to get the agent's info for this part

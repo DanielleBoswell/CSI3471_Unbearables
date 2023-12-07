@@ -11,41 +11,92 @@ import java.awt.*;
 import java.util.Date;
 
 public class GuestProfilePageUI {
+    /**
+     * This is the standard width of the text boxes used.
+     */
     public static final int TEXT_BOX_WIDTH = 20;
 
+    /**
+     * This is the user whose information should be displayed.
+     */
     private static Person user;
+    /**
+     * These are the various panels used to organize the UI components.
+     */
     private static JPanel information, picture, buttons;
+    /**
+     * These are the labels used in the UI.
+     */
     private static JLabel label, name, username, newPassword, oldPassword, dob,
             email, uUsername, uOldPassword, backslash;
+    /**
+     * This is the user's profile picture. Used to resize the image.
+     */
     private static ImageIcon profPic;
+    /**
+     * This is used to actually apply the image to the UI.
+     */
     private static Image image;
+    /**
+     * These are the text fields used to show user data, and they are editable.
+     */
     private static JTextField uName, year, uEmail, day, month;
+    /**
+     * This is used to hide the new password being entered.
+     */
     private static JPasswordField uPassword;
 
+    /**
+     * These are the buttons that save the changes or return to the travel
+     * agent's landing page.
+     */
     private static JButton confirm, cancel;
 
+    /**
+     * This is the default font and size used for much of the text components.
+     */
     private static Font defaultFont = new Font("Comic Sans MS", Font.PLAIN, 16);
 
-    // setting controller
+    /**
+     * This is the controller to be used to connect functionality.
+     */
     private static ProfileControllerImpl profileController;
 
+    /**
+     * This initializes the controller for the travel agent profile page.
+     * @param profileController
+     */
     public void setController(ProfileControllerImpl profileController) {
         this.profileController = profileController;
     }
 
+    /**
+     * This is the UI navigator used to switch between pages.
+     */
     private static UINavigator UINavigator;
 
+    /**
+     * This initializes the Ui navigator to be used when switching pages.
+     * @param UINavigator
+     */
     public GuestProfilePageUI(UINavigator UINavigator) {
         this.UINavigator = UINavigator;
     }
 
+    /**
+     * This defines functionality of cancel and confirm buttons. It uses the
+     * profile page controller.
+     */
     public static void GuestFunctionality() {
         cancel.addActionListener(e -> profileController.returnToGuestLandingPage());
         confirm.addActionListener(e -> profileController.alterGuestInformation());
     }
 
-    //this is a hardcoded WIP
-    public static JPanel createGuestProfilePagePanel() {
+    /**
+     * This creates the UI for the guest profile page.
+     * Guest info is hardcoded.
+     * @return mainPanel
+     */    public static JPanel createGuestProfilePagePanel() {
         // for testing purposes
         // TODO: find way to get the guest's info for this part
         user = new Person();
