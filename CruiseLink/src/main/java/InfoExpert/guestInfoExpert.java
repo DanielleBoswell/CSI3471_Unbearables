@@ -21,9 +21,7 @@ public class guestInfoExpert {
 
     AccountDBO accounts = new AccountDBO(foundation.getDBConnection());
 
-/*    public guestInfoExpert(Map<Integer, Guest> n){
-        accounts = n;
-    }*/
+
 
     /*
      * Author: Nicholas Revard
@@ -31,6 +29,12 @@ public class guestInfoExpert {
      *
      * Description: It will check in the guest database if the username already
      * exists false it exist true if not
+     */
+
+    /**
+     *
+     * @param username
+     * @return
      */
     public boolean doesUsernameExist(String username){
 
@@ -55,6 +59,13 @@ public class guestInfoExpert {
      * Description: It will check in the guest database if the email already
      * exists false it exist true if not
      */
+
+    /**
+     * author Nicholas Revard
+     *
+     * @param email
+     * @return
+     */
     public boolean doesEmailExist(String email){
         List<Person> possible = accounts.find("email");
         boolean x = false;
@@ -74,6 +85,10 @@ public class guestInfoExpert {
      *
      * Description: It will call the deleteAccountDatabase function
      * from the AccountDatabase object
+     */
+
+    /**
+     *
      */
     public void deleteAccountDatabase() {
         foundation.deleteAccountDatabase();

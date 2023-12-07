@@ -8,6 +8,18 @@ import java.sql.SQLException;
 
 public class SignUpControllerImpl implements SignUpController {
 
+    /**
+     *
+     * @param firstName
+     * @param lastName
+     * @param age
+     * @param email
+     * @param username
+     * @param password
+     * @param confirmPassword
+     * @return
+     * @throws SQLException
+     */
     @Override
     public String onSignUpSubmit(String firstName, String lastName, String age, String email, String username,
                                  String password, String confirmPassword) throws SQLException {

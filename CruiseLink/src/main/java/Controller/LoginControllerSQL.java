@@ -28,6 +28,13 @@ public class LoginControllerSQL implements LoginController{
         this.uiNavigator = uiNavigator;
     }
 
+    /**
+     * author Nicholas Revard
+     *
+     * @param username
+     * @param password
+     * @throws SQLException
+     */
     @Override
     public void onLoginPressed(String username, String password) throws SQLException { // -------------- Working ------------------
 
@@ -99,6 +106,9 @@ public class LoginControllerSQL implements LoginController{
         }
     }
 
+    /**
+     *
+     */
     @Override
     public void onSignUpPressed() {
 
@@ -106,6 +116,10 @@ public class LoginControllerSQL implements LoginController{
         uiNavigator.showCard(UINavigator.SIGNUP_PANEL);
     }
 
+    /**
+     *
+     * @param email
+     */
     @Override
     public void onForgotPasswordPressed(String email) {
 
