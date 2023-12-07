@@ -1,15 +1,17 @@
 package UI;
 
 import Controller.LoginControllerImpl;
-import Controller.LoginControllerSQL;
+import Domain.Person;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.SQLException;
 
 public class LoginGUI extends JPanel {
+
+    //Create a Person for tracking user logged in -------------
+    private Person currentUser;
 
     //Constant for setting the text box width
     public static final int TEXT_BOX_WIDTH = 25;
@@ -30,16 +32,11 @@ public class LoginGUI extends JPanel {
     private JLabel forgotPasswordLink;
 
     //Making a Login controller impl object
-/*
     private LoginControllerImpl loginController;
-*/
-    private LoginControllerSQL loginController2;
+
     //Sets the controller
-/*    public void setController(LoginControllerImpl loginController) {
+    public void setController(LoginControllerImpl loginController) {
         this.loginController = loginController;
-    }*/
-    public void setControllerSQL(LoginControllerSQL loginController) {
-        this.loginController2 = loginController;
     }
 
     //Making a UINavigator instance for login
@@ -47,7 +44,7 @@ public class LoginGUI extends JPanel {
 
     //Constructor accepting UINavigator instance - Need this for switching panels
     public LoginGUI(UINavigator uiNavigator) {
-
+        //this.currentUser = currentUser;
         this.uiNavigator = uiNavigator;
     }
 
@@ -89,26 +86,20 @@ public class LoginGUI extends JPanel {
             String password = new String(passwordField.getPassword());
 
             this.clearTextFields();
-            try {
-                loginController2.onLoginPressed(username, password);
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
+
             //Pass to controller
-            //loginController.onLoginPressed(username, password);
+            loginController.onLoginPressed(username, password); // ------------------------------------ would need to pass person object -------------
         });
 
         //Sign up button action listener
         signUpButton.addActionListener(e -> {
 
             this.clearTextFields();
-            if (loginController2 != null) {
-                loginController2.onSignUpPressed();
-            }
+
             //Call sign up through controller
-/*            if (loginController != null) {
+            if (loginController != null) {
                 loginController.onSignUpPressed();
-            }*/
+            }
         });
 
         //Listens for mouse clicks on the forgot password link

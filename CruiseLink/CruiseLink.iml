@@ -35,5 +35,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="derby" level="project" />
+    <orderEntry type="library" name="Maven: net.coderazzi:tablefilter-swing:5.3.1" level="project" />
   </component>
 </module>

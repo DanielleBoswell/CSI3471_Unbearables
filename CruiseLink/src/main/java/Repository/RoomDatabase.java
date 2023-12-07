@@ -57,10 +57,9 @@ public class RoomDatabase {
         Connection dbConnection = null;
         Statement statement = null;
 
-        String createTableSQL = "CREATE TABLE ROOM(" + "ROOM_NUM INTEGER NOT NULL VARCHAR(20), " +
+        String createTableSQL = "CREATE TABLE ROOM(" + "ROOM_NUM INTEGER NOT NULL, " +
                 "IS_SMOKING SMALLINT NOT NULL, " + "BED_TYPE VARCHAR(20) NOT NULL, " + "NUM_BEDS INTEGER NOT NULL, " +
-                "IS_RESERVED SMALLINT NOT NULL, " + "QUALITY_LVL VARCHAR(20) NOT NULL, "
-                + "CONSTRAINT primary_key PRIMARY KEY (ROOM_NUM) " + ")";
+                "IS_RESERVED SMALLINT NOT NULL, " + "QUALITY_LVL VARCHAR(20) NOT NULL" + ")";
 
         try {
             dbConnection = getDBConnection();
