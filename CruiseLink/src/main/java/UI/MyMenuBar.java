@@ -11,6 +11,12 @@ public class MyMenuBar extends JMenuBar {
     private static Font defaultFont = new Font("Comic Sans MS", Font.PLAIN, 14);
     private static MyMenuBarController controller;
 
+    /**
+     * @author Kyle Hoang
+     * This constructs a menu bar to be added to a JFrame. It is also able to be added to a JPanel, which does not
+     * have a specific method for adding a menu bar. Thus, the MyMenuBar would have to be formatted manually.
+     * @param controller
+     */
     public MyMenuBar(MyMenuBarController controller) {
         this.controller = controller;
 

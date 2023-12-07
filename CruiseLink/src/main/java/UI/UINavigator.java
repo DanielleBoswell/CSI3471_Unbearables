@@ -208,6 +208,11 @@ public class UINavigator extends JFrame {
         return profilePageGUIInstance.createAgentProfilePagePanel();
     }
 
+    /**
+     * @author Kyle Hoang
+     * This method is used to create and provide access to the CheckIn/CheckOut UI
+     * @return JPanel
+     */
     private JPanel createCheckIn() {
         CheckInUI checkInUIInstance = new CheckInUI(this);
         CheckInControllerImpl checkInController = new CheckInControllerImpl(this);
@@ -215,6 +220,11 @@ public class UINavigator extends JFrame {
         return checkInUIInstance.createCheckInUIPanel();
     }
 
+    /**
+     * @author Kyle Hoang
+     * This method is used to create and provide access to the AddRoomUI
+     * @return JPanel
+     */
     private JPanel createAddRoom() {
         AddRoomGUI addRoomGUIInstance = new AddRoomGUI(this);
         AddRoomControllerImpl addRoomController = new AddRoomControllerImpl(this);
